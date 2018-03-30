@@ -1,0 +1,34 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+*.CoreCompileInputs.cache
+*_MarkupCompile.cache
+*_MarkupCompile.lref
+
+
+#Auto generated files
+/source/UI/SateonDb/Scripts/Post-Deployment/core/core.MtmLinkTables.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/core/core.TypeMapping.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.SateonEntityTaskAttribute.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.SateonEntityTask.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.SateonEntityState.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.SateonEntityLink.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.SateonEntityField.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.SateonEntityEvent.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.SateonEntityCommandAttribute.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.SateonEntityCommand.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.SateonEntityAttribute.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.SateonEntity.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.EntityValidation.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.EntityStateEnumerationItem.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.EntityStateEnumeration.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.EntityEventArgument.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/meta/meta.EntityCommandArgument.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/sec/sec.ruletotask.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/sec/sec.ruletostate.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/sec/sec.ruletofield.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/sec/sec.ruletocommand.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/sec/sec.grouptorule.sql
+/source/UI/SateonDb/Scripts/Post-Deployment/sec/sec.AccessRule.sql
