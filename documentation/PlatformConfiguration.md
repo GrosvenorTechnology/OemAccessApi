@@ -1,6 +1,4 @@
-# OEM-Access-Controller
-
-## Platform Configuration
+# Platform Configuration
 
 The configuration of the controller is split into two sections, platform and
 application configuration and application configuration. This document describes
@@ -58,39 +56,39 @@ the platform configuration of the device.
 }
 ```
 
-### Application Version
+## Application Version
 
 Specify the version of the application package that should be installed on the
 controller. The controller will check and update the application if required on
 device boot and update of the platformConfig.json file.
 
-### Firmware Version
+## Firmware Version
 
 Specify the version of the firmware that should be installed on the controller.
 The controller will check and update the firmware if required on device boot and
 update of the platformConfig.json file.
 
-### Protocol Level
+## Protocol Level
 
 The protocol level the application will run at. Defaults to 1.
 
-### Default Poll Frequency
+## Default Poll Frequency
 
 The default poll frequency (in seconds) that will be used unless otherwise
 overridden on a specific URI.
 
-### Default Queue Batch Size
+## Default Queue Batch Size
 
 The default batch size to be used when polling a queue unless overridden on a
 specific queue.
 
-### Services
+## Services
 
 [optional] You can add extra service aliases to the ones already defined in the
 boot config. If the name of an existing service is specified, the value will be
 replaced.
 
-### URI Locations
+## URI Locations
 
 It is possible to override the default URIs used to communicate with the service
 tier, if a specific URI type is present, that uri will be used, otherwise the

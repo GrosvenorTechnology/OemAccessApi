@@ -1,6 +1,4 @@
-# OEM-Access-Controller
-
-## Boot Configuration
+# Boot Configuration
 
 The Boot configuration are loaded from a USB key on boot. The Key should be
 FAT32 formatted and present in the controller at power on. The file bootconfig.json
@@ -30,33 +28,33 @@ this will be loaded instead of boot.config.
 
 ```
 
-### Default URI
+## Default URI
 
 [required] This URI will be used as the base for all default URIs and relative
 custom URIs.
 
-### Platform Config
+## Platform Config
 
 [optional] This is the URI that is used to load the platform config, if present
 {deviceSerial} will be replaced with the devices serial number.
 
-### Services
+## Services
 
 [optional] To help keep config files a bit cleaner, it is possible to specify
 alias for services. These aliases can be used in any URI in the form
 {myService}.
 
-### Shared Key
+## Shared Key
 
 [required] This is the pre-shared key that will be used to sign all requests
 using a SHA256 HMAC. It should be 32bytes of random data encoded in Base64.
 
-### Custom Headers
+## Custom Headers
 
 [optional] Any extra static information can be added to the header section of
 all HTTP requests.
 
-### Network
+## Network
 
 [optional] Configure if the device should use a dhcp or static IP address. The
 device will default to DHCP.
