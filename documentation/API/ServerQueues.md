@@ -1,0 +1,17 @@
+# Server Queues
+
+All queues in the APIs (Level 1 & 2) used to push messages from the server to
+the client follow the following semantics, the client can only receive from
+these queues.
+
+The server should notifiy the controller that data is avaiable on the queue by returning the queue's activity name via the [Device Heartbeat](deviceheartbeat.md) response.
+
+The Queues are only intended to have a single consumer
+
+## Queue API
+
+All endpoints that implement the Server Queue pattern will be required to implement the following endpoints.
+
+1. [Destructive Read](ServerQueueDestructiveRead.md)
+2. [Peek](ServerQueuePeekRead.md)
+3. [Delete](ServerQueueDelete.md)

@@ -6,7 +6,7 @@
 
   <_The URL Structure (path only, no root url)_>
 
-## Method:
+## Method
 
   <_The request type_>
 
@@ -44,20 +44,28 @@
 
   <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
 
-* **Code:** 200 <br />
-    **Content:** `{ id : 12 }`
+> **Code:** 200  
+> **Content:** `{ id : 12 }`
 
 ## Error Response
 
   <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
 
-* **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Log in" }`
+> ### **Code:** 401 UNAUTHORIZED
+>
+> Authorised header not supplied
 
   OR
 
-* **Code:** 422 UNPROCESSABLE ENTRY <br />
-    **Content:** `{ error : "Email Invalid" }`
+> ### **Code:** 403 FORBIDDEN
+>
+> Supplied authorisation credentials does not allow access to this resource
+
+  OR
+
+> ### **Code:** 404 NOT FOUND
+>
+> Requested resource does not exist, i.e. unknown device serial number
 
 ## Sample Call
 
