@@ -1,7 +1,7 @@
 # Post Event
 
-When an event occurs on the controller (i.e. Valid Access) the event is posted
-as a standardised event in the form of a JSON payload to this endpoint.
+When an event occurs on a controller (i.e. Valid Access) the event is posted
+as a standardised event as a JSON payload to this endpoint.
 
 Events in the OEM-Access controller are raised in response to any of three sources:
 
@@ -97,6 +97,7 @@ public class Event
 New entries may be added to the event message schema or to the contents property in future version, therefor it is best practice to ignore unknown properties rather than cause an exception on the unknown data.  Removal of properties will be deemed a braking change.
 
 ### Message Contents
+
 Every event generated in the system will have the timestamp field set to the time the system reacted to an event.
 
 Every message sent in the system will have a unique messageId, this is always a guid in the form in the above example.
