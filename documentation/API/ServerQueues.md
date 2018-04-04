@@ -12,6 +12,6 @@ The Queues are only intended to have a single consumer
 
 All endpoints that implement the Server Queue pattern will be required to implement the following endpoints.
 
-1. [Destructive Read](ServerQueueDestructiveRead.md)
-2. [Peek](ServerQueuePeekRead.md)
-3. [Delete](ServerQueueDelete.md)
+1. [Destructive Read](ServerQueuesDestructiveRead.md)
+2. [Peek](ServerQueuesPeekRead.md)
+3. [Delete](ServerQueuesDelete.md)
