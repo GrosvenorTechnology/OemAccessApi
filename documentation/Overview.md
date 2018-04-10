@@ -8,4 +8,4 @@
 
 ## [Application Configuration](ApplicationConfiguration/Overview.md)
 
-## [Entity Types](EntityTypes)
+## [Entity Types](Entities/EntityTypes.md)
