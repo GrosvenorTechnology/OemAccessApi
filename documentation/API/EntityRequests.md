@@ -68,25 +68,6 @@ OR
 >
 > Requested resource does not exist, i.e. unknown time schedule id
 
-## Samples
-
-The body of the call can be expressed in C# as 
-
-````c#
-public class StateNotification
-{
-    public Guid MessageId { get; set; }
-    public Guid CorrelationId { get; set; }
-    public Guid? PreviousMessageId { get; set; }
-    public string Entity { get; set; }
-    public string StateName { get; set; }
-    public string StateValue { get; set; }
-    public StateNotificationType StateNotificationType { get; set; }
-    public bool DiagState { get; set; }
-    public DateTime LastChanged { get; set; }
-}
-````
-
 ## Notes
 
 ### Supported Entity Types

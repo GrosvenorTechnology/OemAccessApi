@@ -25,9 +25,9 @@ rates, mainly configuration other than user data.
 ## Success Response
 
 > **Code:** 200
->
-> If-None-Match not provided or ETags do not match full JSON encoded device
-configuration domain model returned with new ETag header.
+> **Content:** [Application Configuration](../ApplicationConfigurtation/Overview.md)  
+> If-None-Match not provided or ETags do not match, Application Configurtaion returned 
+with new ETag header.
 
 OR
 

@@ -17,10 +17,10 @@ is changed in the service.
 
 The following message types will be returned via the changes queue
 
-- [External-Ref::Oem-Controller-DomainModel::AccessControlUser]
+- [Common.TimeTable](../Entities/CommonTimeTable.md)
 
-- [External-Ref::Oem-Controller-DomainModel::CommonTimeTable]
+- [AccessControl.User](../Entities/AccessControlUser.md)
 
-- [External-Ref::Oem-Controller-DomainModel::EntityReconcile]
+- [Entity Reconcile](../Entities/EntityReconcile.md)
 
-- [External-Ref::Oem-Controller-DomainModel::EntityDelete]
+- Entity Delete

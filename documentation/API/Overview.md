@@ -35,7 +35,7 @@ New entries may be added to message schemas in future version, therefor it is be
 5. [Entity Changes](EntityChanges.md)
 6. [Entity Requests](EntityRequests.md)
 7. [Entity Resync](EntityResync.md)
-8. [User lookup (by identifier)](LookupUserByIdentifier.md)
+8. [User lookup (by identifier)](LookUpUserByIdentifier.md)
 
 
 ## Real Time Events
