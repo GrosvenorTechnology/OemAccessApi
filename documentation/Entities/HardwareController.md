@@ -19,6 +19,8 @@ configure the AccessControl application on the controller.
 ### Timezone
 
 **[string (200)] (Etc/UTC)** The IANA timezone to be used to evaluate local time.
+The list of timezones can be found in the [IANA Timezone database](https://www.iana.org/time-zones) 
+of which a list can be found [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
 ### AreaMode
 
