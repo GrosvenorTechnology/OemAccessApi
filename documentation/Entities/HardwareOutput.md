@@ -1,4 +1,4 @@
-# Output
+# Hardware.Output
 
 An output is a simple On/Off relay device.
 
@@ -12,11 +12,14 @@ The output has the following operational modes:
         "outputs": [{
             "id": "Reception-Lights",
             "description": "Reception Lights",
-            "operationalMode": "reset",
             "address": "1-0-1",
-            "pulseLength": "00:10"
-            }
-        ]
+            "operationalMode": "normal",
+            "defaultOutputMode": "constant",
+            "outputStateType": "activeHigh",            
+            "pulseLength": "00:00:01",
+            "commandPermissions": ["Operator"],
+            "changeModePermissions": ["Operator"]
+        }]
     }
 }
 ````
@@ -29,15 +32,23 @@ The output has the following operational modes:
 
 ### operationalMode
 
-**[enum]** An output can be configured to be in a specific operational mode. The
-output can be commanded to change its mode at any time, a trigger based on a
-time schedule would be a common example. This property sets the default mode the
-output will operate in. The available operational modes are:
+**[enum] (normal)** Specifies which operational mode is the default.
 
-- Reset – The output is ‘off’
-- Operated – The output is ‘on’
-- Disabled – The output will stay in it’s current state regardless of any
-commands sent to it.
+### defaultOutputMode
+
+**[enum] (constant)** Specifies how the output behaves when commanded to activate.
+
+- constant
+- urgentPulse
+- nonUrgentPulse
+- reminderPulse
+
+### outputStateType
+
+**[enum] (activeHigh)** 
+
+- activeLow
+- activeHigh
 
 ### pulseLength
 

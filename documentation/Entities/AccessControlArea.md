@@ -1,4 +1,4 @@
-# Areas
+# AccessControl.Area
 
 An Area is the logical representation of a controlled area. Portals are the
 normal entry and exit points of an area, though commands can also be used. The
@@ -42,13 +42,12 @@ The area has the following operational modes:
             "operationalMode": "enforced",
             "offlineMode": "unenforced",
             "enforceOccupancyLimits": true,
-            "maximumOccupancy": 100,
+            "maximumOccupancy": 1000000,
             "minimumOccupancy": 1,
-            "changeModePermissions": [ "allowAll" ],
-            "setPersonStatePermission": [ "allowAll" ],
-            "makeAllUnknownPermission": [ "allowAll" ],
-            "makeAllOutPermissions": [ "allowAll" ],
-            "changeEnforceOccupancyPermissions": [ "allowAll" ]
+            "changeModePermissions": [ ],
+            "setPersonStatePermission": [ ],
+            "makeAllUnknownPermission": [ ],
+            "makeAllOutPermissions": [ ]
         }]
     }
 }
@@ -58,7 +57,7 @@ The area has the following operational modes:
 
 ### operationalMode
 
-**[enum]** Specifies which mode is the default.
+**[enum]** Specifies which operational mode is the default.
 
 ### offlineMode
 
@@ -96,11 +95,6 @@ made unknown.
 
 **[string[]]** The list of permissions that allow all users in an area to be
 marked as out of the area.
-
-### changeEnforceOccupancyPermissions
-
-**[string[]]** The list of permissions that allow the area occupancy enforcement
-mode to be changed.
 
 ## States
 

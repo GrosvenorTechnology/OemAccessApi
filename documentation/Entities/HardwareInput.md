@@ -1,4 +1,4 @@
-# Inputs
+# Hardware.Input
 
 The input types track the physical input and present a logical view of the input
 state. All inputs are ‘debounced’, and will not show a change of state until the
@@ -6,27 +6,28 @@ physical input has been stable in the new state for at least 75ms.
 
 The input has the following operational modes:
 
-- **Enabled** (Default) – The input state will change in response to changes to the
+- **enabled** (Default) – The input state will change in response to changes to the
     physical input.
-- **OnlyMonitorCircuit** - The physical input will only be monitored for error
+- **onlyMonitorCircuit** - The physical input will only be monitored for error
     states.
-- **Disabled** - All changes to the physical input will be ignored.
+- **disabled** - All changes to the physical input will be ignored.
 
 ````json 
 {
     "controller": {
         "inputs": [{
-            "id": "58B36B10-1407-4216-B45F-185E523DD09D",
+            "id": "Kitchen-PIR",
             "description": "Input 1",
-            "operationalMode": "normal",
+            "operationalMode": "enabled",
             "address": "1-0-1",
             "normallyOpen": true,
-            "supervised": true,
-            "sensePeriod": "00.0100",
-            "pirInhibit": "5:00.00",
-            "pirFault": "5:00.00"
-            }
-        ]
+            "inputType": "unsupervised",
+            "InputOperationType": "normal",
+            "sensePeriod": "00:00:00.1",
+            "pirInhibit": "00:30:00",
+            "pirFault": "5:00:00",
+            "changeModePermissions": ["Operator"]
+        }]
     }
 }
 ````
@@ -39,27 +40,27 @@ The input has the following operational modes:
 
 ### operationalMode
 
-[enum] An input can be configured to be in a specific operational mode. The
-input can be commanded to change its mode at any time, a trigger based on a time
-schedule would be a common example. This property sets the default mode the
-input will operate in. The available operational modes are:
-
--   Normal – The logical state of the input reflects the physical state.
-
--   PIR – Smooth’s out the chatter from a PIR.
-
--   Disabled – The input will stay in the current state regardless pf the state
-    of the physical input.
+**[enum]** Specifies which operational mode is the default.
 
 ### sensePeriod
 
 **[timespan]** The time the input must be stable in a new state before the logical
 state of the input is changed.
 
-### supervised 
+### inputType 
 
-**[Boolean]** If false, the input is a basic Open/Closed type input, if true that
-input is a 4 state input with open/closed/fault/tamper support.
+**[enum] (unsupervised)** Configures the input type.
+
+- Unsupervised - The input is a basic Open/Closed type input.
+- Supervised - The input is a 4 state input with open/closed/fault/tamper support.
+
+### inputOperationType 
+
+**[enum] (normal)** Configures how the input handles changes in the input state.
+
+- Normal - When the physical input changes state, the logical state is updated
+- OutputPulseWhenTriggered - The same as Normal but also pulses the corresponding output (.e. input 1-0-1, triggers output 1-0-1) 
+- PirDetector - Enables special handling for PIR type inputs.
 
 ### normallyOpen
 
@@ -69,12 +70,12 @@ is Open.
 ### pirInhibit
 
 **[timespan]** The amount of time the input’s physical input, when in PIR mode, must
-be reset before the input state will change to reset.
+be reset before the input state will change to reset. Only used when `InputOperationType` is set to `PirDetector`
 
 ### pirFault
 
 **[timespan]** The maximum amount of time the input’s physical input, when in PIR
-mode, can stay active before the input is placed in the *Fault* state.
+mode, can stay active before the input is placed in the *Fault* state. Only used when `InputOperationType` is set to `PirDetector`
 
 ## States
 

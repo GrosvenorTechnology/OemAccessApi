@@ -1,4 +1,4 @@
-# Readers
+# Hardware.Reader
 
 A reader is the logical representation of a token reader. A token may be
 physical, biometric or entered through a keypad. In addition to identification a
@@ -17,16 +17,18 @@ instance to a physical reader port on a blade in a controller.
                 "description": "Reader 1",
                 "address": "1-0-1",
                 "operationalMode": "tokenOnly",
-                "tokenFormatType": "Sateon Pro",
+                "tokenFormatType": "RDSATEONPRO",
+                "digitsForPin": 4,
                 "readerTamperType": "disabled",
                 "enterPinPeriod": "00:20.00",
-                "secondReadPeriod": "00:10.00",
-                "validReadLedPeriod": "00:03.00",
-                "validReadBeeperPeriod": "00:00.20",
-                "validReadBeeperMode": "disabled",
-                "invalidReadLedPeriod": "00:03.00",
-                "invalidReadBeeperPeriod": "00:03.00",
-                "invalidReadBeeperMode": "urgentPulse"
+                "validLedType": "activeHigh",
+                "beeperType": "activeHigh",
+                "readerTamperType": "unsupervised",
+                "validReadLedPeriod": "00:00:03",
+                "validReadBeeperPeriod": "00:00:00.20",
+                "invalidReadBeeperPeriod": "00:00:03",
+                "invalidReadBeeperMode": "urgentPulse",
+                "changeModePermissions": ["Operator"]
             }
         ]
     }

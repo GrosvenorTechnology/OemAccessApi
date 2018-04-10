@@ -1,11 +1,11 @@
-# ReaderCommand
+# Hardware.ReaderCommand
 
 ````json
 {
     "controller": {
         "readerCommands": [{
             "id": "CMD-1",
-            "actionChar": "\#",
+            "actionChar": "#",
             "anonymous": true,
             "readers": [
                 "Reader-1",

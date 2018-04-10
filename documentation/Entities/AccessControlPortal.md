@@ -1,4 +1,4 @@
-# Portals
+# AccessControl.Portal
 
 A Portal most commonly defines a door, but may be a car park entry barrier or a
 lock on a storage container. A portal is directional, it has an entry and exit
@@ -24,38 +24,57 @@ The portal has the following operational modes
 {
     "controller": {
         "portals": [{
-            "id": "C6DCC301-30C6-4CD5-9823-910AF5E2A1F0",
-            "description": "Door 1",
+            "id": "Reception-1",
+            "description": "Reception Front Door",
             "address": "1-0-1",          
             "operationalMode": "normal",
             "requestExitEnabled": true,
             "lockType": "energiseToLock",
-            "relockMode": "onOpen",
+            "lockCurrentLimit": 4000,
+            "lockWarningCurrentMinimum": 20,
+            "lockWarningCurrentMaximum": 3000,
+            "useAuxOutputForLock": false,
+            "relockMode": "onPortalOpen",
             "sensorType": "disabled",
+            "switchType": "unsupervised",
             "breakGlass": "disabled",
-            "normalUnlockPeriod": "00:05.00",
-            "extendedUnlockPeriod": "00:10.00",
-            "normalMinimumOpenPeriod": "00:02.00",
-            "extendedMinimumOpenPeriod": "00:04.00",
-            "normalOpenTooLongPeriod": "00:30.00",
-            "extendedOpenTooLongPeriod": "01:00.00",
+            "normalUnlockPeriod": "00:00:05",
+            "extendedUnlockPeriod": "00:00:10",
+            "normalMinimumOpenPeriod": "00:00:02",
+            "extendedMinimumOpenPeriod": "00:00:04",
+            "normalOpenTooLongPeriod": "00:00:30",
+            "extendedOpenTooLongPeriod": "00:01:00",
             "forcedSounderMode": "urgentPulse",
-            "forcedSounderPeriod": "00:20.00",
+            "forcedSounderPeriod": "00:00:20",
             "openTooLongSounderMode": "nonUrgentPulse",
-            "openTooLongSouderPeriod": "00:10.00",
+            "openTooLongSouderPeriod": "00:00:10",
+            "unlockOnTimeTable": {
+                "id": "Monday-Friday-9-17",
+                "priority": 100
+            },
+            "unlockOnSystemMode": {
+                "id": "Fire-Alarm",
+                "priority": 10
+            },
+            "normalOnSystemMode": {
+                "id": "Fire-Alarm",
+                "priority": 50
+            },
             "entry": {
-                "readers": ["0CB35262-BA8C-4482-B146-2A7FBCD69FC6"],
-                "accessPermissions": ["Permission1"],
-                "escortedPermissions": ["escortedUsers"],
-                "escortPermissions": ["Permission1"],
+                "readers": ["Reception-External"],
+                "accessPermissions": ["GeneralAccess"],
+                "escortedPermissions": ["EscortedUsers"],
+                "escortPermissions": ["Escort"],
                 "areas": ["6F02B316-06A6-4886-A2BD-89B18122F222"]
             },
             "exit": {
                 "readers": [
-                    "502D2842-B183-460D-BDC6-E0AC9C2B9D9C",
-                    "87E1F834-C362-408F-A88D-37609BC0F50D"],
-                "permissions": ["Permission1","Permission2"]
-            }
+                    "Reception-Internal-Left",
+                    "Reception-Internal-Right"],
+                "permissions": ["GeneralAccess","Reception-Exit"]
+            },
+            "singleUnlockPermission": ["Operator"],
+            "changeModePermissions": ["Operator"]
         }]
     }
 }

@@ -23,3 +23,5 @@ The OSDP busses on a door blade are bus 1 and 2
 ## [Boolean]
 ## [int]
 ## [string]
+## [\<type>[]]
+## [object]

@@ -27,12 +27,12 @@ The various sections can be defined in the controller node in any order.
 
 ## File Sections
 
-- [controller](Controller.md)
-- [readers](Reader.md)
-- [portals](Portals.md)
-- [inputs](Inputs.md)
-- [outputs](Outputs.md)
-- [areas](Area.md)
+- [controller](../Entities/HardwareController.md)
+- [readers](../Entities/HardwareReader.md)
+- [portals](../Entities/AccessControlPortal.md)
+- [inputs](../Entities/HardwareInput.md)
+- [outputs](../Entities/HardwareOutput.md)
+- [areas](../Entities/AccessControlArea.md)
 - [tokenFormats](TokenFormats.md)
 
 ## Common Properties
