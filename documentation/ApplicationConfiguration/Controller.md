@@ -6,8 +6,8 @@ configure the AccessControl application on the controller.
 ````json
 {
     "controller": {
-        "id": "DAA01FA1-7CBA-401A-B98E-C3CC22D603B9",
-        "description": "Controller 1",
+        "id": "Ctrl-46537453278",
+        "description": "Reception",
         "timezone": "Europe/London",
         "areaMode": "remote"
     }
@@ -18,7 +18,7 @@ configure the AccessControl application on the controller.
 
 ### Timezone
 
-[string (200)] The IANA timezone to be used to evaluate local time.
+**[string (200)]** The IANA timezone to be used to evaluate local time.
 
 ### AreaMode
 
