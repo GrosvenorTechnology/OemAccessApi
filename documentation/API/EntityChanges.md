@@ -23,4 +23,4 @@ The following message types will be returned via the changes queue
 
 - [Entity Reconcile](../Entities/EntityReconcile.md)
 
-- Entity Delete
+- [Entity Delete](../Entities/EntityDelete.md)
