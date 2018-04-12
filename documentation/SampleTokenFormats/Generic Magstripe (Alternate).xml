@@ -1,1 +1,24 @@
-<readerTokenDefinition name="Generic Magstripe" readBothWays="true" readerType="clkndata" invertData="false"><format name="Keypad digit" formatType="t2iso" numberOfChars="1" diags="true"><interpretations><interpretation dataName="keypadDigit"><charSequences><charSequence sequenceName="" lsdIndex="1" numberOfChars="1" reversed="false" multiplier="1" /></charSequences><controlCodes><controlCode dataName="keypadClear" codeNumber="10" /><controlCode dataName="keypadEnter" codeNumber="11" /></controlCodes></interpretation></interpretations></format><format name="Generic Magstripe" formatType="t2iso" numberOfChars="any" diags="true"><interpretations><interpretation dataName="tokenNumber"><charSequences><charSequence sequenceName="serialNumber" lsdIndex="1" numberOfChars="all" reversed="false" multiplier="1" /></charSequences></interpretation></interpretations></format></readerTokenDefinition>
+<readerTokenDefinition name="Generic Magstripe" readBothWays="true" readerType="clkndata" invertData="false">
+    <format name="Keypad digit" formatType="t2iso" numberOfChars="1" diags="true">
+        <interpretations>
+            <interpretation dataName="keypadDigit">
+                <charSequences>
+                    <charSequence sequenceName="" lsdIndex="1" numberOfChars="1" reversed="false" multiplier="1" />
+                </charSequences>
+                <controlCodes>
+                    <controlCode dataName="keypadClear" codeNumber="10" />
+                    <controlCode dataName="keypadEnter" codeNumber="11" />
+                </controlCodes>
+            </interpretation>
+        </interpretations>
+    </format>
+    <format name="Generic Magstripe" formatType="t2iso" numberOfChars="any" diags="true">
+        <interpretations>
+            <interpretation dataName="tokenNumber">
+                <charSequences>
+                    <charSequence sequenceName="serialNumber" lsdIndex="1" numberOfChars="all" reversed="false" multiplier="1" />
+                </charSequences>
+            </interpretation>
+        </interpretations>
+    </format>
+</readerTokenDefinition>

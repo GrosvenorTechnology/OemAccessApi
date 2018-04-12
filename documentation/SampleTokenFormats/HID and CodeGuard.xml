@@ -1,1 +1,70 @@
-<readerTokenDefinition name="HID and CodeGuard" readBothWays="true" readerType="wiegand" invertData="false"><format name="HID 36 bit" formatType="wiegand" numberOfBits="36" diags="false"><constantChecks><constantCheck firstBitIndex="34" constantBits="00" /></constantChecks><parityChecks><parityCheck parity="odd" firstBitIndex="1" lastBitIndex="18" parityBitIndex="1" /><parityCheck parity="even" firstBitIndex="19" lastBitIndex="36" parityBitIndex="36" /></parityChecks><interpretations><interpretation dataName="tokenNumber"><bitSequences><bitSequence sequenceName="" lsbIndex="33" numberOfBits="16" reversed="false" bcd="false" multiplier="1" /><bitSequence sequenceName="" lsbIndex="17" numberOfBits="16" reversed="false" bcd="false" multiplier="100000" /></bitSequences></interpretation></interpretations></format><format name="Grosvenor 37 bit" formatType="wiegand" numberOfBits="37" diags="false"><parityChecks><parityCheck parity="even" firstBitIndex="1" lastBitIndex="19" parityBitIndex="1" /><parityCheck parity="odd" firstBitIndex="19" lastBitIndex="37" parityBitIndex="37" /></parityChecks><interpretations><interpretation dataName="tokenNumber"><bitSequences><bitSequence sequenceName="serialNumber" lsbIndex="36" numberOfBits="17" reversed="false" bcd="false" multiplier="1" /><bitSequence sequenceName="facilityCode" lsbIndex="17" numberOfBits="16" reversed="false" bcd="false" multiplier="100000" /></bitSequences></interpretation></interpretations></format><format name="SE 26 bit" formatType="wiegand" numberOfBits="26" diags="false"><parityChecks><parityCheck parity="even" firstBitIndex="1" lastBitIndex="13" parityBitIndex="1" /><parityCheck parity="odd" firstBitIndex="14" lastBitIndex="26" parityBitIndex="26" /></parityChecks><interpretations><interpretation dataName="tokenNumber"><bitSequences><bitSequence sequenceName="serialNumber" lsbIndex="25" numberOfBits="16" reversed="false" bcd="false" multiplier="1" /><bitSequence sequenceName="facilityCode" lsbIndex="9" numberOfBits="8" reversed="false" bcd="false" multiplier="100000" /></bitSequences></interpretation></interpretations></format><format name="HID 33 bit Grosvenor" formatType="wiegand" numberOfBits="33" diags="false"><parityChecks><parityCheck parity="even" firstBitIndex="1" lastBitIndex="30" parityBitIndex="1" parityBits="PPP-PP-PP-PP-PP-PP-PP-PP-PP-PP" /><parityCheck parity="odd" firstBitIndex="1" lastBitIndex="32" parityBitIndex="32" parityBits="PP-PP-PP-PP-PP-PP-PP-PP-PP-PP-PP" /><parityCheck parity="even" firstBitIndex="1" lastBitIndex="33" parityBitIndex="33" /></parityChecks><interpretations><interpretation dataName="tokenNumber"><bitSequences><bitSequence sequenceName="serialNumber" lsbIndex="31" numberOfBits="30" reversed="false" bcd="false" multiplier="1" /></bitSequences></interpretation></interpretations></format><format name="Keypad 34 bit CodeGuard" formatType="wiegand" numberOfBits="34" diags="false"><interpretations><interpretation dataName="keypadNumber"><bitSequences><bitSequence sequenceName="keypadCode" lsbIndex="33" numberOfBits="16" reversed="false" bcd="false" multiplier="1" /></bitSequences></interpretation></interpretations></format></readerTokenDefinition>
+<readerTokenDefinition name="HID and CodeGuard" readBothWays="true" readerType="wiegand" invertData="false">
+    <format name="HID 36 bit" formatType="wiegand" numberOfBits="36" diags="false">
+        <constantChecks>
+            <constantCheck firstBitIndex="34" constantBits="00" />
+        </constantChecks>
+        <parityChecks>
+            <parityCheck parity="odd" firstBitIndex="1" lastBitIndex="18" parityBitIndex="1" />
+            <parityCheck parity="even" firstBitIndex="19" lastBitIndex="36" parityBitIndex="36" />
+        </parityChecks>
+        <interpretations>
+            <interpretation dataName="tokenNumber">
+                <bitSequences>
+                    <bitSequence sequenceName="" lsbIndex="33" numberOfBits="16" reversed="false" bcd="false" multiplier="1" />
+                    <bitSequence sequenceName="" lsbIndex="17" numberOfBits="16" reversed="false" bcd="false" multiplier="100000" />
+                </bitSequences>
+            </interpretation>
+        </interpretations>
+    </format>
+    <format name="Grosvenor 37 bit" formatType="wiegand" numberOfBits="37" diags="false">
+        <parityChecks>
+            <parityCheck parity="even" firstBitIndex="1" lastBitIndex="19" parityBitIndex="1" />
+            <parityCheck parity="odd" firstBitIndex="19" lastBitIndex="37" parityBitIndex="37" />
+        </parityChecks>
+        <interpretations>
+            <interpretation dataName="tokenNumber">
+                <bitSequences>
+                    <bitSequence sequenceName="serialNumber" lsbIndex="36" numberOfBits="17" reversed="false" bcd="false" multiplier="1" />
+                    <bitSequence sequenceName="facilityCode" lsbIndex="17" numberOfBits="16" reversed="false" bcd="false" multiplier="100000" />
+                </bitSequences>
+            </interpretation>
+        </interpretations>
+    </format>
+    <format name="SE 26 bit" formatType="wiegand" numberOfBits="26" diags="false">
+        <parityChecks>
+            <parityCheck parity="even" firstBitIndex="1" lastBitIndex="13" parityBitIndex="1" />
+            <parityCheck parity="odd" firstBitIndex="14" lastBitIndex="26" parityBitIndex="26" />
+        </parityChecks>
+        <interpretations>
+            <interpretation dataName="tokenNumber">
+                <bitSequences>
+                    <bitSequence sequenceName="serialNumber" lsbIndex="25" numberOfBits="16" reversed="false" bcd="false" multiplier="1" />
+                    <bitSequence sequenceName="facilityCode" lsbIndex="9" numberOfBits="8" reversed="false" bcd="false" multiplier="100000" />
+                </bitSequences>
+            </interpretation>
+        </interpretations>
+    </format>
+    <format name="HID 33 bit Grosvenor" formatType="wiegand" numberOfBits="33" diags="false">
+        <parityChecks>
+            <parityCheck parity="even" firstBitIndex="1" lastBitIndex="30" parityBitIndex="1" parityBits="PPP-PP-PP-PP-PP-PP-PP-PP-PP-PP" />
+            <parityCheck parity="odd" firstBitIndex="1" lastBitIndex="32" parityBitIndex="32" parityBits="PP-PP-PP-PP-PP-PP-PP-PP-PP-PP-PP" />
+            <parityCheck parity="even" firstBitIndex="1" lastBitIndex="33" parityBitIndex="33" />
+        </parityChecks>
+        <interpretations>
+            <interpretation dataName="tokenNumber">
+                <bitSequences>
+                    <bitSequence sequenceName="serialNumber" lsbIndex="31" numberOfBits="30" reversed="false" bcd="false" multiplier="1" />
+                </bitSequences>
+            </interpretation>
+        </interpretations>
+    </format>
+    <format name="Keypad 34 bit CodeGuard" formatType="wiegand" numberOfBits="34" diags="false">
+        <interpretations>
+            <interpretation dataName="keypadNumber">
+                <bitSequences>
+                    <bitSequence sequenceName="keypadCode" lsbIndex="33" numberOfBits="16" reversed="false" bcd="false" multiplier="1" />
+                </bitSequences>
+            </interpretation>
+        </interpretations>
+    </format>
+</readerTokenDefinition>

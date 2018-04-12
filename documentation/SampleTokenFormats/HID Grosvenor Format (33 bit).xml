@@ -1,1 +1,48 @@
-<readerTokenDefinition name="HID 33 bit Grosvenor" readBothWays="true" readerType="wiegand" invertData="false"><format name="HID 33 bit Grosvenor" formatType="wiegand" numberOfBits="33" diags="false"><parityChecks><parityCheck parity="even" firstBitIndex="1" lastBitIndex="30" parityBitIndex="1" parityBits="PPP-PP-PP-PP-PP-PP-PP-PP-PP-PP" /><parityCheck parity="odd" firstBitIndex="1" lastBitIndex="32" parityBitIndex="32" parityBits="PP-PP-PP-PP-PP-PP-PP-PP-PP-PP-PP" /><parityCheck parity="even" firstBitIndex="1" lastBitIndex="33" parityBitIndex="33" /></parityChecks><interpretations><interpretation dataName="tokenNumber"><bitSequences><bitSequence sequenceName="serialNumber" lsbIndex="31" numberOfBits="30" reversed="false" bcd="false" multiplier="1" /></bitSequences></interpretation></interpretations></format><format name="Keypad 4 bit" formatType="wiegand" numberOfBits="4" diags="false"><interpretations><interpretation dataName="keypadDigit"><bitSequences><bitSequence sequenceName="keypadCode" lsbIndex="4" numberOfBits="4" reversed="false" bcd="false" multiplier="1" /></bitSequences><controlCodes><controlCode dataName="keypadClear" codeNumber="10" /><controlCode dataName="keypadEnter" codeNumber="11" /></controlCodes></interpretation></interpretations></format><format name="Keypad 8 bit" formatType="wiegand" numberOfBits="8" diags="false"><parityChecks><parityCheck parity="odd" firstBitIndex="1" lastBitIndex="5" parityBitIndex="1" parityBits="P---P" /><parityCheck parity="odd" firstBitIndex="2" lastBitIndex="6" parityBitIndex="2" parityBits="P---P" /><parityCheck parity="odd" firstBitIndex="3" lastBitIndex="7" parityBitIndex="3" parityBits="P---P" /><parityCheck parity="odd" firstBitIndex="4" lastBitIndex="8" parityBitIndex="4" parityBits="P---P" /></parityChecks><interpretations><interpretation dataName="keypadDigit"><bitSequences><bitSequence sequenceName="keypadCode" lsbIndex="8" numberOfBits="4" reversed="false" bcd="false" multiplier="1" /></bitSequences><controlCodes><controlCode dataName="keypadClear" codeNumber="10" /><controlCode dataName="keypadEnter" codeNumber="11" /></controlCodes></interpretation></interpretations></format></readerTokenDefinition>
+<readerTokenDefinition name="HID 33 bit Grosvenor" readBothWays="true" readerType="wiegand" invertData="false">
+    <format name="HID 33 bit Grosvenor" formatType="wiegand" numberOfBits="33" diags="false">
+        <parityChecks>
+            <parityCheck parity="even" firstBitIndex="1" lastBitIndex="30" parityBitIndex="1" parityBits="PPP-PP-PP-PP-PP-PP-PP-PP-PP-PP" />
+            <parityCheck parity="odd" firstBitIndex="1" lastBitIndex="32" parityBitIndex="32" parityBits="PP-PP-PP-PP-PP-PP-PP-PP-PP-PP-PP" />
+            <parityCheck parity="even" firstBitIndex="1" lastBitIndex="33" parityBitIndex="33" />
+        </parityChecks>
+        <interpretations>
+            <interpretation dataName="tokenNumber">
+                <bitSequences>
+                    <bitSequence sequenceName="serialNumber" lsbIndex="31" numberOfBits="30" reversed="false" bcd="false" multiplier="1" />
+                </bitSequences>
+            </interpretation>
+        </interpretations>
+    </format>
+    <format name="Keypad 4 bit" formatType="wiegand" numberOfBits="4" diags="false">
+        <interpretations>
+            <interpretation dataName="keypadDigit">
+                <bitSequences>
+                    <bitSequence sequenceName="keypadCode" lsbIndex="4" numberOfBits="4" reversed="false" bcd="false" multiplier="1" />
+                </bitSequences>
+                <controlCodes>
+                    <controlCode dataName="keypadClear" codeNumber="10" />
+                    <controlCode dataName="keypadEnter" codeNumber="11" />
+                </controlCodes>
+            </interpretation>
+        </interpretations>
+    </format>
+    <format name="Keypad 8 bit" formatType="wiegand" numberOfBits="8" diags="false">
+        <parityChecks>
+            <parityCheck parity="odd" firstBitIndex="1" lastBitIndex="5" parityBitIndex="1" parityBits="P---P" />
+            <parityCheck parity="odd" firstBitIndex="2" lastBitIndex="6" parityBitIndex="2" parityBits="P---P" />
+            <parityCheck parity="odd" firstBitIndex="3" lastBitIndex="7" parityBitIndex="3" parityBits="P---P" />
+            <parityCheck parity="odd" firstBitIndex="4" lastBitIndex="8" parityBitIndex="4" parityBits="P---P" />
+        </parityChecks>
+        <interpretations>
+            <interpretation dataName="keypadDigit">
+                <bitSequences>
+                    <bitSequence sequenceName="keypadCode" lsbIndex="8" numberOfBits="4" reversed="false" bcd="false" multiplier="1" />
+                </bitSequences>
+                <controlCodes>
+                    <controlCode dataName="keypadClear" codeNumber="10" />
+                    <controlCode dataName="keypadEnter" codeNumber="11" />
+                </controlCodes>
+            </interpretation>
+        </interpretations>
+    </format>
+</readerTokenDefinition>
