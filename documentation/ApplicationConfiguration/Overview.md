@@ -33,7 +33,7 @@ The various sections can be defined in the controller node in any order.
 - [inputs](../Entities/HardwareInput.md)
 - [outputs](../Entities/HardwareOutput.md)
 - [areas](../Entities/AccessControlArea.md)
-- [tokenFormats](TokenFormats.md)
+- [tokenFormats](TokenFormat.md)
 
 ## Common Properties
 
