@@ -18,8 +18,8 @@ passes the data format’s validation.
 This defines how the data is transmitted from the reader to the Blade of an
 Advance Controller. The following will be supported:
 
-- Wiegand - Uses two data lines, often referred to as Data0 and Data1.
-- Clock and Data - Uses two lines, one a clock and the other data.
+- **Wiegand** - Uses two data lines, often referred to as Data0 and Data1.
+- **Clock and Data** - Uses two lines, one a clock and the other data.
 
 ### Data validation and interpretation
 
@@ -79,8 +79,8 @@ access control application are:
 - **keypadBackSpace** - Used to delete previous keypad digit
 - **keypadEnter** - Used to signify end of keypad digit input (PIN input does not require
   this as they are of fixed length)
-- **keypadAndTokenEnter** - Used to signify end of keypad digit input, will allow a token 
-  number to be entered, regardless of reader setting in Sateon.
+- **keypadAndTokenEnter** - Used to signify end of keypad digit input, will allow a token
+  number to be entered, regardless of reader settings.
 
 In addition to the above there are the following reserved data names which are
 used by the decoder to convey additional information:
