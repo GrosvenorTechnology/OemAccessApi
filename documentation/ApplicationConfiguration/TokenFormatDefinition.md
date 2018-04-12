@@ -21,14 +21,12 @@ Advance Controller. The following will be supported:
 - **Wiegand** - Uses two data lines, often referred to as Data0 and Data1.
 - **Clock and Data** - Uses two lines, one a clock and the other data.
 
-### Data validation and interpretation
+### Data validation
 
 There are different validation and interpretation methods dependant on the
 format of the data. It normally follows that a Wiegand physical interface uses a
 Wiegand data format and a Clock and Data physical interface uses a Mag-Stripe
 data format. This is not always the case though.
-
-### Data validation
 
 #### Wiegand validation
 
