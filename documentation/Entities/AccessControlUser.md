@@ -34,7 +34,7 @@
                     },
                     {
                         "type": "time",
-                        "data": "AccessControl.TimeTable:7DF8D397-73D1-4A63-9F10-0F646C4EA87F"
+                        "data": "Common.TimeTable:7DF8D397-73D1-4A63-9F10-0F646C4EA87F"
                     }
                 ]
             },
