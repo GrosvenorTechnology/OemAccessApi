@@ -20,6 +20,9 @@ this will be loaded instead of boot.config.
             { "name": "deviceId", "value": "myCustomDeviceId"},
             { "name": "token", "value": "myCustomToken"}
         ],
+        "features": [
+            "EventContentExtension"
+        ]
         "network": {
             "dhcpEnabled": true
         }
@@ -54,9 +57,16 @@ using a SHA256 HMAC. It should be 32bytes of random data encoded in Base64.
 [optional] Any extra static information can be added to the header section of
 all HTTP requests.
 
+## Features
+
+[optional] Additional non-standard features can be enabled here. Features should
+only be enabled when recommended by GTL developer support. Current options include:
+
+- **EventContentExtension** - Extends the event content for correlated events.
+
 ## Network
 
 [optional] Configure if the device should use a dhcp or static IP address. The
 device will default to DHCP.
 
-TODO – static network config to be added.
+TODO: static network config to be added.
