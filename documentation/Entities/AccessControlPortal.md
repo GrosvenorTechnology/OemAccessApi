@@ -116,7 +116,7 @@ The portal has the following operational modes
 
 ### useAuxOutputForLock
 
-**[bbolean] (false)** If set to true, when a look it energised the matching aux output
+**[boolean] (false)** If set to true, when a look it energised the matching aux output
 will also be operated, i.e. lock 1 drives output 1.
 
 ### relockMode
