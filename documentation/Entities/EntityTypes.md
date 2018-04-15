@@ -5,6 +5,7 @@ The following entity types are used by the controller
 - [Common.TimeTable](CommonTimeTable.md)
 - Hardware.Blade
 - [Hardware.Controller](HardwareController.md)
+- [Hardware.Blade](HardwareBlade.md)
 - [Hardware.Input](HardwareInput.md)
 - [Hardware.Output](HardwareOutput.md)
 - [Hardware.Reader](HardwareReader.md)
@@ -75,3 +76,20 @@ message id to the message id of the source command.
 
 Response messages are linked to the originating command by setting the previous
 message id to the message id of the source command
+
+## Operational Modes
+
+This command is used to request a change the operational mode or cancel an
+existing command. All command requests are put on a list. The operational mode
+is set to the command with the highest priority at any one time. If a command
+times-out or is cancelled, it is taken off the list and the mode is revaluated.
+With no commands on the list the mode goes to the default. To cancel a command
+only the reference argument should be supplied.
+
+Command Arguments:
+
+- Mode – Required mode
+- Period – Period that it lasts (optional)
+- Priority – 0 to 255, 0 being the highest
+- ReferenceId – Controlling Entity
+- PermissionOverrideId (optional)

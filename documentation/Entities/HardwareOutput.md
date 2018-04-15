@@ -4,7 +4,7 @@ An output is a simple On/Off relay device.
 
 The output has the following operational modes:
 
-- **Normal** – The output state will change in response to commands.
+- **normal** – The output state will change in response to commands.
 
 ````json
 {
@@ -15,7 +15,7 @@ The output has the following operational modes:
             "address": "1-0-1",
             "operationalMode": "normal",
             "defaultOutputMode": "constant",
-            "outputStateType": "activeHigh",            
+            "outputStateType": "activeHigh",
             "pulseLength": "00:00:01",
             "commandPermissions": ["Operator"],
             "changeModePermissions": ["Operator"]
@@ -26,7 +26,7 @@ The output has the following operational modes:
 
 ## Properties
 
-### address 
+### address
 
 **[hardware-address]** The controller logical address for the input
 
@@ -38,21 +38,31 @@ The output has the following operational modes:
 
 **[enum] (constant)** Specifies how the output behaves when commanded to activate.
 
-- constant
-- urgentPulse
-- nonUrgentPulse
-- reminderPulse
+- **constant**
+- **urgentPulse**
+- **nonUrgentPulse**
+- **reminderPulse**
 
 ### outputStateType
 
-**[enum] (activeHigh)** 
+**[enum] (activeHigh)** TODO: What does this actually do??
 
 - activeLow
 - activeHigh
 
 ### pulseLength
 
-**[timespan]** The default pulse length used when a pulse command is actioned.
+**[timespan] (00:00:01)** The default pulse length used when a pulse command is actioned.
+
+### commandPermissions
+
+**[string[]] (empty)** A person with a permission on this list can execute any command on
+this output other than `ChangeMode` command which has it's own permissions.
+
+### changeModePermissions
+
+**[string[]] (empty)** A person with a permission on this list can execute the
+`ChangeMode` command.
 
 ## States
 
@@ -62,43 +72,111 @@ The output has the following operational modes:
 
 ### ConnectedToBlade
 
-**[boolean]** **[diagnostic]** Is the reader available on a connected blade.
+**[boolean]** **[diagnostic]** Is the output available on a connected blade.
 
 ### OutputState
 
-**[enum]** The logical state of the input, valid values are
+**[enum]** The logical state of the output, valid values are
 
--   On
--   Off
+- **on**
+- **off**
 
 ## Events
 
-### ChangeMode
-
-A request was made to change the operational mode of the input.
-
-| **Result**           | **Reason**            | **Event Content** |
-|----------------------|-----------------------|-------------------|
-| Success              |                       | OperationalMode   |
-| FailedOnPermissions  | NoPermisions          | OperationalMode   |
-|                      | NoRelevantPermissions | OperationalMode   |
-|                      | NoActivePermissions   | OperationalMode   |
-| CommandArgumentError |                       | OperationalMode   |
+No Standalone events.
 
 ## Commands
 
-### ChangeOperationalMode
+### OperateForPeriod
 
-This command is used to request a change the operational mode or cancel an
-existing command. All command requests are put on a list. The operational mode
-is set to the command with the highest priority at any one time. If a command
-times-out or is cancelled, it is taken off the list and the mode is revaluated.
-With no commands on the list the mode goes to the default. To cancel a command
-only the reference argument should be supplied.
+This command will turn an output on for a given period.
 
-Command Arguments:
+- **Period [timespan] (optional)** – The default is the value of the `pulseLength`
+ property from the outputs configuration.
+- **OutputMode [enum] (optional)** - The default is the value of the `defaultOutputMode`
+ property from the outputs configuration; the enum values also match this property.
 
--   Mode – Required mode
--   Period – Period that it lasts (optional)
--   Priority – 0 to 255, 0 being the highest
--   ReferenceId – Controlling Entity
+
+| **Result**           | **Reason**            | **Event Content** |
+|----------------------|-----------------------|-------------------|
+| Success              |                       |                   |
+| FailedOnPermissions  | NoPermissions         |                   |
+|                      | NoRelevantPermissions |                   |
+|                      | NoActivePermissions   |                   |
+|                      | NoRelevantPermissions |                   |
+| FailedBecauseOfError |                       |                   |
+| CommandArgumentError |                       |                   |
+
+### Operate
+
+This command will turn an output on.
+
+- **Period [timespan] (infinte) (optional)** – How long should the output stay on.
+- **OutputMode [enum] (optional)** - The default is the value of the `defaultOutputMode`
+ property from the outputs configuration; the enum values also match this property.
+
+
+| **Result**           | **Reason**            | **Event Content** |
+|----------------------|-----------------------|-------------------|
+| Success              |                       |                   |
+| FailedOnPermissions  | NoPermissions         |                   |
+|                      | NoRelevantPermissions |                   |
+|                      | NoActivePermissions   |                   |
+|                      | NoRelevantPermissions |                   |
+| FailedBecauseOfError |                       |                   |  TODO: What's the difference between this
+| CommandArgumentError |                       |                   |  TODO: and this?
+
+### Reset
+
+This command will turn an output off.
+
+| **Result**           | **Reason**            | **Event Content** |
+|----------------------|-----------------------|-------------------|
+| Success              |                       |                   |
+| FailedOnPermissions  | NoPermissions         |                   |
+|                      | NoRelevantPermissions |                   |
+|                      | NoActivePermissions   |                   |
+|                      | NoRelevantPermissions |                   |
+| FailedBecauseOfError |                       |                   |
+
+### Toggle
+
+This command will toggle the output state, e.g. on->off and vice versa.
+
+| **Result**           | **Reason**            | **Event Content** |
+|----------------------|-----------------------|-------------------|
+| Success              |                       |                   |
+| FailedOnPermissions  | NoPermissions         |                   |
+|                      | NoRelevantPermissions |                   |
+|                      | NoActivePermissions   |                   |
+|                      | NoRelevantPermissions |                   |
+| FailedBecauseOfError |                       |                   |
+
+### ChangeMode
+
+Add or remove an entry from the operational mode stack of the input.
+
+Add Entry to stack
+
+- **Mode [entityId]** - The mode to change to.
+- **Priority [int]** - The priorty for the mode entry.
+- **Period [timespan] (optional)** - If provided the entry will be automatically
+  removed after the given time period.
+- **Reference [string] (optional)** - A reference that can be used to remove the
+  entry from the stack.
+
+Remove entry from stack
+
+- **Reference [string] (optional)** - Remove the entry with the matching reference
+  from the stack.
+
+Depending on the result of the command the following items will be present in the
+event contents.
+
+| **Result**           | **Reason**            |   **Event Content** |
+|----------------------|-----------------------|---------------------|
+| Success              |                       | [Mode]              |
+| FailedOnPermissions  | NoPermisions          | [Mode]              |
+|                      | NoRelevantPermissions | [Mode]              |
+|                      | NoActivePermissions   | [Mode]              |
+| CommandArgumentError |                       | [Mode]              |

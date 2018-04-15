@@ -12,7 +12,7 @@ The input has the following operational modes:
     states.
 - **disabled** - All changes to the physical input will be ignored.
 
-````json 
+````json
 {
     "controller": {
         "inputs": [{
@@ -34,97 +34,109 @@ The input has the following operational modes:
 
 ## Properties
 
-### address 
-
-**[hardware-address]** The controller logical address for the input
-
 ### operationalMode
 
-**[enum]** Specifies which operational mode is the default.
+**[enum] (enabled)** Specifies which operational mode is the default.
 
-### sensePeriod
+### address
 
-**[timespan]** The time the input must be stable in a new state before the logical
-state of the input is changed.
-
-### inputType 
-
-**[enum] (unsupervised)** Configures the input type.
-
-- Unsupervised - The input is a basic Open/Closed type input.
-- Supervised - The input is a 4 state input with open/closed/fault/tamper support.
-
-### inputOperationType 
-
-**[enum] (normal)** Configures how the input handles changes in the input state.
-
-- Normal - When the physical input changes state, the logical state is updated
-- OutputPulseWhenTriggered - The same as Normal but also pulses the corresponding output (.e. input 1-0-1, triggers output 1-0-1) 
-- PirDetector - Enables special handling for PIR type inputs.
+**[hardware-address] [required]** The controller logical address for the input
 
 ### normallyOpen
 
 **[Boolean]** If true the input will show a logical state of *Reset* when the input
 is Open.
 
+### inputType
+
+**[enum] (unsupervised)** Configures the input type.
+
+- **unsupervised** - The input is a basic Open/Closed type input.
+- **supervised** - The input is a 4 state input with open/closed/fault/tamper support.
+
+### inputOperationType
+
+**[enum] (normal)** Configures how the input handles changes in the input state.
+
+- **normal** - When the physical input changes state, the logical state is updated
+- **outputPulseWhenTriggered** - The same as Normal but also pulses the corresponding
+  output (.e. input 1-0-1, triggers output 1-0-1)
+- **pirDetector** - Enables special handling for PIR type inputs.
+
+### sensePeriod
+
+**[timespan] (00:00:00.1)** The time the input must be stable in a new state before
+the logical state of the input is changed.
+
 ### pirInhibit
 
-**[timespan]** The amount of time the input’s physical input, when in PIR mode, must
-be reset before the input state will change to reset. Only used when `InputOperationType` is set to `PirDetector`
+**[timespan] (00:30:00)** The amount of time the input’s physical input, when in PIR
+mode, must be reset before the input state will change to reset. Only used when
+`InputOperationType` is set to `PirDetector`
 
 ### pirFault
 
-**[timespan]** The maximum amount of time the input’s physical input, when in PIR
-mode, can stay active before the input is placed in the *Fault* state. Only used when `InputOperationType` is set to `PirDetector`
+**[timespan] (5:00:00)** The maximum amount of time the input’s physical input, when
+in PIR mode, can stay active before the input is placed in the *Fault* state. Only used
+when `InputOperationType` is set to `PirDetector`
+
+### changeModePermissions
+
+**[string[]] (empty)** A person with a permission on this list can execute the
+`ChangeMode` command.
 
 ## States
 
 ### OperationalMode
 
-**[enum]** This shows the current reader mode (see Input Operational Modes for
+**[enum]** This shows the current mode (see Input Operational Modes for
 details).
 
 ### ConnectedToBlade
 
-**[boolean]** [diagnostic] Is the reader available on a connected blade.
+**[boolean] [diagnostic]** Is the input available on a connected blade.
 
-### InputState 
+### InputState
 
 **[enum]** The logical state of the input, valid values are
 
--   Inactive
--   Active
--   Error
--   Unknown
+- **Inactive**
+- **Active**
+- **Error** - If the input is in a supervised mode, this state means the input
+  is in a tamper, open circuit or short circuit state.
+- **Unknown**
 
 ## Events
 
-### ChangeMode
-
-A request was made to change the operational mode of the input.
-
-| **Result**           | **Reason**            | **Event Content** |
-|----------------------|-----------------------|-------------------|
-| Success              |                       | OperationalMode   |
-| FailedOnPermissions  | NoPermisions          | OperationalMode   |
-|                      | NoRelevantPermissions | OperationalMode   |
-|                      | NoActivePermissions   | OperationalMode   |
-| CommandArgumentError |                       | OperationalMode   |
+None.
 
 ## Commands
 
-### ChangeOperationalMode
+### ChangeMode
 
-This command is used to request a change the operational mode or cancel an
-existing command. All command requests are put on a list. The operational mode
-is set to the command with the highest priority at any one time. If a command
-times-out or is cancelled, it is taken off the list and the mode is revaluated.
-With no commands on the list the mode goes to the default. To cancel a command
-only the reference argument should be supplied.
+Add or remove an entry from the operational mode stack of the input.
 
-Command Arguments:
+Add Entry to stack
 
--   Mode – Required mode
--   Period – Period that it lasts (optional)
--   Priority – 0 to 255, 0 being the highest
--   ReferenceId – Controlling Entity
+- **Mode [entityId]** - The mode to change to.
+- **Priority [int]** - The priorty for the mode entry.
+- **Period [timespan] (optional)** - If provided the entry will be automatically
+  removed after the given time period.
+- **Reference [string] (optional)** - A reference that can be used to remove the
+  entry from the stack.
+
+Remove entry from stack
+
+- **Reference [string] (optional)** - Remove the entry with the matching reference
+  from the stack.
+
+Depending on the result of the command the following items will be present in the
+event contents.
+
+| **Result**           | **Reason**            |   **Event Content** |
+|----------------------|-----------------------|---------------------|
+| Success              |                       | [Mode]              |
+| FailedOnPermissions  | NoPermisions          | [Mode]              |
+|                      | NoRelevantPermissions | [Mode]              |
+|                      | NoActivePermissions   | [Mode]              |
+| CommandArgumentError |                       | [Mode]              |

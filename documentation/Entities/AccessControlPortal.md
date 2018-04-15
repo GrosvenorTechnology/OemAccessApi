@@ -26,7 +26,7 @@ The portal has the following operational modes
         "portals": [{
             "id": "Reception-1",
             "description": "Reception Front Door",
-            "address": "1-0-1",          
+            "address": "1-0-1",
             "operationalMode": "normal",
             "requestExitEnabled": true,
             "lockType": "energiseToLock",
@@ -84,130 +84,192 @@ The portal has the following operational modes
 
 ### address
 
-**[hardware-address]** The controller logical address for the portal
+**[hardware-address] [required]** The controller logical address for the portal
+
+### operationalMode
+
+**[enum] (normal)** Specifies which operational mode is the default.
 
 ### requestExitEnabled
 
-**[Boolean]** Exit switch is enabled.
+**[Boolean] (false)** Exit switch is enabled.
 
 ### lockType
 
-**[enum]** The type of lock attached.
+**[enum] (energiseToLock)** The type of lock attached.
 
-- EnergiseToLock
-- EnergiseToUnlock
-- UseAuxOutput
+- energiseToLock
+- energiseToUnlock
+- useAuxOutput
+
+### lockCurrentLimit
+
+**[int] (4000)** The lock current limit at wich power to the lock will be cut.
+
+### lockWarningCurrentMinimum
+
+**[int] (20)** The lock current at which a lock missing event will be raised.
+
+### lockWarningCurrentMaximum
+
+**[int] (3000)** The lock current at which an over current warning event will be raised
+
+### useAuxOutputForLock
+
+**[bbolean] (false)** If set to true, when a look it energised the matching aux output
+will also be operated, i.e. lock 1 drives output 1.
 
 ### relockMode
 
-**[enum]** When should the portal be relocked, only used if the sensor is enabled.
+**[enum] (onPortalOpening)** When should the portal be relocked, only used if the sensor is enabled.
 
-- OnPortalOpening (default)
-- OnPortalClosing
+- onPortalOpening
+- onPortalClosing
 
 ### sensorType
 
-**[enum]** Portal Sensor type.
+**[enum] (disabled)** Portal Sensor type.
 
-- Disabled (default)
-- Unsupervised
-- Supervised
+- disabled
+- unsupervised
+- supervised
 
 ### breakGlass
 
-**[enum]** Configure if a break glass is present.
+**[enum] (disabled)** Configure if a break glass is present.
 
-- Disabled (default)
-- Unsupervised
+- disabled
+- unsupervised
 
-### normalUnlockPeriod 
+### normalUnlockPeriod
 
-**[timespan]** The normal period a portal is unlocked for when a request for entry
-or exit is successful. This can be cut short by relock mode. Default is 5
-seconds.
+**[timespan] (00:00:05)** The normal period a portal is unlocked for when a request for entry
+or exit is successful. This can be cut short by relock mode.
 
 ### extendedUnlockPeriod
 
-**[timespan]** The extended period a portal is unlocked for when a request for entry
+**[timespan] (00:00:10)** The extended period a portal is unlocked for when a request for entry
 or exit is successful. Used when a person has the ‘Wheelchair or impaired
-mobility’ attribute. This can be cut short by relock mode. Default is 10
-seconds.
+mobility’ attribute. This can be cut short by relock mode.
 
 ### normalMinimumOpenPeriod
 
-**[timespan]** The normal minimum period that a portal is open for, that a person
-can be considered to have gone through. Default is 2 seconds.
+**[timespan] (00:00:02)** The normal minimum period that a portal is open for, that a person
+can be considered to have gone through.
 
 ### extendedMinimumOpenPeriod
 
-**[timespan]** The minimum period that a portal is open for, that a person with the
+**[timespan] (00:00:04)** The minimum period that a portal is open for, that a person with the
 ‘Wheelchair or impaired mobility’ attribute can be considered to have gone
-through. Default is 4 seconds.
+through.
 
 ### normalOpenTooLongPeriod
 
-**[timespan]** The normal period a portal can be open for before an alarm is raised.
-Default is 30 seconds.
+**[timespan] (00:00:30)** The normal period a portal can be open for before an alarm is raised.
 
 ### extendedOpenTooLongPeriod
 
-**[timespan]** The period a portal can be open for before an alarm is raised when
-used by a person with the ‘Wheelchair or impaired mobility’ attribute. Default
-is 60 seconds.
+**[timespan] (00:01:00)** The period a portal can be open for before an alarm is raised when
+used by a person with the ‘Wheelchair or impaired mobility’ attribute.
 
 ### forcedSounderMode
 
-**[enum]** Configure the sounder mode for when the portal is forced open.
+**[enum] (urgentPulse)** Configure the sounder mode for when the portal is forced open.
 
-- Disabled
-- Constant
-- UrgentPulse (default)
-- NonUrgentPulse
-- ReminderPulse
+- disabled
+- constant
+- urgentPulse
+- nonUrgentPulse
+- reminderPulse
 
 ### forcedSounderPeriod
 
-**[timespan]** How long to activate the sounder when the portal is forced. Default
-is 20 seconds.
+**[timespan]** How long to activate the sounder when the portal is forced.
 
 ### openTooLongSounderMode
 
-[enum] Sets the sounder mode for when the portal is open to long.
+**[enum] (00:00:20)** Sets the sounder mode for when the portal is open to long.
 
-- Disabled
-- Constant
-- UrgentPulse
-- NonUrgentPulse (default)
-- ReminderPulse
+- disabled
+- constant
+- urgentPulse
+- nonUrgentPulse
+- reminderPulse
 
 ### openTooLongSouderPeriod
 
-**[timespan]** How long to activate the sounder when the portal is held open.
-Default is 10 seconds.
+**[timespan] (00:00:10)** How long to activate the sounder when the portal is held open.
+
+### unlockOnTimeTable
+
+**[object]** When set this property will add an entry to the operational mode stack for
+`unlocked` with the specified priority when the specified TimeTable is active.
+
+````json
+"unlockOnTimeTable": {
+    "id": "Monday-Friday-9-17",
+    "priority": 100
+}
+````
+
+### unlockOnSystemMode
+
+**[object]** When set this setting will add an entry to the operational mode stack for
+`unlock` with the specified priority when the specified `SystemMode` is active.
+
+````json
+"unlockOnSystemMode": {
+    "id": "Fire-Alarm",
+    "priority": 10
+}
+````
+
+### normalOnSystemMode
+
+**[object]** When set this setting will add an entry to the operational mode stack for
+`normal` with the specified priority when the specified `SystemMode` is active.
+
+````json
+"normalOnSystemMode": {
+    "id": "Fire-Alarm",
+    "priority": 50
+}
+````
+
+### singleUnlockPermission
+
+**[string[]] (empty)** A person with a permission on this list can execute the
+`SingleUnlock` command.
+
+### changeModePermissions
+
+**[string[]] (empty)** A person with a permission on this list can execute the
+`ChangeMode` command.
 
 ### Direction Properties (Enter & Exit)
 
 #### readers
 
-The list of reader Ids that the portal should accept identities for. A reader id
-can only be present in a single direction. If the Id exists in multiple
-directions, then the controller will raise a *BadConfig* event.
+**[entityId[]] (empty)** The list of reader Ids that the portal should accept
+identities for. A reader id can only be present in a single direction. If the
+Id exists in multiple directions, then the controller will raise a *BadConfig* event.
 
 #### accessPermissions
 
-A person with permission on this list requires no other authorisation.
+**[string[]] (empty)** A person with permission on this list requires no other
+authorisation.
 
 #### escortedPermissions
 
-A person with permission on this list requires further authorisation by another
-person who has Escort permission. The reader will be informed another read is
-required.
+**[string[]] (empty)** A person with permission on this list requires further
+authorisation by another person who has Escort permission. The reader will be
+informed another read is required.
 
 #### escortPermissions
 
-A person with permission on this list can authorise the Escorted request. If the
-escort has also permission on the access list, the request is granted, and both
-deemed to enter.
+**[string[]] (empty)** A person with permission on this list can authorise the
+Escorted request. If the escort has also permission on the access list, the request
+is granted, and both deemed to enter.
 
 If the escort only has permission on the escorted list, and the escorted person
 has escort permission, the request is granted, and both deemed to enter. i.e.
@@ -220,20 +282,16 @@ token setup only to authorise.
 
 ### areas
 
-The list of areas that are to be checked before movement through the portal is
-allowed. An area id can only be present in a single direction. If the Id exists
-in multiple directions, then the controller will raise a *BadConfig* event.
+**[entityId[]] (empty)** The list of areas that are to be checked before movement
+through the portal is allowed. An area id can only be present in a single direction.
+If the Id exists in multiple directions, then the controller will raise a *BadConfig* event.
 
 ## States
 
 ### OperationalMode
 
-**[enum]** This shows the current reader mode (see Portal Operational Modes for
+**[enum]** This shows the current portal mode (see Portal Operational Modes for
 details).
-
-### ConnectedToBlade
-
-**[boolean] [diagnostic]** Is the portal available on a connected blade.
 
 ### PortalState
 
@@ -242,7 +300,7 @@ details).
 - LockedShut
 - UnlockShut
 - Open
-- OpenTooLong
+- OpenTooLong - When the portal enters this state it will include the `PersonId` in the event content
 - OpenForced
 - LockedNoSensor
 - UnlockedNoSensor
@@ -251,35 +309,37 @@ details).
 
 **[enum]** The current state of the break glass input.
 
-- Inactive
-- Active
-- Error
-- Unknown
+- inactive
+- active
+- error
+- unknown
 
 ### LockDetectionState
 
 **[enum]** Reports if a lock is detected.
 
-- Missing
-- Present
-- Unknown
+- missing
+- present
+- unknown
 
 ### LockCurrentLimitState
 
 **[enum]** Reports if a lock has exceeded it’s current limit.
 
-- Tripped
-- Cleared
-
-LockPowerState
+- tripped
+- cleared
 
 ### LockPowerState
 
 **[enum]** Reports if the voltage of the lock power supply is within warning limits.
 
-- Normal
-- AboveMaxWarning
-- BelowMinWarning
+- normal
+- aboveMaxWarning
+- belowMinWarning
+
+### ConnectedToBlade
+
+**[boolean] [diagnostic]** Is the portal available on a connected blade.
 
 ## Events
 
@@ -287,26 +347,80 @@ The following events are sent from the portal. All event have the portal
 identity as their event source. Each event carries extra data in its payload,
 which is listed with each event.
 
+### PortalEntryUsed/PortalExitUsed
+
+After a Person is granted access to use a portal, they must actually use it,
+i.e. open the door. This event is raised to confirm the Person has used the
+portal, or signal an error if they didn’t. The event may contain the following
+extra information:
+
+- PersonId [identifier] – The unique identitifier for the Person requesting to
+    use the portal
+
+| **Result**            | **Event Content** |
+|-----------------------|-------------------|
+| Success               | PersonId          |
+| FailedMinOpenTime     | PersonId          |
+| FailedPortalNotOpened | PersonId          |
+| FailedNoEscort        | PersonId          |
+
+### PortalUsed
+
+If the Portal has a request to exit switch, then when this is used this event
+will be raised.
+
+| **Result**            | **Event Content** |
+|-----------------------|-------------------|
+| Success               |                   |
+| FailedMinOpenTime     |                   |
+| FailedPortalNotOpened |                   |
+
+## Commands
+
+For a command to be successful, it requires permission. There is a list of
+security contexts for each command. These are linked to permissions. Providing
+one comes back positive, the command is allowed.
+
+If a command is marked is *internal,* then it is available only within the
+controller but will still raise events.
+
 ### ChangeMode
 
-A request was made to change the operational mode of the portal.
+Add or remove an entry from the operational mode stack of the portal.
 
-| **Result**           | **Reason**            | **Event Content** |
-|----------------------|-----------------------|-------------------|
-| Success              |                       | OperationalMode   |
-| FailedOnPermissions  | NoPermisions          | OperationalMode   |
-|                      | NoRelevantPermissions | OperationalMode   |
-|                      | NoActivePermissions   | OperationalMode   |
-| CommandArgumentError |                       | OperationalMode   |
+Add Entry to stack
 
-### RequestEntry/RequestExit
+- **Mode [entityId]** - The mode to change to.
+- **Priority [int]** - The priorty for the mode entry.
+- **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
+- **Reference [string] (optional)** - A reference that can be used to remove the entry from the stack.
 
-A Person identified by a read has request permission to use the portal in a
-specific direction (Entry or Exit). This request has a success or failure result
-with an associated reason. As well as the result, the event payload will contain
+Remove entry from stack
 
-- Reason [enum] – The reason for the success or failure
-- PersonId [identifier] – The unique identitifier for the Person requesting to
+- **Reference [string] (optional)** - Remove the entry with the matching reference from the stack.
+
+Depending on the result of the command the following items will be present in the
+event contents.
+
+| **Result**           | **Reason**            |   **Event Content** |
+|----------------------|-----------------------|---------------------|
+| Success              |                       | [Mode]              |
+| FailedOnPermissions  | NoPermisions          | [Mode]              |
+|                      | NoRelevantPermissions | [Mode]              |
+|                      | NoActivePermissions   | [Mode]              |
+| CommandArgumentError |                       | [Mode]              |
+
+### RequestEntry/RequestExit [internal]
+
+This command requests entry through the portal. Several checks are made before the
+request is allowed, they are:
+
+- Whether the portal can accept the command e.g. not disabled or prevented due
+  to portal interlock.
+- Whether the person has permission.
+- Whether the person passes all area APB checks associated with the portal.
+
+- **PersonId [identifier]** – The unique identitifier for the Person requesting to
     use the portal
 
 | **Result**          | **Reason**            | **Event Content** |
@@ -319,37 +433,9 @@ with an associated reason. As well as the result, the event payload will contain
 |                     | NoActivePermissions   | PersonId          |
 |                     | PortalDisabled        | PersonId          |
 
-### PortalEntryUsed/PortalExitUsed
-
-After a Person is granted access to use a portal, they must actually use it,
-i.e. open the door. This event is raised to confirm the Person has used the
-portal, or signal an error if they didn’t. The event may contain the following
-extra information:
-
-- PersonId [identifier] – The unique identitifier for the Person requesting to
-    use the portal
-
-| **Result**            | **Reason** | **Event Content** |
-|-----------------------|------------|-------------------|
-| Success               |            | PersonId          |
-| FailedMinOpenTime     |            | PersonId          |
-| FailedPortalNotOpened |            | PersonId          |
-| FailedNoEscort        |            | PersonId          |
-
-### PortalUsed
-
-If the Portal has a request to exit switch, then when this is used this event
-will be raised.
-
-| **Result**            | **Reason** | **Event Content** |
-|-----------------------|------------|-------------------|
-| Success               |            |                   |
-| FailedMinOpenTime     |            |                   |
-| FailedPortalNotOpened |            |                   |
-
 ### SingleUnlock
 
-The portal has been commanded to unlock e.g. via interactive user command. The
+The portal will been commanded to unlock e.g. via interactive user command. The
 command will either result in a success or failure error with an associated
 reason.
 
@@ -363,7 +449,7 @@ reason.
 
 ### PulseSounder
 
-The portal has been commanded to activate the sounder associated to it e.g. via
+The portal will been commanded to activate the sounder associated to it e.g. via
 interactive user command. The command will either result in a success or failure
 error with an associated reason.
 
@@ -373,43 +459,3 @@ error with an associated reason.
 | FailedOnPermissions | NoPermissions         |                   |
 |                     | NoRelevantPermissions |                   |
 |                     | NoActivePermissions   |                   |
-
-## Commands
-
-For a command to be successful, it requires permission. There is a list of
-security contexts for each command. These are linked to permissions. Providing
-one comes back positive, the command is allowed.
-
-If a command is marked is *internal,* then it is available only within the
-controller.
-
-### ChangeOperationalMode
-
-This command is used to request a change the operational mode or cancel an
-existing command. All command requests are put on a list. The operational mode
-is set to the command with the highest priority at any one time. If a command
-times-out or is cancelled, it is taken off the list and the mode is revaluated.
-With no commands on the list the mode goes to the default (Normal). To cancel a
-command only the reference argument should be supplied.
-
-Command Arguments:
-
-- Mode – Required mode
-- Period – Period that it lasts (optional)
-- Priority – 0 to 255, 0 being the highest
-- ReferenceId – Controlling Entity
-
-### RequestEntry
-
-**[internal]** This command requests entry through the portal. Several checks are
-made before the request is allowed, they are:
-
-- Whether the portal can accept the command e.g. not disabled or prevented due
-    to portal interlock.
-- Whether the person has permission.
-- Whether the person passes all area APB checks associated with the portal.
-
-Command Arguments:
-
-- PersonId
-- PermissionOverrideId (optional)

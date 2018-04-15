@@ -1,5 +1,9 @@
 # Hardware.ReaderCommand
 
+To be added in V1.1.
+
+TODO: Finish updating this page.
+
 ````json
 {
     "controller": {

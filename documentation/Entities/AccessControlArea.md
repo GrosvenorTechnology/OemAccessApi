@@ -43,7 +43,7 @@ The area has the following operational modes:
             "offlineMode": "unenforced",
             "enforceOccupancyLimits": true,
             "maximumOccupancy": 1000000,
-            "minimumOccupancy": 1,
+            "minimumOccupancy": 0,
             "changeModePermissions": [ ],
             "setPersonStatePermission": [ ],
             "makeAllUnknownPermission": [ ],
@@ -57,43 +57,43 @@ The area has the following operational modes:
 
 ### operationalMode
 
-**[enum]** Specifies which operational mode is the default.
+**[enum] (enforced)** Specifies which operational mode is the default.
 
 ### offlineMode
 
-**[enum]** Specifies which mode is used when the controller is off-line.
+**[enum] (unenforced)** Specifies which operational mode is used when the controller is off-line.
 
 ### enforceOccupancyLimits
 
-**[Boolean]** If set to true occupancy limits will be enforced.
+**[Boolean] (true)** If set to true occupancy limits will be enforced.
 
 ### maximumOccupancy
 
-**[int]** The maximum number of people allowed in the area, when
+**[int] (1000000)** The maximum number of people allowed in the area, when
 enforceOccupancyLimits is set to true.
 
 ### minimumOccupancy
 
-**[int]** The minimum number of people allowed in the area, when
+**[int] (0)** The minimum number of people allowed in the area, when
 enforceOccupancyLimits is set to true.
 
 ### changeModePermissions
 
-**[string[]]** The list of permissions that allow the area mode to be changed.
+**[string[]] (empty)** The list of permissions that allow the area mode to be changed.
 
 ### setPersonStatePermission
 
-**[string[]]** The list of permissions that allow the state of an individual
+**[string[]] (empty)** The list of permissions that allow the state of an individual
 user to be changed.
 
 ### makeAllUnknownPermission
 
-**[string[]]** The list of permissions that allow all users in an area to be
+**[string[]] (empty)** The list of permissions that allow all users in an area to be
 made unknown.
 
 ### makeAllOutPermissions
 
-**[string[]]** The list of permissions that allow all users in an area to be
+**[string[]] (empty)** The list of permissions that allow all users in an area to be
 marked as out of the area.
 
 ## States
@@ -111,29 +111,58 @@ details).
 
 **[enum]** Shows one of the following:
 
-- BelowMinimum
-- AtMinimum
-- OK
-- AtMaximum
-- AboveMaximum
+- belowMinimum
+- atMinimum
+- oK
+- atMaximum
+- aboveMaximum
 
 ## Events
 
+### Movement
+
+Report of all movements
+
+| **Result**      | **Event Content**        |
+|-----------------|--------------------------|
+| Success         | [PersonId],NewState      |
+| ApbFailure      | PersonId                 |
+| VerifyFailure   | PersonId                 |
+| OccupancyLimit  | PersonId,OccupancyState  |
+| ModeEnforcement | PersonId,OperationalMode |
+| BarredEntry     | PersonId                 |
+
+## Commands
+
 ### ChangeMode
 
-A request was made to change the operational mode of the reader.
+Add or remove an entry from the operational mode stack of the area.
 
-| **Result**           | **Reason**            | **Event Content** |
-|----------------------|-----------------------|-------------------|
-| Success              |                       | OperationalMode   |
-| FailedOnPermissions  | NoPermisions          | OperationalMode   |
-|                      | NoRelevantPermissions | OperationalMode   |
-|                      | NoActivePermissions   | OperationalMode   |
-| CommandArgumentError |                       | OperationalMode   |
+Add Entry to stack
+
+- **Mode [entityId]** - The mode to change to.
+- **Priority [int]** - The priorty for the mode entry.
+- **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
+- **Reference [string] (optional)** - A reference that can be used to remove the entry from the stack.
+
+Remove entry from stack
+
+- **Reference [string] (optional)** - Remove the entry with the matching reference from the stack.
+
+Depending on the result of the command the following items will be present in the
+event contents.
+
+| **Result**           | **Reason**            |   **Event Content** |
+|----------------------|-----------------------|---------------------|
+| Success              |                       | [Mode]              |
+| FailedOnPermissions  | NoPermisions          | [Mode]              |
+|                      | NoRelevantPermissions | [Mode]              |
+|                      | NoActivePermissions   | [Mode]              |
+| CommandArgumentError |                       | [Mode]              |
 
 ### MakeAllUnknown
 
-Raised in response to a command to make everyone in an area unknown
+Make everyone in an area unknown
 
 | **Result**          | **Reason**            | **Event Content** |
 |---------------------|-----------------------|-------------------|
@@ -144,7 +173,7 @@ Raised in response to a command to make everyone in an area unknown
 
 ### MakeAllOut
 
-Raised in response to a command to move everyone out of an area
+Move everyone out of an area
 
 | **Result**          | **Reason**            | **Event Content** |
 |---------------------|-----------------------|-------------------|
@@ -155,7 +184,7 @@ Raised in response to a command to move everyone out of an area
 
 ### SetPersonState
 
-Raised in response to a command to set a persons current state in an area
+Set a persons current state in an area
 
 | **Result**           | **Reason**            | **Event Content** |
 |----------------------|-----------------------|-------------------|
@@ -164,67 +193,3 @@ Raised in response to a command to set a persons current state in an area
 |                      | NoRelevantPermissions | PersonId          |
 |                      | NoActivePermissions   | PersonId          |
 | CommandArgumentError |                       | [PersonId]        |
-
-### Movement
-
-| **Result**      | **Reason** | **Event Content**        |
-|-----------------|------------|--------------------------|
-| Success         |            | [PersonId],NewState      |
-| ApbFailure      |            | PersonId                 |
-| VerifyFailure   |            | PersonId                 |
-| OccupancyLimit  |            | PersonId,OccupancyState  |
-| ModeEnforcement |            | PersonId,OperationalMode |
-| BarredEntry     |            | PersonId                 |
-
-## Commands
-
-For a command to be successful, it requires permission. There is a list of
-security contexts for each command. These are linked to permissions. Providing
-one comes back positive, the command is allowed.
-
-### ChangeOperationalMode 
-
-This command is used to request a change the operational mode or cancel an
-existing command. All command requests are put on a list. The operational mode
-is set to the command with the highest priority at any one time. If a command
-times-out or is cancelled, it is taken off the list and the mode is revaluated.
-With no commands on the list the mode goes to the default. To cancel a command
-only the reference argument should be supplied.
-
-Command Arguments:
-
--   Mode – Required mode
-
--   Period – Period that it lasts (optional)
-
--   Priority – 0 to 255, 0 being the highest
-
--   ReferenceId – Controlling Entity
-
--   PermissionOverrideId (optional)
-
-### ChangePersonState
-
-Changes a person’s state to in, out or unknown.
-
-Command Arguments:
-
--   Person
-
--   NewState
-
-### MakeAllUnknown
-
-Makes all people in and out of area, unknown.
-
-### MakeAllOutOfArea
-
-Makes all people in area, out.
-
-### ChangeEnforceOccupancyLimits 
-
-Change whether the occupancy limits are enforced.
-
-Command Arguments:
-
--   Enforced

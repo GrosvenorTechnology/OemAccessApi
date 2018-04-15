@@ -9,6 +9,17 @@ N.B. The term PIN is a misnomer and should really be referred to as a PVN
 The readers element of the controller configuration maps a logical reader
 instance to a physical reader port on a blade in a controller.
 
+A reader can be configured to be in a specific operational mode. The
+reader can be commanded to change its mode at any time, a trigger based on a
+time schedule would be a common example. This property sets the default mode the
+reader will operate in. The available operational modes are:
+
+- **tokenOnly** – Only the token number is required.
+- **tokenAndPin** – Both a token number and PIN verification is required.
+- **tokenViaKeypadAndPin** - Both token number and PIN verification is required. 
+  Optionally, the token number can be entered using the keypad.
+- **disabled** – All reads from the reader will be ignored.
+
 ````json
 {
     "controller": {
@@ -19,8 +30,7 @@ instance to a physical reader port on a blade in a controller.
                 "operationalMode": "tokenOnly",
                 "tokenFormatType": "RDSATEONPRO",
                 "digitsForPin": 4,
-                "readerTamperType": "disabled",
-                "enterPinPeriod": "00:20.00",
+                "enterPinPeriod": "00:00:20",
                 "validLedType": "activeHigh",
                 "beeperType": "activeHigh",
                 "readerTamperType": "unsupervised",
@@ -42,87 +52,79 @@ The type name for readers is Hardware.Reader
 
 ### address
 
-**[hardware-address]** The controller logical address for the reader
+**[hardware-address]** The controller logical address for the reader.
 
 ### operationalMode
 
-**[enum]** A reader can be configured to be in a specific operational mode. The
-reader can be commanded to change its mode at any time, a trigger based on a
-time schedule would be a common example. This property sets the default mode the
-reader will operate in. The available operational modes are:
-
-- TokenOnly – Only the token number is required.
-- TokenAndPin – Both a token number and PIN verification is required.
-- TokenViaKeypadAndPin - Both token number and PIN verification is required.
-    Optionally, the token number can be entered using the keypad.
-- Disabled – All reads from the reader will be ignored.
-
-### changeModePermissions
-
-**[string[]]** A list of permissions. To change the Operational Mode you need a
-permission on this list to grant you permission.
+**[enum] (tokenOnly)** Specifies which operational mode is the default.
 
 ### tokenFormatType
 
-**[string (10000)]** This field can either be the name of one of the predefined
-reader types, such as ‘RDSATEONPRO’ or it can be XML that defines a custom
-reader format.
-
-### readerTamperType
-
-**[enum]** How the reader tamper input should be configured. Valid values are:
-
-- disabled
-- unsupervised (default)
-- supervised
-
-### validLedType
-
-**[emum]** How the valid LED output should be configured. Valid values are:
-
-- activeHigh (default)
-- activeLow
-
-### beeperType
-
-**[emum]** How the beeper output should be configured. Valid values are:
-
-- activeHigh (default)
-- activeLow
-
-### enterPinPeriod
-
-**[timespan]** The period the reader will wait for a PIN to be entered. Default is
-20 seconds. The LED output mode will be non-urgent. For a person with the ‘Blind
-or Partially Sighted’ attribute the beeper output mode is non-urgent.
+**[string (100)] (RDSATEONPRO)** The name of tokenFormat to use, the default
+`RDSATEONPRO` is a built in type to support `Sateon Pro` readers. Use the
+`tokenFormats` section in the application config to define custom formats.
 
 ### digitsForPin
 
-**[int]** The number of digits required for the PIN. Default is 4.
+**[int] (4)** The number of digits required for the PIN.
+
+### enterPinPeriod
+
+**[timespan] (00:00:20)** The period the reader will wait for a PIN to be entered.
+The LED output mode will be non-urgent. For a person with the `Blind`
+or `Partially Sighted` attribute the beeper output mode is non-urgent.
+
+### validLedType
+
+**[emum] (activeHigh)** How the valid LED output should be configured.
+
+- **activeHigh**
+- **activeLow**
+
+### beeperType
+
+**[emum] (activeHigh)** How the beeper output should be configured.
+
+- **activeHigh**
+- **activeLow**
+
+### readerTamperType
+
+**[enum] (unsupervised)** How the reader tamper input should be configured.
+
+- **disabled**
+- **unsupervised**
+- **supervised**
 
 ### validReadLedPeriod
 
-**[timespan]** Default is 3 seconds.
+**[timespan] (00:00:03)** How long the valid LED stays on for a valid read.
 
 ### validReadBeeperPeriod
 
-**[timespan]** Default is 200ms. For a person with the ‘Blind or Partially Sighted’
+**[timespan] (00:00:00.20)** For a person with the ‘Blind or Partially Sighted’
 attribute the Output Mode is always Constant.
 
 ### invalidReadBeeperPeriod
 
-**[timespan]** Default is 3 seconds. For a person with the ‘Blind or Partially
-Sighted’ attribute the Output Mode is always Urgent Pulse.
+**[timespan] (00:00:03)** For a person with the `Blind` or `Partially Sighted`
+attribute the output mode is always `urgentPulse` and overrides whatever has beem
+configured in `invalidReadBeeperMode`.
 
 ### invalidReadBeeperMode
 
-**[enum]** The audio pattern the beeper should produce. Valid values are:
+**[enum] (urgentPulse)** The audio pattern the beeper should produce.
 
-- Disabled
-- Constant
-- UrgentPulse (default)
-- NonUrgent Pulse
-- ReminderPulse
+- **disabled**
+- **constant**
+- **urgentPulse**
+- **nonUrgentPulse**
+- **reminderPulse**
+
+### changeModePermissions
+
+**[string[]] (empty)** A list of permissions. To change the Operational Mode you need a
+permission on this list to grant you permission.
 
 ### States
 
@@ -135,13 +137,13 @@ details).
 
 **[boolean] [diagnostic]** Is the reader available on a connected blade.
 
-### Tamper
+### ReaderTamperState
 
 **[enum]** This shows the state of the reader tamper. Valid values are:
 
-- Inactive
-- Active
-- Error
+- inactive
+- active
+- error
 - unknown
 
 ## Events
@@ -149,18 +151,6 @@ details).
 The following events are sent from the reader. All events have the reader
 identity as their event source. Each event carries extra data in its payload,
 which is listed with each event.
-
-### ChangeMode
-
-A request was made to change the operational mode of the reader.
-
-| **Result**           | **Reason**            | **Event Content** |
-|----------------------|-----------------------|-------------------|
-| Success              |                       | OperationalMode   |
-| FailedOnPermissions  | NoPermisions          | OperationalMode   |
-|                      | NoRelevantPermissions | OperationalMode   |
-|                      | NoActivePermissions   | OperationalMode   |
-| CommandArgumentError |                       | OperationalMode   |
 
 ### Read
 
@@ -170,13 +160,13 @@ The read event has a discriminator (Result) that describes the outcome of the
 read. The other items included in the event payload will depend on the value of
 the Result. These include:
 
-- TokenData [string] – A textual representation of the data from the reader if
+- **TokenData [string]** – A textual representation of the data from the reader if
     possible, for a weigand reader this will likely be the card number, an ANPR
     system the car registration. If the reader is some form biometrics this
     value will contain a static string like ‘finger’
-- TokenId [identifier] – if the value read from the reader could be matched to
+- **TokenId [identifier]** – if the value read from the reader could be matched to
     a value in the database, this is the unique identifier for that token.
-- PersonId [identifier] – The identifier for the person the token was
+- **PersonId [identifier]** – The identifier for the person the token was
     associated with
 
 The following table shows which items are present for each result, values in
@@ -196,18 +186,28 @@ optional in these events.
 
 ## Commands
 
-### ChangeOperationalMode
+### ChangeMode
 
-This command is used to request a change the operational mode or cancel an
-existing command. All command requests are put on a list. The operational mode
-is set to the command with the highest priority at any one time. If a command
-times-out or is cancelled, it is taken off the list and the mode is revaluated.
-With no commands on the list the mode goes to the default. To cancel a command
-only the reference argument should be supplied.
+Add or remove an entry from the operational mode stack of the portal.
 
-Command Arguments:
+Add Entry to stack
 
-- Mode – Required mode
-- Period – Period that it lasts (optional)
-- Priority – 0 to 255, 0 being the highest
-- ReferenceId – Controlling Entity
+- **Mode [entityId]** - The mode to change to.
+- **Priority [int]** - The priorty for the mode entry.
+- **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
+- **Reference [string] (optional)** - A reference that can be used to remove the entry from the stack.
+
+Remove entry from stack
+
+- **Reference [string] (optional)** - Remove the entry with the matching reference from the stack.
+
+Depending on the result of the command the following items will be present in the
+event contents.
+
+| **Result**           | **Reason**            |   **Event Content** |
+|----------------------|-----------------------|---------------------|
+| Success              |                       | [Mode]              |
+| FailedOnPermissions  | NoPermisions          | [Mode]              |
+|                      | NoRelevantPermissions | [Mode]              |
+|                      | NoActivePermissions   | [Mode]              |
+| CommandArgumentError |                       | [Mode]              |
