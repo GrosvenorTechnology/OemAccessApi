@@ -89,4 +89,9 @@
                 </bitSequences>
                 <controlCodes>
                     <controlCode dataName="keypadClear" codeNumber="10" />
-                    <controlCode dataName="k
+                    <controlCode dataName="keypadEnter" codeNumber="11" />
+                </controlCodes>
+            </interpretation>
+        </interpretations>
+    </format>
+</readerTokenDefinition>

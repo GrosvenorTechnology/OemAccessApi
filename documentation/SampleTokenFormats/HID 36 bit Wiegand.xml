@@ -82,4 +82,12 @@
             <interpretation dataName="keypadDigit">
                 <bitSequences>
                     <bitSequence sequenceName="keypadCode" lsbIndex="8" numberOfBits="4" reversed="false" bcd="false" multiplier="1" />
-                </bitSeque
+                </bitSequences>
+                <controlCodes>
+                    <controlCode dataName="keypadClear" codeNumber="10" />
+                    <controlCode dataName="keypadEnter" codeNumber="11" />
+                </controlCodes>
+            </interpretation>
+        </interpretations>
+    </format>
+</readerTokenDefinition>
