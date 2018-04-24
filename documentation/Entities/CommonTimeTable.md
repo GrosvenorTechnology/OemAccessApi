@@ -34,3 +34,5 @@ in the Device Configuration
     }
 }
 ````
+
+If you require a continuous period that runs over midnight, you must use an end time of 24:00, this will ensure that transition from the first day is seamlessly linked to the next. e.g. Monday 9:00 to Tuesday 17:00, if you build the transitions as 09:00-23:59 then 00:00-17:00, there will be a second discontinuity at 23:59 to midnight on Monday where the timeTable will be inactive.  Instead use 09:00-24:00 and 00:00-17:00.
