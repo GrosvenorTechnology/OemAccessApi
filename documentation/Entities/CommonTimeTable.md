@@ -13,7 +13,7 @@ in the Device Configuration
         "type": "Common.TimeTable",
         "id": "DAA01FA1-7CBA-401A-B98E-C3CC22D603B9",
         "description": "Example Time Table",
-        "transisitions":{
+        "transitions":{
             "monday": [
                 {
                     "start": "9:00:00",

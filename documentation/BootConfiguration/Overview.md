@@ -21,7 +21,8 @@ this will be loaded instead of boot.config.
             { "name": "token", "value": "myCustomToken"}
         ],
         "features": [
-            "EventContentExtension"
+            "EventContentExtension",
+            "TimeTableEndAdjustment"
         ]
         "network": {
             "dhcpEnabled": true
@@ -63,10 +64,13 @@ all HTTP requests.
 only be enabled when recommended by GTL developer support. Current options include:
 
 - **EventContentExtension** - Extends the event content for correlated events.
+- **TimeTableEndAdjustment [>=1.0.19635]** - Adds one minute to the end of transitions, allows the
+  use of transitions such as 09:00->17:59 instead of the normal 09:00->18:00.  This only
+  works when times are used in the HH:mm format, using HH:MM:ss will not have the intended results.
 
 ## Network
 
-[optional] Configure if the device should use a dhcp or static IP address. The
+[optional] Configure if the device should use a DHCP or static IP address. The
 device will default to DHCP.
 
 TODO: static network config to be added.
