@@ -34,6 +34,7 @@ The various sections can be defined in the controller node in any order.
 - [outputs](../Entities/HardwareOutput.md)
 - [areas](../Entities/AccessControlArea.md)
 - [tokenFormats](TokenFormat.md)
+- [timeTables](../Entities/CommonTimeTable.md) [>=V1.0.19635]
 
 ## Common Properties
 
