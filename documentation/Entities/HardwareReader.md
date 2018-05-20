@@ -126,7 +126,7 @@ configured in `invalidReadBeeperMode`.
 **[string[]] (empty)** A list of permissions. To change the Operational Mode you need a
 permission on this list to grant you permission.
 
-### States
+## States
 
 ### OperationalMode
 

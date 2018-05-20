@@ -28,3 +28,4 @@ The OSDP busses on a door blade are bus 1 and 2
 ## [hardware-address]
 ## [identity] / [entityId]
 ## [EntityKey]
+## [EntityType]

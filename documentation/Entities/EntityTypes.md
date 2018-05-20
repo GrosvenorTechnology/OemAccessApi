@@ -13,6 +13,10 @@ The following entity types are used by the controller
 - [AccessControl.Portal](AccessControlPortal.md)
 - AccessControl.PortalInterlock
 - [AccessControl.User](AccessControlUser.md)
+- [SmartIntego.System](SmartIntegoSystem.md)
+- [SmartIntego.Gateway](SmartIntegoGateway.md)
+- [SmartIntego.Reader](SmartIntegoReader.md)
+- [SmartIntego.Portal](SmartIntegoPortal.md)
 
 ## Common Properties
 

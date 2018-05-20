@@ -47,7 +47,7 @@ The portal has the following operational modes
             "forcedSounderMode": "urgentPulse",
             "forcedSounderPeriod": "00:00:20",
             "openTooLongSounderMode": "nonUrgentPulse",
-            "openTooLongSouderPeriod": "00:00:10",
+            "openTooLongSounderPeriod": "00:00:10",
             "unlockOnTimeTable": {
                 "id": "Monday-Friday-9-17",
                 "priority": 100
@@ -196,7 +196,7 @@ used by a person with the ‘Wheelchair or impaired mobility’ attribute.
 - nonUrgentPulse
 - reminderPulse
 
-### openTooLongSouderPeriod
+### openTooLongSounderPeriod
 
 **[timespan] (00:00:10)** How long to activate the sounder when the portal is held open.
 
@@ -257,12 +257,12 @@ Id exists in multiple directions, then the controller will raise a *BadConfig* e
 #### accessPermissions
 
 **[string[]] (empty)** A person with permission on this list requires no other
-authorisation.
+authorization.
 
 #### escortedPermissions
 
 **[string[]] (empty)** A person with permission on this list requires further
-authorisation by another person who has Escort permission. The reader will be
+authorization by another person who has Escort permission. The reader will be
 informed another read is required.
 
 #### escortPermissions
@@ -276,9 +276,9 @@ has escort permission, the request is granted, and both deemed to enter. i.e.
 they are escorting each other.
 
 One other scenario exists where the escort has no other permissions. The read
-will be regarded as an authorisation for the escorted read, and only the
+will be regarded as an authorization for the escorted read, and only the
 escorted person will be deemed to enter. i.e. A guard on the door has used a
-token setup only to authorise.
+token setup only to authorize.
 
 ### areas
 
@@ -354,7 +354,7 @@ i.e. open the door. This event is raised to confirm the Person has used the
 portal, or signal an error if they didn’t. The event may contain the following
 extra information:
 
-- PersonId [identifier] – The unique identitifier for the Person requesting to
+- PersonId [identifier] – The unique identifier for the Person requesting to
     use the portal
 
 | **Result**            | **Event Content** |
@@ -420,7 +420,7 @@ request is allowed, they are:
 - Whether the person has permission.
 - Whether the person passes all area APB checks associated with the portal.
 
-- **PersonId [identifier]** – The unique identitifier for the Person requesting to
+- **PersonId [identifier]** – The unique identifier for the Person requesting to
     use the portal
 
 | **Result**          | **Reason**            | **Event Content** |
