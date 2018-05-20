@@ -28,7 +28,9 @@ A portal is the logical representation of a door.  In a SmartIntego Lock a reade
                 "readers": ["BoardRoom-Exit"],
                 "permissions": ["GeneralAccess"]
             },
-            "changeModePermissions": ["Operator"]
+            "changeModePermissions": ["Operator"],
+            "offlineWhitelistTags": ["offlineWhitelist"],
+            "localWhitelistTags": ["localWhitelist"],
         }]
     }
 }
@@ -167,8 +169,8 @@ Add or remove an entry from the operational mode stack of the portal.
 
 Add Entry to stack
 
-- **Mode [entityId]** - The mode to change to.
-- **Priority [int]** - The priorty for the mode entry.
+- **Mode [enum]** - The mode to change to.
+- **Priority [int]** - The priority for the mode entry.
 - **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
 - **Reference [string] (optional)** - A reference that can be used to remove the entry from the stack.
 

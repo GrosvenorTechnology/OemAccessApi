@@ -13,7 +13,8 @@
         "identifiers": [{
             "type": "AccessControl.Token",
             "id": "80213b75-eb3a-4376-8694-bf38d44b9772",
-            "data": "1559635345"
+            "data": "1559635345",
+            "tags": ["OfflineWL"]
         }],
         "verifiers": [{
                 "type": "AccessControl.Pin",
@@ -53,7 +54,7 @@
 ### Attributes
 
 A user can have zero or more attributes associated to them, these attributes are
-used to specify specific behaviours for the user. A common example of these is
+used to specify specific behaviors for the user. A common example of these is
 the *blind* attribute that will cause a portal to use a sounder rather than the
 LED for indication.
 
