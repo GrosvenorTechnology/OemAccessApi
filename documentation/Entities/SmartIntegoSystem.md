@@ -31,7 +31,7 @@ The SmartIntego System object is used to define common properties across all com
 
 ## whitelistUpdatePeriod 
 
-**[timespan] (01:00:00)** The time of day that scheduled white list updates will occurs.
+**[timespan] (01:00:00)** The frequency that the white list updates will occur. E.g. 01:00:00 is once an hour.
 
 ## gateways
 
