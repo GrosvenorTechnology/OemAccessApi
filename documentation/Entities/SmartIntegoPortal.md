@@ -31,6 +31,22 @@ A portal is the logical representation of a door.  In a SmartIntego Lock a reade
             "changeModePermissions": ["Operator"],
             "offlineWhitelistTags": ["offlineWhitelist"],
             "localWhitelistTags": ["localWhitelist"],
+            "unlockOnTimeTable": {
+                "id": "Monday-Friday-9-17",
+                "priority": 100
+            },
+            "officeModeOnTimeTable": {
+                "id": "Saturday-9-17",
+                "priority": 100
+            },
+            "unlockOnSystemMode": {
+                "id": "Fire-Alarm",
+                "priority": 10
+            },
+            "normalOnSystemMode": {
+                "id": "Fire-Alarm",
+                "priority": 50
+            }
         }]
     }
 }
