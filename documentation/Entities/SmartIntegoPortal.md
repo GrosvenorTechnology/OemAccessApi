@@ -82,6 +82,54 @@ authorization.
 through the portal is allowed. An area id can only be present in a single direction.
 If the Id exists in multiple directions, then the controller will raise a *BadConfig* event.
 
+### unlockOnTimeTable
+
+**[object]** When set this property will add an entry to the operational mode stack for
+`unlocked` with the specified priority when the specified TimeTable is active.
+
+````json
+"unlockOnTimeTable": {
+    "id": "Monday-Friday-9-17",
+    "priority": 100
+}
+````
+
+### officeModeOnTimeTable
+
+**[object]** When set this property will add an entry to the operational mode stack for
+`officeMode` with the specified priority when the specified TimeTable is active.
+
+````json
+"officeModeOnTimeTable": {
+    "id": "Saturday-9-17",
+    "priority": 100
+}
+````
+
+### unlockOnSystemMode
+
+**[object]** When set this setting will add an entry to the operational mode stack for
+`unlock` with the specified priority when the specified `SystemMode` is active.
+
+````json
+"unlockOnSystemMode": {
+    "id": "Fire-Alarm",
+    "priority": 10
+}
+````
+
+### normalOnSystemMode
+
+**[object]** When set this setting will add an entry to the operational mode stack for
+`normal` with the specified priority when the specified `SystemMode` is active.
+
+````json
+"normalOnSystemMode": {
+    "id": "Fire-Alarm",
+    "priority": 50
+}
+````
+
 ## States
 
 ### OperationalMode
