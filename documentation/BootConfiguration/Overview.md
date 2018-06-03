@@ -23,9 +23,17 @@ this will be loaded instead of boot.config.
         "features": [
             "EventContentExtension",
             "TimeTableEndAdjustment"
-        ]
+        ],
         "network": {
-            "dhcpEnabled": true
+            "eth0": {
+                "address": "192.168.43.101",
+                "netmask": "255.255.255.0",
+                "gateway": "192.168.43.254"
+            },
+            "primaryDns": "192.168.43.1",
+            "secondaryDns": "192.168.42.4",
+            "ntpServer": "pool.ntp.org",
+            "sshEnabled": true
         }
     }
 }
@@ -72,7 +80,75 @@ only be enabled when recommended by GTL developer support. Current options inclu
 
 ## Network
 
-[optional] Configure if the device should use a DHCP or static IP address. The
-device will default to DHCP.
+[optional] Configure the network settings.  If this setting is not set or set to `null`, the existing
+settings will not be changed.
 
-TODO: static network config to be added.
+### Static Network Address 
+
+To set the controller to use static network settings, the eth0 setting must be set as in the example 
+below. The `gateway` setting is optional, if it is omitted or set to `null`, it's value will not be 
+changed. To clear a setting, set the value to an empty string `""` 
+
+```json
+{
+    "boot": {
+        "network": {
+            "eth0": {
+                "address": "192.168.43.101",
+                "netmask": "255.255.255.0",
+                "gateway": "192.168.43.254"
+            }
+        }
+    }
+}
+
+```
+
+### DHCP Network Address 
+
+To set the controller to use static network settings, the `eth0` setting must be set as in the example
+below. 
+
+```json
+{
+    "boot": {
+        "network": {
+            "eth0": null
+        }
+    }
+}
+
+```
+
+Or just admit the `eth0` setting will also switch the controller to DHCP 
+
+```json
+{
+    "boot": {
+        "network": {
+        }
+    }
+}
+
+```
+
+### Optional Settings
+
+The following settings can be set regardless of DHCP/Static addressing. If a setting is omitted or set to
+`null`, it's value will not be changed. To clear a setting, set the value to an empty string `""`.  For
+`ntpServer` setting the value to an empt string resets the value to it's default `pool.ntp.org`
+
+```json
+{
+    "boot": {
+        "network": {
+            "primaryDns": "192.168.43.1",
+            "secondaryDns": "",
+            "ntpServer": "3.uk.pool.ntp.org",
+            "sshEnabled": true
+        }
+    }
+}
+
+```
+
