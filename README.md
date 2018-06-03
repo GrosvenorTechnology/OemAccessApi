@@ -11,3 +11,5 @@
 ## [Application Configuration](documentation/ApplicationConfiguration/Overview.md)
 
 ## [Entity Types](documentation/Entities/EntityTypes.md)
+
+## [Out Of Box Experience](documentation/oobe.md)
