@@ -40,7 +40,9 @@ custom URIs.
 ## Platform Config
 
 [optional] This is the URI that is used to load the platform config, if present
-{deviceSerial} will be replaced with the devices serial number.
+{deviceSerial} will be replaced with the devices serial number.  The use of this 
+setting allows you to set the defaultUri to something other than the management 
+platform, and can help make platform configuration files more concise.
 
 ## Services
 

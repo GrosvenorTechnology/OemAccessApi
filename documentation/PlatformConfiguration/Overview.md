@@ -108,7 +108,8 @@ two destinations for these endpoints. If the URI is set to an empty array, the
 service will be effectively be disabled.
 
 If the URI is of type [polled] then you can set the *uri*, *frequency* of
-polling (in seconds).
+polling (in seconds).  If you set the *uri* of a [polled] setting to "disabled"
+then the system will not attempt to connect to that endpoint.
 
 If the URI is of type [queue] then you can set the *uri*, *frequency* of polling
 (in seconds) and *batchSize.*
