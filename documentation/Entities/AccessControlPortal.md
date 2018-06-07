@@ -100,7 +100,6 @@ The portal has the following operational modes
 
 - energiseToLock
 - energiseToUnlock
-- useAuxOutput
 
 ### lockCurrentLimit
 
@@ -123,8 +122,8 @@ will also be operated, i.e. lock 1 drives output 1.
 
 **[enum] (onPortalOpening)** When should the portal be relocked, only used if the sensor is enabled.
 
-- onPortalOpening
-- onPortalClosing
+- onPortalOpen
+- onPortalClose
 
 ### sensorType
 
