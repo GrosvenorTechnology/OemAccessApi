@@ -206,15 +206,13 @@ details).
 ## Events
 
 The following events are sent from the portal. All event have the portal
-identity as their event source. Each event carries extra data in its payload,
-which is listed with each event.
+identity as their event source. Each event carries extra data in its payload, which is listed with each event.
 
 ### PortalEntryUsed/PortalExitUsed
 
 After a Person is granted access to use a portal, they must actually use it,
 i.e. open the door. This event is raised to confirm the Person has used the
-portal, or signal an error if they didn’t. The event may contain the following
-extra information:
+portal, or signal an error if they didn't. The event may contain the following extra information:
 
 - PersonId [identifier] – The unique identifier for the Person requesting to
     use the portal
@@ -301,8 +299,7 @@ event contents.
 This command requests entry through the portal. Several checks are made before the
 request is allowed, they are:
 
-- Whether the portal can accept the command e.g. not disabled or prevented due
-  to portal interlock.
+- Whether the portal can accept the command e.g. not disabled or prevented due to portal interlock.
 - Whether the person has permission.
 - Whether the person passes all area APB checks associated with the portal.
 

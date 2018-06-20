@@ -73,6 +73,7 @@ optional in these events.
 | ReaderDisabled   | TokenData, [TokenId], [PersonId] |
 | ReadDecodeFailure |                                 |
 | ReadInfoDecodeFailure |                             |
+| LockNotLicensed | PHI                               |
 
 ### LocalVerificationRead
 
