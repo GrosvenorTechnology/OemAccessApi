@@ -103,7 +103,7 @@ The portal has the following operational modes
 
 ### lockCurrentLimit
 
-**[int] (4000)** The lock current limit at wich power to the lock will be cut.
+**[int] (4000)** The lock current limit at which power to the lock will be cut.
 
 ### lockWarningCurrentMinimum
 
@@ -277,7 +277,7 @@ they are escorting each other.
 One other scenario exists where the escort has no other permissions. The read
 will be regarded as an authorization for the escorted read, and only the
 escorted person will be deemed to enter. i.e. A guard on the door has used a
-token setup only to authorize.
+token set-up only to authorize.
 
 ### areas
 
@@ -304,7 +304,7 @@ details).
 - LockedNoSensor
 - UnlockedNoSensor
 
-### BreakglassState
+### BreakGlassState
 
 **[enum]** The current state of the break glass input.
 
@@ -323,7 +323,7 @@ details).
 
 ### LockCurrentLimitState
 
-**[enum]** Reports if a lock has exceeded it’s current limit.
+**[enum]** Reports if a lock has exceeded it's current limit.
 
 - tripped
 - cleared
@@ -350,7 +350,7 @@ which is listed with each event.
 
 After a Person is granted access to use a portal, they must actually use it,
 i.e. open the door. This event is raised to confirm the Person has used the
-portal, or signal an error if they didn’t. The event may contain the following
+portal, or signal an error if they didn't. The event may contain the following
 extra information:
 
 - PersonId [identifier] – The unique identifier for the Person requesting to
@@ -390,7 +390,7 @@ Add or remove an entry from the operational mode stack of the portal.
 Add Entry to stack
 
 - **Mode [entityId]** - The mode to change to.
-- **Priority [int]** - The priorty for the mode entry.
+- **Priority [int]** - The priority for the mode entry.
 - **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
 - **Reference [string] (optional)** - A reference that can be used to remove the entry from the stack.
 
@@ -404,7 +404,7 @@ event contents.
 | **Result**           | **Reason**            |   **Event Content** |
 |----------------------|-----------------------|---------------------|
 | Success              |                       | [Mode]              |
-| FailedOnPermissions  | NoPermisions          | [Mode]              |
+| FailedOnPermissions  | NoPermissions          | [Mode]              |
 |                      | NoRelevantPermissions | [Mode]              |
 |                      | NoActivePermissions   | [Mode]              |
 | CommandArgumentError |                       | [Mode]              |

@@ -96,7 +96,6 @@ This command will turn an output on for a given period.
 - **OutputMode [enum] (optional)** - The default is the value of the `defaultOutputMode`
  property from the outputs configuration; the enum values also match this property.
 
-
 | **Result**           | **Reason**            | **Event Content** |
 |----------------------|-----------------------|-------------------|
 | Success              |                       |                   |
@@ -111,10 +110,9 @@ This command will turn an output on for a given period.
 
 This command will turn an output on.
 
-- **Period [timespan] (infinte) (optional)** – How long should the output stay on.
+- **Period [timespan] (infinite) (optional)** – How long should the output stay on.
 - **OutputMode [enum] (optional)** - The default is the value of the `defaultOutputMode`
  property from the outputs configuration; the enum values also match this property.
-
 
 | **Result**           | **Reason**            | **Event Content** |
 |----------------------|-----------------------|-------------------|
@@ -159,7 +157,7 @@ Add or remove an entry from the operational mode stack of the input.
 Add Entry to stack
 
 - **Mode [entityId]** - The mode to change to.
-- **Priority [int]** - The priorty for the mode entry.
+- **Priority [int]** - The priority for the mode entry.
 - **Period [timespan] (optional)** - If provided the entry will be automatically
   removed after the given time period.
 - **Reference [string] (optional)** - A reference that can be used to remove the
@@ -176,7 +174,7 @@ event contents.
 | **Result**           | **Reason**            |   **Event Content** |
 |----------------------|-----------------------|---------------------|
 | Success              |                       | [Mode]              |
-| FailedOnPermissions  | NoPermisions          | [Mode]              |
+| FailedOnPermissions  | NoPermissions         | [Mode]              |
 |                      | NoRelevantPermissions | [Mode]              |
 |                      | NoActivePermissions   | [Mode]              |
 | CommandArgumentError |                       | [Mode]              |

@@ -1,7 +1,7 @@
 # Hardware.Input
 
 The input types track the physical input and present a logical view of the input
-state. All inputs are ‘debounced’, and will not show a change of state until the
+state. All inputs are ‘de-bounced’, and will not show a change of state until the
 physical input has been stable in the new state for at least 75ms.
 
 The input has the following operational modes:
@@ -70,13 +70,13 @@ the logical state of the input is changed.
 
 ### pirInhibit
 
-**[timespan] (00:30:00)** The amount of time the input’s physical input, when in PIR
+**[timespan] (00:30:00)** The amount of time the input's physical input, when in PIR
 mode, must be reset before the input state will change to reset. Only used when
 `InputOperationType` is set to `PirDetector`
 
 ### pirFault
 
-**[timespan] (5:00:00)** The maximum amount of time the input’s physical input, when
+**[timespan] (5:00:00)** The maximum amount of time the input's physical input, when
 in PIR mode, can stay active before the input is placed in the *Fault* state. Only used
 when `InputOperationType` is set to `PirDetector`
 
@@ -119,7 +119,7 @@ Add or remove an entry from the operational mode stack of the input.
 Add Entry to stack
 
 - **Mode [entityId]** - The mode to change to.
-- **Priority [int]** - The priorty for the mode entry.
+- **Priority [int]** - The priority for the mode entry.
 - **Period [timespan] (optional)** - If provided the entry will be automatically
   removed after the given time period.
 - **Reference [string] (optional)** - A reference that can be used to remove the
@@ -136,7 +136,7 @@ event contents.
 | **Result**           | **Reason**            |   **Event Content** |
 |----------------------|-----------------------|---------------------|
 | Success              |                       | [Mode]              |
-| FailedOnPermissions  | NoPermisions          | [Mode]              |
+| FailedOnPermissions  | NoPermissions          | [Mode]              |
 |                      | NoRelevantPermissions | [Mode]              |
 |                      | NoActivePermissions   | [Mode]              |
 | CommandArgumentError |                       | [Mode]              |

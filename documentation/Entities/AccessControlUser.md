@@ -7,8 +7,8 @@
         "id": "DAA01FA1-7CBA-401A-B98E-C3CC22D603B9",
         "description": "Mr Stephen Woolhead (ABC123)",
         "attributes": [
-            "VIP",
-            "Veritgo"
+            "ImpairedMobility",
+            "ImpairedHearing"
         ],
         "identifiers": [{
             "type": "AccessControl.Token",
@@ -54,9 +54,8 @@
 ### Attributes
 
 A user can have zero or more attributes associated to them, these attributes are
-used to specify specific behaviors for the user. A common example of these is
-the *blind* attribute that will cause a portal to use a sounder rather than the
-LED for indication.
+used to specify specific behaviours for the user. A common example of these is
+the *ImpairedSight* attribute that will cause a portal to use a sounder as well as the LED for indication. Another is the *ImpairedMobility* attribute, which will alter a portal's timings to allow extra time to interact with the portal.
 
 ### Identifiers
 

@@ -2,13 +2,12 @@
 
 **Supported >= 2.0.0**
 
-A portal is the logical representation of a door.  In a SmartIntego Lock a reader and portal tightly integrated as a single unit and can only work with other SmartIntego devices, and as a result can only be used with SmartIntego Readers. The hardware address of the portal is inferred from the attached readers. 
+A portal is the logical representation of a door.  In a SmartIntego Lock a reader and portal tightly integrated as a single unit and can only work with other SmartIntego devices, and as a result can only be used with SmartIntego Readers. The hardware address of the portal is inferred from the attached readers.
 
 - **Normal** (Default) - Portal is normally locked. A successful entry or exit
     request will unlock the portal for a period.
 - **Unlocked** - Portal is normally unlocked, allowing free access until the
     mode is changed.
-- **OfficeMode** - Allows the use of a second long tap of a token to unlock the portal.
 - **Disabled** - Portal is locked. Entry and exit requests will be denied.
 
 ````json
@@ -35,10 +34,6 @@ A portal is the logical representation of a door.  In a SmartIntego Lock a reade
                 "id": "Monday-Friday-9-17",
                 "priority": 100
             },
-            "officeModeOnTimeTable": {
-                "id": "Saturday-9-17",
-                "priority": 100
-            },
             "unlockOnSystemMode": {
                 "id": "Fire-Alarm",
                 "priority": 10
@@ -46,10 +41,14 @@ A portal is the logical representation of a door.  In a SmartIntego Lock a reade
             "normalOnSystemMode": {
                 "id": "Fire-Alarm",
                 "priority": 50
-            }
+            },
+            "shortWakeupTimeTable": "Office-Hours",
+            "officeModePermissions": ["BoardRoom_OfficeMode"],
+            "officeModeDuration": "08:00:00"
         }]
     }
 }
+
 ````
 
 ## Properties
@@ -94,18 +93,6 @@ If the Id exists in multiple directions, then the controller will raise a *BadCo
 }
 ````
 
-### officeModeOnTimeTable
-
-**[object]** When set this property will add an entry to the operational mode stack for
-`officeMode` with the specified priority when the specified TimeTable is active.
-
-````json
-"officeModeOnTimeTable": {
-    "id": "Saturday-9-17",
-    "priority": 100
-}
-````
-
 ### unlockOnSystemMode
 
 **[object]** When set this setting will add an entry to the operational mode stack for
@@ -130,6 +117,18 @@ If the Id exists in multiple directions, then the controller will raise a *BadCo
 }
 ````
 
+### shortWakeupTimeTable
+
+**[[Common.TimeTable](CommonTimeTable.md)]** When set the Smart Intego lock will be set to short wake-up time when the specified TimeTable is active.
+
+### officeModePermissions
+
+**[string[]] (empty)** A person with a permission on this list will, provided they also have access permission, be allowed put the Smart Intego lock in and out of Office Mode.
+
+### officeModeDuration
+
+**[timespan] (04:00:00)** This will determine for how long Office Mode will last.
+
 ## States
 
 ### OperationalMode
@@ -149,20 +148,21 @@ details).
 - LockedNoSensor
 - UnlockedNoSensor
 
-### BatteryWarning
-
-**[boolean]** Is the locks battery starting to run low.
-
 ### BatteryAlarm
 
 **[boolean]** Is the locks battery almost exhausted.
 
-### PortalLockState
+### BatteryWarning
 
-**[enum] [diagnostic]** The current state of the lock.
+**[boolean]** Is the locks battery starting to run low.
 
-- locked
-- unlocked
+### EscapeReturnActive
+
+**[boolean] [diagnostic]** The current state of the lock Escape/Return function.
+
+### ExitHandlePushed
+
+**[boolean] [diagnostic]** Has the exit handle been pushed.
 
 ### PortalBoltState
 
@@ -171,9 +171,12 @@ details).
 - locked
 - unlocked
 
-### ExitHandlePushed
+### PortalLockState
 
-**[boolean] [diagnostic]** Has the exit handle been pushed.
+**[enum] [diagnostic]** The current state of the lock.
+
+- locked
+- unlocked
 
 ### PortalSenseState
 
@@ -183,6 +186,22 @@ details).
 - closed
 - error
 - unknown
+
+### QualityOfService
+
+**[enum] [diagnostic]** The current Quality of Service of the lock communications.
+
+- QoS80
+- QoS90
+- QoS95
+
+### ReaderConnected
+
+**[boolean] [diagnostic]** Whether a reader is connected to the lock.
+
+### WhitelistDeactivated
+
+**[boolean]** Whether the lock's white list is active.
 
 ## Events
 
@@ -218,6 +237,30 @@ will be raised.
 | FailedMinOpenTime     |                   |
 | FailedPortalNotOpened |                   |
 
+### MagneticManipulation
+
+Caused by a magnetic manipulation of the lock.
+
+### NoHallSensors
+
+Caused by the lock's Hall sensor not being found.
+
+### ShortCircuit
+
+Caused by the lock's sensor being short circuit.
+
+### HandleManipulation
+
+Caused by a handle manipulation of the lock.
+
+### OfflineWhitelistAccesses
+
+The number of accesses granted while the lock was off-line, allowed because the tokens were on the whitelist.
+
+| **Result**            | **Event Content** |
+|-----------------------|-------------------|
+| [int]                 |                   |
+
 ## Commands
 
 For a command to be successful, it requires permission. There is a list of
@@ -248,7 +291,7 @@ event contents.
 | **Result**           | **Reason**            |   **Event Content** |
 |----------------------|-----------------------|---------------------|
 | Success              |                       | [Mode]              |
-| FailedOnPermissions  | NoPermisions          | [Mode]              |
+| FailedOnPermissions  | NoPermissions         | [Mode]              |
 |                      | NoRelevantPermissions | [Mode]              |
 |                      | NoActivePermissions   | [Mode]              |
 | CommandArgumentError |                       | [Mode]              |
@@ -290,15 +333,56 @@ reason.
 |                     | NoActivePermissions   |                   |
 |                     | PortalDisabled        |                   |
 
-### PulseSounder
+### ActivateWhitelist
 
-The portal will been commanded to activate the sounder associated to it e.g. via
-interactive user command. The command will either result in a success or failure
-error with an associated reason.
+Activates white list.
 
-| **Result**          | **Reason**            | **Event Content** |
-|---------------------|-----------------------|-------------------|
-| Success             |                       |                   |
-| FailedOnPermissions | NoPermissions         |                   |
-|                     | NoRelevantPermissions |                   |
-|                     | NoActivePermissions   |                   |
+| **Result**           |   **Event Content** |
+|----------------------|---------------------|
+| Success              |                     |
+| FailedBecauseOfError |                     |
+
+### DeactivateWhitelist
+
+Deactivates white list.
+
+| **Result**           |   **Event Content** |
+|----------------------|---------------------|
+| Success              |                     |
+| FailedBecauseOfError |                     |
+
+### UpdateWhitelist
+
+Forces white list to be re-evaluated and changes sent to lock.
+
+| **Result**           |   **Event Content** |
+|----------------------|---------------------|
+| Success              |                     |
+| FailedBecauseOfError |                     |
+
+### SendWhitelist
+
+Forces white list to be cleared and re-sent sent to lock.
+
+| **Result**           |   **Event Content** |
+|----------------------|---------------------|
+| Success              |                     |
+| FailedBecauseOfError |                     |
+
+### DeleteWhitelist
+
+Forces white list to be cleared.
+
+| **Result**           |   **Event Content** |
+|----------------------|---------------------|
+| Success              |                     |
+| FailedBecauseOfError |                     |
+
+### DeletePriorityWhitelist
+
+Forces priority white list to be cleared.
+
+| **Result**           |   **Event Content** |
+|----------------------|---------------------|
+| Success              |                     |
+| FailedBecauseOfError |                     |

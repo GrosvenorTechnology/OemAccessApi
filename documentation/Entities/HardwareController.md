@@ -23,7 +23,7 @@ The controller has the following operational modes
 ### Timezone
 
 **[string (200)] (Etc/UTC)** The IANA timezone to be used to evaluate local time.
-The list of timezones can be found in the [IANA Timezone database](https://www.iana.org/time-zones) 
+The list of timezones can be found in the [IANA Timezone database](https://www.iana.org/time-zones)
 of which a list can be found [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
 ### AreaMode
@@ -196,7 +196,7 @@ Add or remove an entry from the operational mode stack of the portal.
 Add Entry to stack
 
 - **Mode [entityId]** - The mode to change to.
-- **Priority [int]** - The priorty for the mode entry.
+- **Priority [int]** - The priority for the mode entry.
 - **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
 - **Reference [string] (optional)** - A reference that can be used to remove the entry from the stack.
 
@@ -207,7 +207,7 @@ Remove entry from stack
 | **Result**           | **Reason**            |   **Event Content** |
 |----------------------|-----------------------|---------------------|
 | Success              |                       | [Mode]              |
-| FailedOnPermissions  | NoPermisions          | [Mode]              |
+| FailedOnPermissions  | NoPermissions          | [Mode]              |
 |                      | NoRelevantPermissions | [Mode]              |
 |                      | NoActivePermissions   | [Mode]              |
 | CommandArgumentError |                       | [Mode]              |
