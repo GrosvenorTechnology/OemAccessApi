@@ -2,7 +2,7 @@
 
 **Supported >= 2.0.0**
 
-A reader is the logical representation of a token reader integrated into a SmartIntego Lock, and as a result can only be used with SmartIntego Portals. 
+A reader is the logical representation of a token reader integrated into a SmartIntego Lock, and as a result can only be used with SmartIntego Portals.
 
 A reader can be configured to be in a specific operational mode. The
 reader can be commanded to change its mode at any time, a trigger based on a
@@ -48,7 +48,7 @@ which is listed with each event.
 
 ### Read
 
-A token was present to the read and successfully decoded.
+A token was presented to the reader.
 
 The read event has a discriminator (Result) that describes the outcome of the
 read. The other items included in the event payload will depend on the value of
@@ -66,15 +66,71 @@ optional in these events.
 | **Result**       | **Event Content**                |
 |------------------|----------------------------------|
 | Success          | TokenData, TokenId, PersonId     |
-| PinTimeout       | TokenData, [TokenId], [PersonId] |
-| DuressPinUsed    | TokenData, TokenId, PersonId     |
-| IncorrectPin     | TokenData, TokenId, PersonId     |
 | UnknownToken     | TokenData                        |
 | UnknownPerson    | TokenData, TokenId               |
 | TokenNotEnabled  | TokenData, TokenId, PersonId     |
 | PersonNotEnabled | TokenData, TokenId, PersonId     |
 | ReaderDisabled   | TokenData, [TokenId], [PersonId] |
+| ReadDecodeFailure |                                 |
+| ReadInfoDecodeFailure |                             |
+| LockNotLicensed | PHI                               |
+
+### LocalVerificationRead
+
+A token was read and found on the whitelist with the local verification flag set. The lock was automatically unlocked.
+
+| **Result**       | **Event Content**                |
+|------------------|----------------------------------|
+| Success          | TokenData, TokenId, PersonId     |
+
+### UserUnlocked
+
+| **Result**       | **Event Content**                |
+|------------------|----------------------------------|
+| Success          | TokenData, TokenId, PersonId     |
+
+### UserLocked
+
+| **Result**       | **Event Content**                |
+|------------------|----------------------------------|
+| Success          | TokenData, TokenId, PersonId     |
+
+### Unlocked
+
+| **Result**       | **Event Content**                |
+|------------------|----------------------------------|
+| Success          |                                  |
+
+### Locked
+
+| **Result**       | **Event Content**                |
+|------------------|----------------------------------|
+| Success          |                                  |
 
 ## Commands
 
+### ChangeMode
 
+Add or remove an entry from the operational mode stack of the reader.
+
+Add Entry to stack
+
+- **Mode [entityId]** - The mode to change to.
+- **Priority [int]** - The priority for the mode entry.
+- **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
+- **Reference [string] (optional)** - A reference that can be used to remove the entry from the stack.
+
+Remove entry from stack
+
+- **Reference [string] (optional)** - Remove the entry with the matching reference from the stack.
+
+Depending on the result of the command the following items will be present in the
+event contents.
+
+| **Result**           | **Reason**            |   **Event Content** |
+|----------------------|-----------------------|---------------------|
+| Success              |                       | [Mode]              |
+| FailedOnPermissions  | NoPermissions         | [Mode]              |
+|                      | NoRelevantPermissions | [Mode]              |
+|                      | NoActivePermissions   | [Mode]              |
+| CommandArgumentError |                       | [Mode]              |

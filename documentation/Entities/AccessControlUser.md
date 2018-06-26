@@ -7,8 +7,8 @@
         "id": "DAA01FA1-7CBA-401A-B98E-C3CC22D603B9",
         "description": "Mr Stephen Woolhead (ABC123)",
         "attributes": [
-            "VIP",
-            "Veritgo"
+            "ImpairedMobility",
+            "ImpairedHearing"
         ],
         "identifiers": [{
             "type": "AccessControl.Token",

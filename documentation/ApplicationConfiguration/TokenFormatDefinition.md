@@ -11,7 +11,7 @@ A token data format has three parts:
 A reader often has to support more than one data format. All data formats for
 particular reader have to have the same physical interface type. Each data
 format, for that reader, is tried in turn. A data format is accepted when it
-passes the data format’s validation.
+passes the data format's validation.
 
 ### Physical Interface
 

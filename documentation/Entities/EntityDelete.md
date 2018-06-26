@@ -1,8 +1,8 @@
 # Entity Delete
 
 When an entity delete message is sent over the Entity Change Queue, the
-controller will delete the entity instances of the specified type with the 
-matching id. 
+controller will delete the entity instances of the specified type with the
+matching id.
 
 ````json
 {

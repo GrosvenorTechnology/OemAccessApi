@@ -141,7 +141,7 @@ Add or remove an entry from the operational mode stack of the area.
 Add Entry to stack
 
 - **Mode [entityId]** - The mode to change to.
-- **Priority [int]** - The priorty for the mode entry.
+- **Priority [int]** - The priority for the mode entry.
 - **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
 - **Reference [string] (optional)** - A reference that can be used to remove the entry from the stack.
 
@@ -155,7 +155,7 @@ event contents.
 | **Result**           | **Reason**            |   **Event Content** |
 |----------------------|-----------------------|---------------------|
 | Success              |                       | [Mode]              |
-| FailedOnPermissions  | NoPermisions          | [Mode]              |
+| FailedOnPermissions  | NoPermissions          | [Mode]              |
 |                      | NoRelevantPermissions | [Mode]              |
 |                      | NoActivePermissions   | [Mode]              |
 | CommandArgumentError |                       | [Mode]              |
@@ -167,7 +167,7 @@ Make everyone in an area unknown
 | **Result**          | **Reason**            | **Event Content** |
 |---------------------|-----------------------|-------------------|
 | Success             |                       |                   |
-| FailedOnPermissions | NoPermisions          |                   |
+| FailedOnPermissions | NoPermissions          |                   |
 |                     | NoRelevantPermissions |                   |
 |                     | NoActivePermissions   |                   |
 
@@ -178,7 +178,7 @@ Move everyone out of an area
 | **Result**          | **Reason**            | **Event Content** |
 |---------------------|-----------------------|-------------------|
 | Success             |                       |                   |
-| FailedOnPermissions | NoPermisions          |                   |
+| FailedOnPermissions | NoPermissions          |                   |
 |                     | NoRelevantPermissions |                   |
 |                     | NoActivePermissions   |                   |
 
@@ -189,7 +189,7 @@ Set a persons current state in an area
 | **Result**           | **Reason**            | **Event Content** |
 |----------------------|-----------------------|-------------------|
 | Success              |                       | PersonId          |
-| FailedOnPermissions  | NoPermisions          | PersonId          |
+| FailedOnPermissions  | NoPermissions          | PersonId          |
 |                      | NoRelevantPermissions | PersonId          |
 |                      | NoActivePermissions   | PersonId          |
 | CommandArgumentError |                       | [PersonId]        |

@@ -1,7 +1,7 @@
 # Hardware.Reader
 
 A reader is the logical representation of a token reader. A token may be
-physical, biometric or entered through a keypad. In addition to identification a
+physical, bio-metric or entered through a keypad. In addition to identification a
 reader may also be used to verify by using a PIN code entered through a keypad.
 N.B. The term PIN is a misnomer and should really be referred to as a PVN
 (Personal Verification Number).
@@ -16,7 +16,7 @@ reader will operate in. The available operational modes are:
 
 - **tokenOnly** – Only the token number is required.
 - **tokenAndPin** – Both a token number and PIN verification is required.
-- **tokenViaKeypadAndPin** - Both token number and PIN verification is required. 
+- **tokenViaKeypadAndPin** - Both token number and PIN verification is required.
   Optionally, the token number can be entered using the keypad.
 - **disabled** – All reads from the reader will be ignored.
 
@@ -76,14 +76,14 @@ or `Partially Sighted` attribute the beeper output mode is non-urgent.
 
 ### validLedType
 
-**[emum] (activeHigh)** How the valid LED output should be configured.
+**[enum] (activeHigh)** How the valid LED output should be configured.
 
 - **activeHigh**
 - **activeLow**
 
 ### beeperType
 
-**[emum] (activeHigh)** How the beeper output should be configured.
+**[enum] (activeHigh)** How the beeper output should be configured.
 
 - **activeHigh**
 - **activeLow**
@@ -108,7 +108,7 @@ attribute the Output Mode is always Constant.
 ### invalidReadBeeperPeriod
 
 **[timespan] (00:00:03)** For a person with the `Blind` or `Partially Sighted`
-attribute the output mode is always `urgentPulse` and overrides whatever has beem
+attribute the output mode is always `urgentPulse` and overrides whatever has been
 configured in `invalidReadBeeperMode`.
 
 ### invalidReadBeeperMode
@@ -161,7 +161,7 @@ read. The other items included in the event payload will depend on the value of
 the Result. These include:
 
 - **TokenData [string]** – A textual representation of the data from the reader if
-    possible, for a weigand reader this will likely be the card number, an ANPR
+    possible, for a Wiegand reader this will likely be the card number, an ANPR
     system the car registration. If the reader is some form biometrics this
     value will contain a static string like ‘finger’
 - **TokenId [identifier]** – if the value read from the reader could be matched to
@@ -188,12 +188,12 @@ optional in these events.
 
 ### ChangeMode
 
-Add or remove an entry from the operational mode stack of the portal.
+Add or remove an entry from the operational mode stack of the reader.
 
 Add Entry to stack
 
 - **Mode [entityId]** - The mode to change to.
-- **Priority [int]** - The priorty for the mode entry.
+- **Priority [int]** - The priority for the mode entry.
 - **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
 - **Reference [string] (optional)** - A reference that can be used to remove the entry from the stack.
 
@@ -207,7 +207,7 @@ event contents.
 | **Result**           | **Reason**            |   **Event Content** |
 |----------------------|-----------------------|---------------------|
 | Success              |                       | [Mode]              |
-| FailedOnPermissions  | NoPermisions          | [Mode]              |
+| FailedOnPermissions  | NoPermissions         | [Mode]              |
 |                      | NoRelevantPermissions | [Mode]              |
 |                      | NoActivePermissions   | [Mode]              |
 | CommandArgumentError |                       | [Mode]              |
