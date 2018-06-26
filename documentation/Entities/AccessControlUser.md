@@ -53,10 +53,15 @@
 
 ### Attributes
 
+- **ImpairedSight**
+- **ImpairedHearing**
+- **ImpairedMobility**
+
 A user can have zero or more attributes associated to them, these attributes are
-used to specify specific behaviors for the user. A common example of these is
-the *blind* attribute that will cause a portal to use a sounder rather than the
+used to specify specific behaviours for the user. A common example of these is
+the *ImpairedSight* attribute that will cause a portal to use a sounder rather than the
 LED for indication.
+
 
 ### Identifiers
 
