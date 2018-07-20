@@ -17,6 +17,7 @@ A portal is the logical representation of a door.  In a SmartIntego Lock a reade
             "id": "BoardRoom",
             "type": "SmartIntego.Portal",
             "description": "Board Room",
+            "address": "10-0-600",
             "operationalMode": "normal",
             "entry": {
                 "readers": ["BoardRoom-Entry"],
@@ -52,6 +53,10 @@ A portal is the logical representation of a door.  In a SmartIntego Lock a reade
 ````
 
 ## Properties
+
+### address
+
+**[hardware-address]** The logical address for the portal.  For SmartIntego the first number is the bus number, which links a reader to a gateway, the second is always zero and the third is the device ID in **hex**.
 
 ### operationalMode
 
