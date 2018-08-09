@@ -178,6 +178,13 @@ When this state changes state, the following entries will be added to the event 
 |------------|----------|---------------------------------------------|
 | Voltage    | float    | Supply voltage at time of transition        |
 
+### SshState
+
+**[enum]** The state of the SSH service.
+
+- **Enabled**
+- **Disabled**
+
 ## Events
 
 ## Commands
@@ -188,6 +195,28 @@ one comes back positive, the command is allowed.
 
 If a command is marked is *internal,* then it is available only within the
 controller but will still raise events.
+
+
+### EnableSsh
+
+This command will enable SSH.
+
+- **Period [timespan] (optional)** – The default is 12 hours.
+
+| **Result**           | **Reason**            | **Event Content** |
+|----------------------|-----------------------|-------------------|
+| Success              |                       |                   |
+| FailedBecauseOfError |                       |                   |
+| CommandArgumentError |                       |                   |
+
+### DisableSsh
+
+This command will disable SSH.
+
+| **Result**           | **Reason**            | **Event Content** |
+|----------------------|-----------------------|-------------------|
+| Success              |                       |                   |
+| FailedBecauseOfError |                       |                   |
 
 ### ChangeMode
 
