@@ -28,6 +28,8 @@ A portal is the logical representation of a door.  In a SmartIntego Lock a reade
                 "readers": ["BoardRoom-Exit"],
                 "permissions": ["GeneralAccess"]
             },
+            "verifyInAreas": [],
+            "verifyOutOfAreas": [],
             "changeModePermissions": ["Operator"],
             "offlineWhitelistTags": ["offlineWhitelist"],
             "localWhitelistTags": ["localWhitelist"],
@@ -67,6 +69,14 @@ A portal is the logical representation of a door.  In a SmartIntego Lock a reade
 **[string[]] (empty)** A person with a permission on this list can execute the
 `ChangeMode` command.
 
+### verifyInAreas
+
+**[entityId[]] (empty)** The list of areas that are to be checked before movement through the portal is allowed. Only if they are in the area are they allowed through. This does not alter the areas' state.
+
+### verifyOutOfAreas
+
+**[entityId[]] (empty)** The list of areas that are to be checked before movement through the portal is allowed. Only if they are out of the area are they allowed through. This does not alter the areas' state.
+
 ### Direction Properties (Enter & Exit)
 
 #### readers
@@ -80,7 +90,7 @@ Id exists in multiple directions, then the controller will raise a *BadConfig* e
 **[string[]] (empty)** A person with permission on this list requires no other
 authorization.
 
-### areas
+#### areas
 
 **[entityId[]] (empty)** The list of areas that are to be checked before movement
 through the portal is allowed. An area id can only be present in a single direction.

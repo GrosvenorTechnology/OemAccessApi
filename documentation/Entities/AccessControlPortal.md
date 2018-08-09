@@ -289,7 +289,7 @@ will be regarded as an authorization for the escorted read, and only the
 escorted person will be deemed to enter. i.e. A guard on the door has used a
 token set-up only to authorize.
 
-### areas
+#### areas
 
 **[entityId[]] (empty)** The list of areas that are to be checked before movement
 through the portal is allowed. An area id can only be present in a single direction.
