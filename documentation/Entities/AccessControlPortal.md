@@ -73,6 +73,8 @@ The portal has the following operational modes
                     "Reception-Internal-Right"],
                 "permissions": ["GeneralAccess","Reception-Exit"]
             },
+            "verifyInAreas": [],
+            "verifyOutOfAreas": [],
             "singleUnlockPermission": ["Operator"],
             "changeModePermissions": ["Operator"]
         }]
@@ -244,6 +246,14 @@ used by a person with the ‘Wheelchair or impaired mobility’ attribute.
 
 **[string[]] (empty)** A person with a permission on this list can execute the
 `ChangeMode` command.
+
+### verifyInAreas
+
+**[entityId[]] (empty)** The list of areas that are to be checked before movement through the portal is allowed. Only if they are in the area are they allowed through. This does not alter the areas' state.
+
+### verifyOutOfAreas
+
+**[entityId[]] (empty)** The list of areas that are to be checked before movement through the portal is allowed. Only if they are out of the area are they allowed through. This does not alter the areas' state.
 
 ### Direction Properties (Enter & Exit)
 
