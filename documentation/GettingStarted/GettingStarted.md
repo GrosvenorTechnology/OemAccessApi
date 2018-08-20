@@ -1,35 +1,39 @@
 # Getting Started
+
+This guid is a companion to this walkthrough video https://youtu.be/W_xtpKFG7dM 
+
 ## General Setup
-1.	Turn off Firewall
-2.	Alternatively add rules to enable the [Test Server application](https://github.com/GrosvenorTechnology/OemAccessTestServer)  to listen on ports 8080 and 8081
-3.	Run [Test Server application](https://github.com/GrosvenorTechnology/OemAccessTestServer)  as Administrator
+
+- Turn off Firewall
+- Alternatively add rules to enable the [Test Server application](https://github.com/GrosvenorTechnology/OemAccessTestServer)  to listen on ports 8080 and 8081
+- Run [Test Server application](https://github.com/GrosvenorTechnology/OemAccessTestServer)  as Administrator
+- We will assume that the PC running the Testing Server is reachable by the IP address `192.168.1.1`, you should replace this value with something approprate to your system.
+- For our demo, our device has a serial number of `TEST-OEM~00001234`, you should replace this value in steps below with the serial number of your device.
 
 ## Using Janus C4 Configurator to bind controller to the server
-4.	Open Janus C4 Configurator
-5.	Select discovered controller and click install
-6.	Enter Default Uri ```http://192.168.43.111:8080/```
-7.	Save Shared Key (you will need it to activate the controller on the Test Server)
-8.	Click ok
 
-The Janus C4 configurator will generate the basic boot configuration file which is necessary to bind the controller to server and will post it to the controller.
+- Open Janus C4 Configurator
+- Select discovered controller and click install
+- Enter Default Uri `http://192.168.1.1:8080/`
+- Save Shared Key (you will need it to activate the controller on the Test Server)
+- Click ok
 
-It is possible to Enable SSH functionality by ticking SSH Enable Checkbox.
-
-
+The Janus C4 configurator will generate the basic boot configuration file which is necessary to bind the controller to server and will post it to the controller. It is possible to Enable SSH functionality by ticking SSH Enable Checkbox.
 
 ## Activating Controller on the Testing Server
-To activate the controller, and interact with the Testing Server we are using [Postman]( https://www.getpostman.com/). 
 
-9.	Send Post command to Create Device. Uri: ```http://192.168.43.111:8080/configuration/devices``` Content type : ```application/json```  Body:
+To send configuration the controller, it has to be sent via the Testing Server. To interact with the Testing Server we are using [Postman](https://www.getpostman.com/).
+
+- Send a `POST` command to the server to create a device.  We have to do this to tell the test server what the PSK for the device is so it can be authenticated. Uri: `http://192.168.1.1:8080/configuration/devices` Content type: `application/json`
 
 ```json
 {
-  "serialNumber":"OEM-ADV-C-MLT~00000613",
+  "serialNumber":"TEST-OEM~00001234",
   "sharedKey": "9nF2W3A18UG8XOGI7gsk2UV+CdpsSCZ3YHGvQjkKtKY="
 }
 ```
 
-10.	Send Post command to add Platform Configuration. Uri: ```http://192.168.43.111:8080/configuration/platform``` Content type : ```application/json```  Body:
+- Send a `POST` command to the server to add a platform configuration file. We're using this file to tell the controller where to get firmware updates and we're also speeding up the heartbeat frequency.  Uri: `http://192.168.1.1:8080/configuration/TEST-OEM~00001234/platform` Content type: `application/json`
 
 ```json
 {
@@ -38,10 +42,9 @@ To activate the controller, and interact with the Testing Server we are using [P
     "firmwareVersion": "1.0.0+release",
     "Uris": {
       "firmware": { "uri": "https://firmware.customexchange.net/adv" },
-      "Heartbeat": [
+      "heartbeat": [
         {
-          "Uri": "http://192.168.43.111:8080/grosvenor-oem/device/{deviceSerial}/heartbeat",
-          "Frequency": 10
+          "uri": "device/{deviceSerial}/heartbeat", "frequency": 5
         }
       ]
     }
@@ -50,6 +53,7 @@ To activate the controller, and interact with the Testing Server we are using [P
 ```
 
 ## Controllers LED light and process explanation
+
 After submitting boot configuration (using usb drive or Janus C4 Configurator) the controllers light will start blinking yellow – this indicates that the controller is waiting for the platform and application configuration to be passed from the Server
 
 The Purple LED shows that the controller is now downloading the correct application version and firmware version
@@ -61,64 +65,38 @@ The Blue LED indicates that the controller is booting up.
 After controller boots up user should see “Heartbeat” events showing up on the Test Server Log
 
 ## Setting up Application Configuration
-To fully use the controller the installer must send the application configuration that indicates how the controller should act i.e. what inputs, outputs, readers and portals it contains and how they are wired up.
-It is done using postman and posting Application configuration.  Detailed information about application configuration can be found by fallowing this [link]( https://github.com/GrosvenorTechnology/OemAccessApi/blob/master/documentation/ApplicationConfiguration/Overview.md) 
 
-Uri: ```http://192.168.43.111:8080/configuration/platform``` 
+Now we have the controller connected to the Testing Server, the next step is to load an application configuration that defines how the hardware is configured and how the access control side of the device should behave; i.e. what inputs, outputs, readers and portals it contains and how they are wired up. Detailed information about application configuration can be found by following this [link](https://github.com/GrosvenorTechnology/OemAccessApi/blob/master/documentation/ApplicationConfiguration/Overview.md).  Again we want to use Postman to send the file to the Testing Server.
 
-Content type : ```application/json``` 
-
-Body:
+Uri: `http://192.168.1.1:8080/configuration/TEST-OEM~00001234/application` Content type : `application/json` Body:
 
 ```json
 {
-  "controller": {
-   "inputs": [
-      {
-        "normallyOpen": true,
-        "inputType": "unsupervised",
-        "inputOperationType": "normal",
-        "pirInhibit": "00:00:30",
-        "pirFault": "00:01:00",
-        "address": "1-0-1",
-        "operationalMode": "enabled",
-        "id": "Input-1",
-        "type": "Hardware.Input"
-      },
-      {
-        "normallyOpen": true,
-        "inputType": "unsupervised",
-        "inputOperationType": "normal",
-        "pirInhibit": "00:00:30",
-        "pirFault": "00:01:00",
-        "address": "1-0-2",
-        "operationalMode": "enabled",
-        "id": "Input-2",
-        "type": "Hardware.Input"
-      }
-    ],
-    "outputs": [
-      {
-        "pulseLength": "00:00:01",
-        "defaultOutputMode": "constant",
-        "outputStateType": "activeHigh",
-        "address": "1-0-1",
-        "operationalMode": "normal",
-        "id": "Output-1",
-        "type": "Hardware.Output"
-      },
-      {
-        "pulseLength": "00:00:01",
-        "defaultOutputMode": "constant",
-        "outputStateType": "activeHigh",
-        "address": "1-0-2",
-        "operationalMode": "normal",
-        "id": "Output-2",
-        "type": "Hardware.Output"
-      }
-    ],
-    "id": "Controller"
-  },
-  "messageId": "00000000-0000-0000-0000-000000000000"
+    "controller": {
+        "id": "Controller",
+        "timezone": "Europe/London",
+        "inputs": [
+            {
+                "id": "Input-1",
+                "address": "1-0-1",
+                "normallyOpen": true
+            },
+            {
+                "id": "Input-2",
+                "address": "1-0-2",
+                "normallyOpen": true
+            }
+        ],
+        "outputs": [
+            {
+                "id": "Output-1",
+                "address": "1-0-1"
+            },
+            {
+                "id": "Output-2",
+                "address": "1-0-2"
+            }
+        ]
+    }
 }
 ```
