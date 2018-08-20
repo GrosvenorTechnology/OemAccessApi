@@ -2,6 +2,8 @@
 
 # OEM-Access-Controller
 
+**Beta documentation for V3.0.0**
+
 ## [Protocol](documentation/API/Overview.md)
 
 ## [Boot Configuration](documentation/BootConfiguration/Overview.md)
@@ -13,3 +15,5 @@
 ## [Entity Types](documentation/Entities/EntityTypes.md)
 
 ## [Out Of Box Experience](documentation/oobe.md)
+
+**Beta documentation for V3.0.0**
