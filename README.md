@@ -16,4 +16,10 @@
 
 ## [Out Of Box Experience](documentation/oobe.md)
 
+# Getting Started Guides
+
+## [Quick Start](documentation/GettingStarted/GettingStarted.md)
+
+## [OSDP](documentation/GettingStarted/GettingStarted-OSDP.md)
+
 **Beta documentation for V3.0.0**
