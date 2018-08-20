@@ -71,6 +71,7 @@ OR
 
 Valid Activities
 
+- bootConfig
 - platformConfig
 - applicationConfig
 - changes

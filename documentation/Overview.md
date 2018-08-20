@@ -2,6 +2,8 @@
 
 # OEM-Access-Controller
 
+**Beta documentation for V3.0.0**
+
 ## [Boot Configuration](BootConfiguration/Overview.md)
 
 ## [Platform Configuration](PlatformConfiguration/Overview.md)
@@ -11,3 +13,5 @@
 ## [Entity Types](Entities/EntityTypes.md)
 
 ## [Out Of Box Experience](oobe.md)
+
+**Beta documentation for V3.0.0**

@@ -42,7 +42,7 @@ New entries may be added to message schemas in future version, therefor it is be
 
 1. [Event Submission](PostEvent.md)
 2. [State Notification](PostStateNotification.md)
-3. [State Requests](StateRequests.md)
+3. [State Requests Queue](StateRequests.md)
 
 ## Commanding
 
