@@ -39,7 +39,8 @@ reader will operate in. The available operational modes are:
                 "changeModePermissions": ["Operator"],
                 "idleLedMode": "nonUrgentPulse",
                 "idleLedOnColour": "amber",
-                "idleLedOffColour": "off"
+                "idleLedOffColour": "off",
+                "osdpDeviceKey": "303132333435363738393A3B3C3D3E3F"
             }
         ]
     }
@@ -133,6 +134,10 @@ configured in `invalidReadBeeperMode`.
 - **green**
 - **amber**
 - **blue**
+
+### osdpDeviceKey
+
+**[string] (null)** Key to use to encrypt communications to reader.
 
 ### changeModePermissions
 
@@ -261,8 +266,7 @@ Remove entry from stack
 
 - **Reference [string] (optional)** - Remove the entry with the matching reference from the stack.
 
-Depending on the result of the command the following items will be present in the
-event contents.
+Depending on the result of the command the following items will be present in the event contents.
 
 | **Result**           | **Reason**            |   **Event Content** |
 |----------------------|-----------------------|---------------------|
@@ -271,3 +275,35 @@ event contents.
 |                      | NoRelevantPermissions | [Mode]              |
 |                      | NoActivePermissions   | [Mode]              |
 | CommandArgumentError |                       | [Mode]              |
+
+### SetupDevice
+
+This command will search for an offline device (reader) connected to the bus and change it's baud rate and address to the configured properties. This should then bring the device online. Never use this command when you have more than one device offline on the bus, as it will cause unpredictable results.
+
+Optional parameters are:
+
+- **LowestAddress [int] (0)** - The lowest address scanned.
+- **HighestAddress [int] (7)** - The highest address scanned.
+
+Depending on the result of the command the following items will be present in the event contents.
+
+| **Result**           | **Reason**            |
+|----------------------|-----------------------|
+| FailedBecauseOfError | DeviceAlreadyOnline   |
+|                      | UndefinedBaudRate     |
+|                      | FailedToSetConfig     |
+|                      | FailedToSetComms      |
+| CommandArgumentError | AddressRangeWrong     |
+
+### SetKey
+
+This command will change the encryption key and should be used with caution.
+
+- **Key [string]** - The new key.
+
+Depending on the result of the command the following items will be present in the event contents.
+
+| **Result**           | **Reason**            |
+|----------------------|-----------------------|
+| FailedBecauseOfError |                       |
+| CommandArgumentError | NoKey                 |
