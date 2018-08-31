@@ -1,5 +1,7 @@
 # AccessControl.User
 
+The user entity is a unified view of all data related to a user, tokens, pins, permissions etc.
+
 ````json
 {
     "entity": {
@@ -62,7 +64,6 @@ used to specify specific behaviours for the user. A common example of these is
 the *ImpairedSight* attribute that will cause a portal to use a sounder rather than the
 LED for indication.
 
-
 ### Identifiers
 
 A user can have zero or more identifiers associated to them. Identifiers
@@ -84,4 +85,87 @@ an identifier. For example a PIN number.
 
 ### Permissions
 
-A list of permissions with the security gates associated to each permission.
+An array of named permissions. Each permission has an array with the security gates associated
+to it.  The results of all individual gates will be AND'd together to produce the final result.
+
+The following types of gates are currently supported:
+
+#### Always
+
+```json
+{
+    "type": "always"
+}
+```
+
+The always gate always returns true.
+
+### Mode
+
+```json
+{
+    "type": "mode",
+    "data": "NormalWorking"
+}
+```
+
+Checks if the system mode referenced in the data section is currently active.  The data section is
+expected to be an EntityKey in the format Namespace.Type:Id.  If only the Id is provided then
+System.Mode will be assumed as the default for the entity type.
+
+#### Not
+
+```json
+{
+    "type": "not",
+    "data": [{
+        "type": "time",
+        "data": "Mon-Fri-9-17"
+    }]
+}
+```
+
+The not gate will invert the final response of an array of gates. This example will return true outside
+the time range specified.
+
+#### Time
+
+```json
+{
+    "type": "time",
+    "data": "Mon-Fri-9-17"
+}
+```
+
+Checks if the time table referenced in the data section is currently active.  The data section is 
+expected to be an EntityKey in the format Namespace.Type:Id.  If only the Id is provided then 
+Common.TimeTable will be assumed as the default for the entity type.
+
+#### InlineTime [>= 3.0.0]
+
+```json
+{
+    "type": "inlineTime",
+    "data": {
+            "monday": [
+                {
+                    "start": "9:00:00",
+                    "end": "17:00:00"
+                }
+            ],
+            "tuesday": [
+                {
+                    "start": "9:00:00",
+                    "end": "12:00:00"
+                },
+                {
+                    "start": "14:00:00",
+                    "end": "18:00:00"
+                }
+            ]
+        }
+}
+```
+
+Similar to the `time` gate, this gate will return true if the time falls inside one of the transitions specified.
+The format of the data section is the same as the `transitions` section of the [Common.TimeTable](CommonTimeTable.md) type.

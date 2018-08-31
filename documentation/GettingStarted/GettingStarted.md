@@ -4,8 +4,7 @@ This guid is a companion to this walkthrough video https://youtu.be/W_xtpKFG7dM
 
 ## General Setup
 
-- Turn off Firewall
-- Alternatively add rules to enable the [Test Server application](https://github.com/GrosvenorTechnology/OemAccessTestServer)  to listen on ports 8080 and 8081
+- Turn off Firewall or alternatively add rules to enable the [Test Server application](https://github.com/GrosvenorTechnology/OemAccessTestServer) to listen on ports 8080 and 8081
 - Run [Test Server application](https://github.com/GrosvenorTechnology/OemAccessTestServer)  as Administrator
 - We will assume that the PC running the Testing Server is reachable by the IP address `192.168.1.1`, you should replace this value with something approprate to your system.
 - For our demo, our device has a serial number of `TEST-OEM~00001234`, you should replace this value in steps below with the serial number of your device.
