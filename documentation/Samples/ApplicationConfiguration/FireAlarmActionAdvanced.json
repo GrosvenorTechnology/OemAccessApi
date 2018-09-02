@@ -1,0 +1,75 @@
+{
+    "controller": {
+        "id": "Controller",
+        "timezone": "Europe/London",
+
+        "readers": [{
+                "id": "RDR-FrontDoor-East",
+                "address": "1-0-1",
+                "tokenFormatType": "RDSATEONPRO"
+            },
+            {
+                "id": "RDR-FrontDoor-West",
+                "address": "1-0-2",
+                "tokenFormatType": "RDSATEONPRO"
+            }
+        ],
+
+        "portals": [{
+            "id": "FrontDoor-East",
+            "address": "1-0-1",            
+            "requestExitEnabled": true,
+            "entry": {
+                "readers": ["RDR-FrontDoor-East"],
+                "accessPermissions": ["GeneralAccess"]
+            }
+        },
+        {
+            "id": "FrontDoor-West",
+            "address": "1-0-2",            
+            "requestExitEnabled": true,
+            "entry": {
+                "readers": ["RDR-FrontDoor-West"],
+                "accessPermissions": ["GeneralAccess"]
+            }
+        }],
+
+        "inputs": [{
+                "id": "FireAlarm-1",
+                "address": "1-0-1"
+            },
+            {
+                "id": "FireAlarm-2",
+                "address": "1-0-2"
+            }
+        ],
+
+        "actions":
+        [
+            {
+                "id": "UnlockOnFireAlarm",
+                "sourceType": "Hardware.Input",
+                "sourceIds": ["FireAlarm-1", "FireAlarm-2"],
+                "targetType": "AccessControl.Portal",
+                "targetIds": ["FrontDoor-East", "FrontDoor-West"],
+                "referenceFrom": "source",
+                "map":
+                [
+                    {
+                        "event": "InputState:active",
+                        "command": "ChangeMode",
+                        "arguments":
+                        {
+                            "Mode": "Unlocked",
+                            "priority": 10
+                        }
+                    },
+                    {
+                        "event": "InputState:inactive",
+                        "command": "ChangeMode"
+                    }
+                ]
+            }
+        ]
+    }
+}

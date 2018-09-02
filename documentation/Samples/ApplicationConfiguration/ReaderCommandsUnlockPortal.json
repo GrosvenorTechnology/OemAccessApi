@@ -1,0 +1,61 @@
+{
+    "controller": {
+        "id": "Controller",
+        "timezone": "Europe/London",
+
+        "readers": [{
+                "id": "RDR-FrontDoor-East",
+                "address": "1-0-1",
+                "tokenFormatType": "RDSATEONPRO"
+            },
+            {
+                "id": "RDR-FrontDoor-West",
+                "address": "1-0-2",
+                "tokenFormatType": "RDSATEONPRO"
+            }
+        ],
+
+        "portals": [{
+            "id": "FrontDoor-East",
+            "address": "1-0-1",            
+            "requestExitEnabled": true,
+            "entry": {
+                "readers": ["RDR-FrontDoor-East"],
+                "accessPermissions": ["GeneralAccess"]
+            }
+        },
+        {
+            "id": "FrontDoor-West",
+            "address": "1-0-2",            
+            "requestExitEnabled": true,
+            "entry": {
+                "readers": ["RDR-FrontDoor-West"],
+                "accessPermissions": ["GeneralAccess"]
+            }
+        }],
+
+        "actions":[{
+                "id": "UserUnlock",
+                "sourceType": "Hardware.Reader",
+                "sourceIds": ["RDR-FrontDoor-East", "RDR-FrontDoor-West"],
+                "targetType": "AccessControl.Portal",
+                "targetIds": ["FrontDoor-East", "FrontDoor-West"],
+                "map":
+                [
+                    {
+                        "event": "Read:1:success",
+                        "command": "ChangeMode",
+                        "arguments":
+                        {
+                            "mode": "Unlocked"
+                        }
+                    },
+                    {
+                        "event": "Read:2:success",
+                        "command": "ChangeMode"
+                    }
+                ]
+            }
+        ]
+    }
+}

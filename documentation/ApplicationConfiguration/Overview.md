@@ -33,6 +33,7 @@ The various sections can be defined in the controller node in any order.
 - [inputs](../Entities/HardwareInput.md)
 - [outputs](../Entities/HardwareOutput.md)
 - [areas](../Entities/AccessControlArea.md)
+- [actions](../Entities/CommonAction.md) [>=V3.0.0]
 - [tokenFormats](TokenFormat.md)
 - [timeTables](../Entities/CommonTimeTable.md) [>=V1.0.19635]
 
@@ -86,7 +87,7 @@ portal).
 
 ### Command
 
-Command messages are sent from the server to the controller to casue a change in state 
+Command messages are sent from the server to the controller to cause a change in state
 within the controller, or tell the controller to perform an action.
 
 ### Command Progress
@@ -98,3 +99,39 @@ message id to the message id of the source command.
 
 Response messages are linked to the originating command by setting the previous
 message id to the message id of the source command
+
+## Operational Mode
+
+Each entity has an operational mode, the operation mode differs from a state or a property in that it is not a single discrete value. Instead it's a prioritized stack of desired values, where the entry with the highest priority (closest to zero) winning. 
+
+To help make this a bit clear, lets look at a few examples for a portal.  The default operational mode always has a priority of 200, so in the beginning the stack looks like this
+
+| Mode     | Priority | Reference    |
+|----------|----------|--------------|
+| Normal   | 200      | default      |
+
+The we want the door to be unlocked between 9-17, monday to friday, so the controller will manage adding and removing unlock entries for us, so at lunch time in Wednesday the stack will look as follows:
+
+| Mode     | Priority | Reference    |
+|----------|----------|--------------|
+| Unlock   | 100      | M-F-9-17     |
+| Normal   | 200      | default      |
+
+Here the highest priority entry, unlock, will win and the portal will be unlocked, when 17:00 comes around in the evening, the controller will remove that entry and the door will return to a locked state.
+
+Now should something happen and the building must be locked down, a guard (or automated action) can disable (lock the portal and disable any access) by placing the portal into the `disabled` mode:
+
+| Mode     | Priority | Reference    |
+|----------|----------|--------------|
+| disabled | 30       | UserCommand  |
+| Unlock   | 100      | M-F-9-17     |
+| Normal   | 200      | default      |
+
+The portal will immediately lock and remain disabled, even when the schedule attempts to return the dor to normal state, as it's not actually commanding the door to `Normal` mode, but is just removing it's `Unlock` entry:
+
+| Mode     | Priority | Reference    |
+|----------|----------|--------------|
+| disabled | 30       | UserCommand  |
+| Normal   | 200      | default      |
+
+The highest priority entry remains the disable command until the guard 'resets' the door by removing his entry.

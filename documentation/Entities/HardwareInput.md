@@ -44,7 +44,7 @@ The input has the following operational modes:
 
 ### normallyOpen
 
-**[Boolean]** If true the input will show a logical state of *Reset* when the input
+**[Boolean] (true)** If true the input will show a logical state of *Reset* when the input
 is Open.
 
 ### inputType

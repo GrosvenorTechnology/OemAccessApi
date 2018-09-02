@@ -1,5 +1,8 @@
 # Osdp.Reader
 
+**Beta >= 3.0.0**
+**Supported >= 3.1.0**
+
 A reader is the logical representation of a OSDP token reader. A token may be
 physical, bio-metric or entered through a keypad. In addition to identification a
 reader may also be used to verify by using a PIN code entered through a keypad.

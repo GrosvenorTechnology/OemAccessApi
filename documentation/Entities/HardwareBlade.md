@@ -1,5 +1,8 @@
 # Hardware.Blade
 
+**Beta >= 3.0.0**
+**Supported >= 3.1.0**
+
 The configuration of the blades can be changed from the defaults by adding a section in the Application Configuration file. The Ids of the blades are defined as 'BLADE1', 'BLADE2', 'BLADE3' and 'BLADE4'. The properties of a blade will be determined by the blade type. Currently there are 'Door' and 'I/O' blade types.
 
 The blade has the following operational modes:
