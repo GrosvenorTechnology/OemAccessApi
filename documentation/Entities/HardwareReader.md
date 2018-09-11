@@ -40,7 +40,7 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
                 "validReadBeeperPeriod": "00:00:00.20",
                 "invalidReadBeeperPeriod": "00:00:03",
                 "invalidReadBeeperMode": "urgentPulse",
-                "beepOnValidRead": false,
+                "beepOnValidRead": "impairedSight",
                 "changeModePermissions": ["Operator"]
             }
         ]
@@ -126,7 +126,11 @@ configured in `invalidReadBeeperMode`.
 
 ### beepOnValidRead
 
-**[bool] (false)** Determines whether the reader beeper beeps on a valid read. This can be overridden by the `User` attribute `ImpairedSight`.
+**[enum] (impairedSight)** Determines whether/when the reader beeper beeps on a valid read.
+
+- **never**
+- **impairedSight**
+- **always**
 
 ### changeModePermissions
 
