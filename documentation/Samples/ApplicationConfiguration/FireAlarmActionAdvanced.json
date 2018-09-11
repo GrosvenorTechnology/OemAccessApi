@@ -68,7 +68,11 @@
                         "event": "InputState:inactive",
                         "command": "ChangeMode"
                     }
-                ]
+                ],
+                "restoreCommand":
+                {
+                    "command": "ClearOwnedFromModeStack"
+                }
             }
         ]
     }

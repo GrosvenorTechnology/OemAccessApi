@@ -22,7 +22,8 @@
             "entry": {
                 "readers": ["RDR-FrontDoor-East"],
                 "accessPermissions": ["GeneralAccess"]
-            }
+            },
+            "changeModePermissions": ["FrontDoorUnlock"]
         },
         {
             "id": "FrontDoor-West",
@@ -31,7 +32,8 @@
             "entry": {
                 "readers": ["RDR-FrontDoor-West"],
                 "accessPermissions": ["GeneralAccess"]
-            }
+            },
+            "changeModePermissions": ["FrontDoorUnlock"]
         }],
 
         "actions":[{
@@ -54,7 +56,13 @@
                         "event": "Read:2:success",
                         "command": "ChangeMode"
                     }
-                ]
+                ],
+                "restoreCommand":
+                {
+                    "command": "ClearOwnedFromModeStack"
+                },
+                "permissionsFrom": "person",
+                "referenceFrom": "person"
             }
         ]
     }

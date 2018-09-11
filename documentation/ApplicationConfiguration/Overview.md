@@ -1,17 +1,17 @@
 # Application Configuration
 
-The Application Configuration is a JSON document that defines the behaviour of the access controll logic portion of the application.
+The Application Configuration is a JSON document that defines the behaviour of the access control logic portion of the application.
 
 ## Overview
 
-- **User** - Throughout this document the term ‘User’ will be used to mean an entity with access permissions associated to them. In practice this may be a User/Visitor/Car/Asset, but User is the most natural for descriptive purposes. 
+- **User** - Throughout this document the term ‘User’ will be used to mean an entity with access permissions associated to them. In practice this may be a User/Visitor/Car/Asset, but User is the most natural for descriptive purposes.
 - [Data Types](../Entities/DataTypes.md) - All the data types used are defined here.
 
-## File Structure 
+## File Structure
 
-The Application Configuration is comprised of a single root controller node with a slection of sub nodes that can only appear once, such as readers and portals.  The controller type can have it's own configuration properties as well.
+The Application Configuration is comprised of a single root controller node with a selection of sub nodes that can only appear once, such as readers and portals.  The controller type can have it's own configuration properties as well.
 
-The various sections can be defined in the controller node in any order. 
+The various sections can be defined in the controller node in any order.
 
 ````json
 {
@@ -42,15 +42,19 @@ The various sections can be defined in the controller node in any order.
 All objects will have the following common properties unless otherwise noted.
 
 ### id
+
 **[string (50)]** - An immutable, case-insensitive 50 character string that is used to link objects together within the controller.  Identifiers should be limited to the characters:
+
 - a-z
 - 0-9
 - \-
 
 ### description
+
 **[string (200)]** - A string used to provide a human readable description of an object, with the current version of the Access Controller, this is optional and not used, but may be used when we add OSDP support for output displays.
 
 ### type
+
 **[string (200)]** - Most objects have a default type and this option can be omitted, an example where this might be used is AccessControl.User vs AccessControl.Visitor which largely can be used interchangeably, but extra behaviour is added for Visitor objects.
 
 ## States
@@ -102,36 +106,4 @@ message id to the message id of the source command
 
 ## Operational Mode
 
-Each entity has an operational mode, the operation mode differs from a state or a property in that it is not a single discrete value. Instead it's a prioritized stack of desired values, where the entry with the highest priority (closest to zero) winning. 
-
-To help make this a bit clear, lets look at a few examples for a portal.  The default operational mode always has a priority of 200, so in the beginning the stack looks like this
-
-| Mode     | Priority | Reference    |
-|----------|----------|--------------|
-| Normal   | 200      | default      |
-
-The we want the door to be unlocked between 9-17, monday to friday, so the controller will manage adding and removing unlock entries for us, so at lunch time in Wednesday the stack will look as follows:
-
-| Mode     | Priority | Reference    |
-|----------|----------|--------------|
-| Unlock   | 100      | M-F-9-17     |
-| Normal   | 200      | default      |
-
-Here the highest priority entry, unlock, will win and the portal will be unlocked, when 17:00 comes around in the evening, the controller will remove that entry and the door will return to a locked state.
-
-Now should something happen and the building must be locked down, a guard (or automated action) can disable (lock the portal and disable any access) by placing the portal into the `disabled` mode:
-
-| Mode     | Priority | Reference    |
-|----------|----------|--------------|
-| disabled | 30       | UserCommand  |
-| Unlock   | 100      | M-F-9-17     |
-| Normal   | 200      | default      |
-
-The portal will immediately lock and remain disabled, even when the schedule attempts to return the dor to normal state, as it's not actually commanding the door to `Normal` mode, but is just removing it's `Unlock` entry:
-
-| Mode     | Priority | Reference    |
-|----------|----------|--------------|
-| disabled | 30       | UserCommand  |
-| Normal   | 200      | default      |
-
-The highest priority entry remains the disable command until the guard 'resets' the door by removing his entry.
+Most entity types have an operational mode. The operational mode differs from a normal state in that, behind the scenes, there is a stack containing requested operational mode states. This stack is prioritised, where the entry with the highest priority (closest to zero) wins and becomes the current operational mode. If there is nothing on the stack the default operational mode is used. The default can be changed in the entity's configuration. Please see the [Operational Mode Overview](ModeOverview.md) document for more information.

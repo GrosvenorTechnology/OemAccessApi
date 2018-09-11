@@ -20,6 +20,8 @@ The portal has the following operational modes
     allowing free access until the mode is changed.
 - **Disabled** - Portal is locked. Entry and exit requests will be denied.
 
+Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverview.md) document for more information.
+
 ````json
 {
     "controller": {
@@ -392,32 +394,6 @@ one comes back positive, the command is allowed.
 
 If a command is marked is *internal,* then it is available only within the
 controller but will still raise events.
-
-### ChangeMode
-
-Add or remove an entry from the operational mode stack of the portal.
-
-Add Entry to stack
-
-- **Mode [enum]** - The mode to change to.
-- **Priority [int]** - The priority for the mode entry.
-- **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
-- **Reference [string] (optional)** - A reference that can be used to remove the entry from the stack.
-
-Remove entry from stack
-
-- **Reference [string] (optional)** - Remove the entry with the matching reference from the stack.
-
-Depending on the result of the command the following items will be present in the
-event contents.
-
-| **Result**           | **Reason**            |   **Event Content** |
-|----------------------|-----------------------|---------------------|
-| Success              |                       | [Mode]              |
-| FailedOnPermissions  | NoPermissions         | [Mode]              |
-|                      | NoRelevantPermissions | [Mode]              |
-|                      | NoActivePermissions   | [Mode]              |
-| CommandArgumentError |                       | [Mode]              |
 
 ### RequestEntry/RequestExit [internal]
 

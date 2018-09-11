@@ -12,6 +12,8 @@ The input has the following operational modes:
     states.
 - **disabled** - All changes to the physical input will be ignored.
 
+Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverview.md) document for more information.
+
 ````json
 {
     "controller": {
@@ -112,31 +114,4 @@ None.
 
 ## Commands
 
-### ChangeMode
-
-Add or remove an entry from the operational mode stack of the input.
-
-Add Entry to stack
-
-- **Mode [entityId]** - The mode to change to.
-- **Priority [int]** - The priority for the mode entry.
-- **Period [timespan] (optional)** - If provided the entry will be automatically
-  removed after the given time period.
-- **Reference [string] (optional)** - A reference that can be used to remove the
-  entry from the stack.
-
-Remove entry from stack
-
-- **Reference [string] (optional)** - Remove the entry with the matching reference
-  from the stack.
-
-Depending on the result of the command the following items will be present in the
-event contents.
-
-| **Result**           | **Reason**            |   **Event Content** |
-|----------------------|-----------------------|---------------------|
-| Success              |                       | [Mode]              |
-| FailedOnPermissions  | NoPermissions          | [Mode]              |
-|                      | NoRelevantPermissions | [Mode]              |
-|                      | NoActivePermissions   | [Mode]              |
-| CommandArgumentError |                       | [Mode]              |
+None.

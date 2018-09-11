@@ -1,10 +1,16 @@
 # Hardware.Output
 
-An output is a simple On/Off relay device.
+An output is a simple On/Off relay device (except for a door blade output, which is solid-state). It can be used by other entities, directly commanded or commanded through actions.
+
+There are two main ways of commanding an output. The recommended way is by changing its operational mode (between 'Off' and 'On', making the default 'Off'). With a ChangeMode command you can set a period, priority and a reference, so it will work well with several command sources. The alternative method is to keep the operational mode 'Normal' and use the other commands listed below.
 
 The output has the following operational modes:
 
-- **normal** – The output state will change in response to commands.
+- **normal** (Default) – The output state will change in response to commands.
+- **off** - The output state will be off. The output will only respond to ChangeMode commands.
+- **on** - The output state will be on. The output will only respond to ChangeMode commands.
+
+Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverview.md) document for more information.
 
 ````json
 {
@@ -149,32 +155,3 @@ This command will toggle the output state, e.g. on->off and vice versa.
 |                      | NoActivePermissions   |                   |
 |                      | NoRelevantPermissions |                   |
 | FailedBecauseOfError |                       |                   |
-
-### ChangeMode
-
-Add or remove an entry from the operational mode stack of the input.
-
-Add Entry to stack
-
-- **Mode [entityId]** - The mode to change to.
-- **Priority [int]** - The priority for the mode entry.
-- **Period [timespan] (optional)** - If provided the entry will be automatically
-  removed after the given time period.
-- **Reference [string] (optional)** - A reference that can be used to remove the
-  entry from the stack.
-
-Remove entry from stack
-
-- **Reference [string] (optional)** - Remove the entry with the matching reference
-  from the stack.
-
-Depending on the result of the command the following items will be present in the
-event contents.
-
-| **Result**           | **Reason**            |   **Event Content** |
-|----------------------|-----------------------|---------------------|
-| Success              |                       | [Mode]              |
-| FailedOnPermissions  | NoPermissions         | [Mode]              |
-|                      | NoRelevantPermissions | [Mode]              |
-|                      | NoActivePermissions   | [Mode]              |
-| CommandArgumentError |                       | [Mode]              |

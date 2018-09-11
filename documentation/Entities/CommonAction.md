@@ -3,13 +3,15 @@
 **Supported >= 3.0.0**
 
 Actions provide a way for events fired locally on a controller to be mapped to commands on the same controller.
-This provides a way to link cause and effect locally on a controller, e.g. unlock one or more portals when a 
+This provides a way to link cause and effect locally on a controller, e.g. unlock one or more portals when a
 fire alarm input is active and re-lock the portals when the alarm clears.
 
 The input has the following operational modes:
 
 - **enabled** (Default) – The Action will trigger when matching events are received.
 - **disabled** - The Action will not trigger.
+
+Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverview.md) document for more information.
 
 ````json
 {
@@ -33,7 +35,11 @@ The input has the following operational modes:
                         "event": "InputState:inactive",
                         "command": "ChangeMode"
                     }
-                ]
+                ],
+                "restoreCommand":
+                {
+                    "command": "ClearOwnedFromModeStack"
+                }
             }
         ]
     }
@@ -74,18 +80,20 @@ unlock multiple doors.
 - person
 - action
 
-This can bee seen in action by looking at a more [advanced](../Samples/ApplicationConfiguration/FireAlarmActionAdvanced.json) form of the fire alarm example. In this example both inputs on the door blade are being used to unlock the portals.  When a `ChangeMode` command is sent, it requires a reference so it can be cancelled later.  When the `ReferenceFrom` is set to `source` the Id of the source of the event is used, this means that both inputs place their own unlock command into the 'mode stack' of each portals, so the portal remains unlocked until both inputs are reset.  If however the `ReferenceFrom` property is changed to `action` the reference used is the Id of the action itself, this means that only a single unlock command is placed in each portals stack; when the first input activates the portal's mode is changed with a reference of `UnlockFireAlarm` and the when the second input activates it see that the portals already have an unlock command with the reference `UnlockFireAlarm` so that is updated with any new settings but is left as the only entry.  When the first input then resets that single reference is removed and the door re-locks.  This allows you to tune the behavior of the `Action`, in the case of our fire alarm example you proberbly want to use `source` so the doors remain unlocked until all inputs are cleared.
+This can bee seen in action by looking at a more [advanced](../Samples/ApplicationConfiguration/FireAlarmActionAdvanced.json) form of the fire alarm example. In this example both inputs on the door blade are being used to unlock the portals.  When a `ChangeMode` command is sent, it requires a reference so it can be cancelled later.  When the `ReferenceFrom` is set to `source` the Id of the source of the event is used, this means that both inputs place their own unlock command into the 'mode stack' of each portals, so the portal remains unlocked until both inputs are reset.  If however the `ReferenceFrom` property is changed to `action` the reference used is the Id of the action itself, this means that only a single unlock command is placed in each portals stack; when the first input activates the portal's mode is changed with a reference of `UnlockFireAlarm` and the when the second input activates it see that the portals already have an unlock command with the reference `UnlockFireAlarm` so that is updated with any new settings but is left as the only entry.  When the first input then resets that single reference is removed and the door re-locks.  This allows you to tune the behaviour of the `Action`, in the case of our fire alarm example you probably want to use `source` so the doors remain unlocked until all inputs are cleared.
 
 The third option here `person` allows you to use use the identity of a person (user) associated to an event, such as a `Read` event from a `Hardware.Reader`.  In [this](../Samples/ApplicationConfiguration/ReaderCommandsUnlockPortal.json) example we show how to wire up reader keypad events to be used to unlock portals.  The 1 event unlocks the doors, the 2 event re-locks, or more precisely removes the unlock for the user. As the `ReferenceFrom` is the Id of the user **not** the reader, multiple people can unlock the portal, but and they must all re-lock the portal before it will finally close.  Again in this case they could change the `ReferenceFrom` to be `action` then any number of users could unlock the portal and the first user to re-lock the portal would cause it to actually lock.
 
 ### PermissionsFrom
 
-**[enum] (none)** Which entity type to use for permission. A value of 'none' will bypass any required permissions. This is an advanced use case, we suggest you always use none.
+**[enum] (none)** Which entity type to use for permission. A value of `none` will bypass any required permissions. This is an advanced use case and we suggest you always use none unless the action uses read events from a reader.
 
 - source
 - person
 - action
 - none
+
+The option `person` allows you to only allow certain people (with permission) to use the action. This is required, for instance, when using a `Read` event from a `Hardware.Reader`.  In [this](../Samples/ApplicationConfiguration/ReaderCommandsUnlockPortal.json) example we show how to wire up reader keypad events to be used to unlock portals. The 1 event unlocks the doors, the 2 event re-locks. Using the option `none` would allow anybody (including people without normal access to the doors) to unlock/relock the doors. As the `PermissionsFrom` is set to `person`, the commands sent by the action to the doors, instructs the doors to try and match one of the door's `changeModePermissions` with one of the person's (User) permissions. If this is successful, the command succeeds and the doors are unlocked/relocked.
 
 ### Event To Command Mappings (map)
 
@@ -94,6 +102,18 @@ The third option here `person` allows you to use use the identity of a person (u
 #### event
 
 **[string] [required]** Specifies the event to match from the source.  The format of this property varies depending on the type of event.  If the source event is a `StateChange` Event, such as the input in this example, the format is `<eventname>:<state>` e.g. `InputState:active`.  For other cases, if the event contains a `Result` property, then the format is `<eventname>:<result>` e.g. `Read:success` from a reader, otherwise its just the event name.
+
+#### command
+
+**[string] [required]** Specifies the name of the command on the target to trigger.
+
+#### arguments
+
+**[[string, object]] (empty)** The arguments you wish to add to the command when it is sent to the target.
+
+### RestoreCommand
+
+**[commandDefinition] (empty)** This allows you to specify a command to be issued when an Action has been disable.
 
 #### command
 
@@ -116,31 +136,4 @@ None.
 
 ## Commands
 
-### ChangeMode
-
-Add or remove an entry from the operational mode stack of the input.
-
-Add Entry to stack
-
-- **Mode [entityId]** - The mode to change to.
-- **Priority [int]** - The priority for the mode entry.
-- **Period [timespan] (optional)** - If provided the entry will be automatically
-  removed after the given time period.
-- **Reference [string] (optional)** - A reference that can be used to remove the
-  entry from the stack.
-
-Remove entry from stack
-
-- **Reference [string] (optional)** - Remove the entry with the matching reference
-  from the stack.
-
-Depending on the result of the command the following items will be present in the
-event contents.
-
-| **Result**           | **Reason**            |   **Event Content** |
-|----------------------|-----------------------|---------------------|
-| Success              |                       | [Mode]              |
-| FailedOnPermissions  | NoPermissions         | [Mode]              |
-|                      | NoRelevantPermissions | [Mode]              |
-|                      | NoActivePermissions   | [Mode]              |
-| CommandArgumentError |                       | [Mode]              |
+No standalone commands.
