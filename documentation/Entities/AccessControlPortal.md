@@ -124,7 +124,7 @@ will also be operated, i.e. lock 1 drives output 1.
 
 ### relockMode
 
-**[enum] (onPortalOpening)** When should the portal be relocked, only used if the sensor is enabled.
+**[enum] (onPortalOpen)** When should the portal be relocked, only used if the sensor is enabled.
 
 - onPortalOpen
 - onPortalClose
@@ -191,7 +191,7 @@ used by a person with the ‘Wheelchair or impaired mobility’ attribute.
 
 ### openTooLongSounderMode
 
-**[enum] (00:00:20)** Sets the sounder mode for when the portal is open to long.
+**[enum] (nonUrgentPulse)** Sets the sounder mode for when the portal is open to long.
 
 - disabled
 - constant

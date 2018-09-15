@@ -21,6 +21,8 @@ The following message types will be returned via the changes queue
 
 - [AccessControl.User](../Entities/AccessControlUser.md)
 
-- [Entity Reconcile](../Entities/EntityReconcile.md)
+- [Entity Reconcile](EntityReconcile.md)
 
-- [Entity Delete](../Entities/EntityDelete.md)
+- [Entity Delete](EntityDelete.md)
+
+- [Entity DeleteAll](EntityDeleteAll.md)

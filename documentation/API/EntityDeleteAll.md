@@ -5,7 +5,7 @@ controller will delete all entity instances of the specified type.
 
 ````json
 {
-    "deleteall": {
+    "deleteAll": {
         "type": "AccessControl.User"
     }
 }
