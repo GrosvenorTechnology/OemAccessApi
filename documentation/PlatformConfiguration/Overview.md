@@ -163,3 +163,9 @@ the Uri. Event and states are defined by the triplets
 The filter will match using StartsWith. A filter value of ‘\*’ will be treated
 as match all. If the filter starts with an ‘!’ the filter will be treated as an
 exclusion filter. Filters are evaluated in order and the first match wins.
+
+The following special filters exist:
+
+- The event filter `#NoStateEvents` will block the state change events that are automatically generated when an state property changes.
+
+- The state filter `#NoDiagnosticStates` will block all state changes that are tagged as diagnostic.
