@@ -30,7 +30,7 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
             "description": "Reception Front Door",
             "address": "1-0-1",
             "operationalMode": "normal",
-            "requestExitEnabled": true,
+            "monitorForForcedEntry": true,
             "lockType": "energiseToLock",
             "lockCurrentLimit": 4000,
             "lockWarningCurrentMinimum": 20,
@@ -94,9 +94,11 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
 
 **[enum] (normal)** Specifies which operational mode is the default.
 
-### requestExitEnabled
+### monitorForForcedEntry
 
-**[Boolean] (false)** Exit switch is enabled.
+**[Boolean] (false)** When set, the `PortalState` will go to `OpenForced` when a portal is opened without the portal being unlocked. Otherwise, the `PortalState` will go to `Open` and eventually `OpenTooLong`.
+
+N.B. An exit switch or reader is required at each side of the portal, if monitoring for forced entry is required.
 
 ### lockType
 
@@ -104,6 +106,14 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
 
 - energiseToLock
 - energiseToUnlock
+
+### lockDetectionType
+
+**[enum] (disable)** There are two ways of detecting that a lock is connected. The best to use often depends on the `lockType`.
+
+- disable
+- openCircuit
+- lockCurrent
 
 ### lockCurrentLimit
 
@@ -132,6 +142,14 @@ will also be operated, i.e. lock 1 drives output 1.
 ### sensorType
 
 **[enum] (disabled)** Portal Sensor type.
+
+- disabled
+- unsupervised
+- supervised
+
+### switchType
+
+**[enum] (unsupervised)** Portal egress switch type.
 
 - disabled
 - unsupervised
