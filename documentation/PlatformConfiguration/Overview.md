@@ -7,7 +7,7 @@ the platform configuration of the device.
 ```json
 {
     "platform": {
-        "applicationVersion": "1.4.5.46574",
+        "applicationVersion": "1.2.3.45678",
         "firmwareVersion": "1.2.0+release",
         "protocolLevel": 1,
         "defaultPollFrequency": 30,
@@ -25,6 +25,7 @@ the platform configuration of the device.
             "stateQueue": { "uri": "{myAccess}/device/{deviceSerial}/states/messages", "frequency": 10, "batchSize": 10 },
             "commandQueue": { "uri": "{myAccess}/device/{deviceSerial}/commands/messages", "frequency": 10 },
             "changeQueue": { "uri": "{myAccess}/device/{deviceSerial}/changes/messages", "frequency": 10, "batchSize": 500 },
+            "permissionRequest": { "uri": "device/{deviceSerial}/permissionrequest" },
             "eventSubmission": [
                 {
                     "uri": "{mgmt}/device/{deviceSerial}/events",
@@ -138,6 +139,10 @@ used any URI can respond with an activity list.
 ### changeQueue
 
 [queue] The location of the entity change queue on the service tier.
+
+### permissionRequest
+
+[uri] The location of the permission request service. This is used by the `serverPermission` gate in an User entity permission.
 
 ### eventSubmission and stateSubmission
 

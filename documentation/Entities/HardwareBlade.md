@@ -74,6 +74,14 @@ N.B. Putting external lock power on the blade after power-up when the setting is
 
 **[string] ('')** This defines the encryption key to use to encrypt the OSDP line. As empty string signifies that no encryption is to be used.
 
+### OsdpTerminate - Door blade only
+
+**[bool] (false)** Set to true to use the blades internal line terminating resistor.
+
+### OsdpBusStats - Door blade only
+
+**[bool] (true)** If true the OSDP devices get polling statistics and save them as diagnostic states.
+
 ## States
 
 ### OperationalMode

@@ -48,8 +48,8 @@ The user entity is a unified view of all data related to a user, tokens, pins, p
         ],
         "permissions": [{
                 "Permission1": [{
-                        "type": "mode",
-                        "data": "AccessControl.Mode:C858774D-6B01-493B-BF52-B1817A9E6AF3"
+                        "type": "systemMode",
+                        "data": "Common.SystemMode:C858774D-6B01-493B-BF52-B1817A9E6AF3"
                     },
                     {
                         "type": "time",
@@ -202,16 +202,18 @@ The following types of gates are currently supported:
 
 The `always` gate is always active. Not strictly required.
 
-#### Mode
+#### SystemMode
+
+> was `mode` - will still work, but now depreciated to avoid confusion with operational modes.
 
 ```json
 {
-    "type": "mode",
-    "data": "NormalWorking"
+    "type": "systemMode",
+    "data": "Emergency"
 }
 ```
 
-Checks if the system mode referenced in the data section is currently active.  The data section is expected to be an EntityKey in the format Namespace.Type:Id.  If only the Id is provided then System.Mode will be assumed as the default for the entity type.
+Checks if the system mode referenced in the data section is currently active.  The data section is expected to be an EntityKey in the format Namespace.Type:Id.  If only the Id is provided then Common.SystemMode will be assumed as the default for the entity type.
 
 #### Not
 
@@ -238,7 +240,7 @@ The `NOT` gate will invert the response of the child gate. This example will be 
         "data": "Mon-Fri-9-17"
     },
     {
-        "type": "mode",
+        "type": "systemMode",
         "data": "NormalWorking"
     }
     ]
@@ -258,7 +260,7 @@ For the `AND` gate to be active, all the child gates need to be active.
         "data": "Mon-Fri-9-17"
     },
     {
-        "type": "mode",
+        "type": "systemMode",
         "data": "Emergency"
     }
     ]
@@ -351,3 +353,34 @@ Similar to the `time` gate, this gate will be active if the time falls inside on
 This method tends to be more compact when defining regular periods throughout the week.
 
 Similar to the `time` gate, this gate will be active if the time falls inside one of the specified periods. The format of the data section is the same as the `sets` section of the [Common.TimeTable](CommonTimeTable.md) type.
+
+#### ServerPermission
+
+```json
+{
+    "type": "serverPermission",
+    "data":
+        {
+            "id": "building01_Entry",
+            "allowWhenOffline": true
+        }
+}
+```
+
+This gate gets the decision on whether it is active from the server. The server is presented with the following information to come to a decision:
+
+- Request Id (id given to the gate)
+- User Id
+- Token Id
+- Token Number
+- Originating Entity (normally a reader or action)
+- Target Entity (normally a portal or output)
+- Command Name (e.g. `RequestEntry`, `ChangeMode`)
+
+The recommended data to use on coming to a decision is the `RequestId` and `UserId`.
+
+In the event of the server being unavailable, the `allowWhenOffline` gate parameter is used to determine whether the gate is active.
+
+>The use of this gate is likely to be observed by the user as a delay between the read of the token and the resultant indication. This will be very apparent if the server is off-line, when a  delay of couple of seconds  may be possible.
+
+Please see the [Permission Request](..\api\PermissionRequest.md) document for information on the protocol.

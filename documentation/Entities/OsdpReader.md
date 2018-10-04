@@ -153,6 +153,10 @@ configured in `invalidReadBeeperMode`.
 
 **[string] (null)** Key to use to encrypt communications to reader.
 
+### osdpDefaultDeviceKey
+
+**[bool] (false)** Set to true if the defined device key is the default used by OSDP.
+
 ### changeModePermissions
 
 **[string[]] (empty)** A list of permissions. To change the Operational Mode you need a
@@ -224,6 +228,22 @@ N.B. Some reader manufactures use the 'Local Tamper' rather than this state to s
 ### Firmware
 
 **[string] [diagnostic]** This shows the reader's firmware version.
+
+### PollCount
+
+**[int] [diagnostic]** If enabled for blade, shows the poll count per minute for the device.
+
+### RetryCount
+
+**[int] [diagnostic]** If enabled for blade, shows the poll retry count per minute for the device.
+
+### SkippedByteCount
+
+**[int] [diagnostic]** If enabled for blade, shows the skipped byte count per minute for the device.
+
+### SpuriousByteCount
+
+**[int] [diagnostic]** If enabled for blade, shows the spurious byte count per minute for the device.
 
 ## Events
 

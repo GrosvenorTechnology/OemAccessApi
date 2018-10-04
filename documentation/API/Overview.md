@@ -16,7 +16,7 @@ of a HTTPS request.
 
 ## Versioning
 
-New entries may be added to message schemas in future version, therefor it is best practice to ignore unknown properties rather than cause an exception on the unknown data.  Removal of properties will be deemed a braking change.
+New entries may be added to message schemas in future version, therefore it is best practice to ignore unknown properties rather than cause an exception on the unknown data.  Removal of properties will be deemed a braking change.
 
 ## Protocol Basics
 
@@ -37,7 +37,6 @@ New entries may be added to message schemas in future version, therefor it is be
 7. [Entity Resync](EntityResync.md)
 8. [User lookup (by identifier)](LookUpUserByIdentifier.md)
 
-
 ## Real Time Events
 
 1. [Event Submission](PostEvent.md)
@@ -49,6 +48,6 @@ New entries may be added to message schemas in future version, therefor it is be
 1. [Command Queue](Commands.md)
 2. [Command Responses](PostCommandResponse.md)
 
-## Areas
+## Server Permission Requests
 
-1. [Area Movement Requests](AreaMovementRequest.md)
+1. [Permission Requests](PermissionRequest.md)

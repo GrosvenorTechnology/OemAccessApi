@@ -6,14 +6,14 @@ When a controller is powered on for the first time, or booted after a factory re
 
 After power on the controllers LED will go through the following sequence
 
-- Solid Blue - Bootloader running
+- Solid Blue - Boot-loader running
 - Fast flash blue - OS booting and application starting
 - Rainbow - The led wil cycle through red, yellow, green, blue, magenta, white to show the OOBE app is running.
 - Slow flash white - Loading boot config, will check the usb drive for `bootconfig.json` or `{deviceSerial}.bootconfig.json` (with the ~ replaced with _) i.e. `SAT-ADV-C-MLT_00001234.bootconfig.json`.  This allows multiple config files to be prepared in advance.
--  Slow flash blue - Updating network settings (this step is normally fasy, blink and you'll miss it).
--  Slow flash yellow - Download platform config based on settings in boot config file.
--  Slow flash magenta - The application and firmware are updated based on settings in platform config file.  This step can take a while if the firmware has to be updated.
--  Solid green for 10 seconds then 10 quick green flashes - Configuration complete and the controller will now reboot into the actual application.
+- Slow flash blue - Updating network settings (this step is normally fast, blink and you'll miss it).
+- Slow flash yellow - Download platform config based on settings in boot config file.
+- Slow flash magenta - The application and firmware are updated based on settings in platform config file.  This step can take a while if the firmware has to be updated.
+- Solid green for 10 seconds then 10 quick green flashes - Configuration complete and the controller will now reboot into the actual application.
 
 ## Errors
 
