@@ -9,9 +9,11 @@ This guide is a companion to this walk-through video https://youtu.be/W_xtpKFG7d
 - We will assume that the PC running the Testing Server is reachable by the IP address `192.168.1.1`, you should replace this value with something appropriate to your system.
 - For our demo, our device has a serial number of `TEST-OEM~00001234`, you should replace this value in steps below with the serial number of your device.
 
-## Using Janus C4 Configurator to bind controller to the server
+## Using the Configurator tool to bind controller to the server
 
-- Open Janus C4 Configurator
+**Please note the tool shown is an early pre-releases tool due for release Q1-2019**
+
+- Open the Configurator tool
 - Select discovered controller and click install
 - Enter Default Uri `http://192.168.1.1:8080/`
 - Save Shared Key (you will need it to activate the controller on the Test Server)
