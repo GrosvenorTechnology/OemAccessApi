@@ -152,6 +152,7 @@ configured in `invalidReadBeeperMode`.
 ### osdpDeviceKey
 
 **[string] (null)** Key to use to encrypt communications to reader.
+>N.B. If the default '303132333435363738393A3B3C3D3E3F' key is used, you will need to set `osdpDefaultDeviceKey` to true.
 
 ### osdpDefaultDeviceKey
 

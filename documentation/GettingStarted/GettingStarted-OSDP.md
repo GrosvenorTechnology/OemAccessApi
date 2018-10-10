@@ -6,7 +6,7 @@ This guide will walk you through the basic steps that are essential in order to 
 
 * There can be up to 4 OSDP devices connected to a bus (RS485) and there are two buses on a Door Blade.
 * OSDP readers require power (normally +12V), GND and the two data lines, RS485-A and RS485-B. If there is more than one reader on a bus, then these need to be 'daisy-chained' from one to the other. The last OSDP device on the bus should have a 100 ohm resistor across the data lines (a terminating resistor). A terminating resistor on the blade end is not required, as it is built-in.
-* If you have a Door Blade version **1V4** it is necessary to **put 1k ohm "pull-up" resistor between +5V and RS485-A.** This is often essential for the controller to communicate with the reader.
+* If you have a Door Blade version **1V4** and the line is terminated (internally or externally), it is necessary to **put 1k ohm "pull-up" resistor between +5V and RS485-A.** This is often essential for the controller to communicate with the reader.
 
 ## Software
 
@@ -119,4 +119,5 @@ On the reader connector the following connections are required:
 
 #### Configuration
 
-The PIN reader version may need to be programmed by HID's OSDP configuration software to enable the '*' and '#' buttons to work as expected.
+* The PIN reader version may need to be programmed by HID's OSDP configuration software to enable the '*' and '#' buttons to work as expected.
+* It is possible to have communications problems without the use of a pull-up resistor (see above [Hardware](#Hardware) section). This is due to the HID readers turning the line drive off prematurely and so shortening the last stop bit. Not terminating the line may also circumvent the problem. HID are aware of this issue.
