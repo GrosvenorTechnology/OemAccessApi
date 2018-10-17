@@ -9,6 +9,7 @@ the platform configuration of the device.
     "platform": {
         "applicationVersion": "1.2.3.45678",
         "firmwareVersion": "1.2.0+release",
+        "forceExactFirmwareVersion": false,
         "protocolLevel": 1,
         "defaultPollFrequency": 30,
         "defaultQueueBatchSize": 100,
@@ -60,14 +61,31 @@ the platform configuration of the device.
 ## Application Version
 
 Specify the version of the application package that should be installed on the
-controller. The controller will check and update the application if required on
-device boot and update of the platformConfig.json file.
+controller.
+
+The controller will check and update the application, if required, on device boot and update of the platformConfig.json file.
 
 ## Firmware Version
 
 Specify the version of the firmware that should be installed on the controller.
-The controller will check and update the firmware if required on device boot and
-update of the platformConfig.json file.
+
+The controller will check and update the firmware, if required, on device boot and update of the platformConfig.json file.
+
+## ForceExactFirmwareVersion
+
+### With the parameter set to false (default)
+
+If the firmware on the controller and that defined here in the config are the same major and minor version, the firmware on the controller is only upgraded if the patch level is higher. The firmware will not be downgraded to a lower patch level.
+
+For example:
+
+* Controller has 1.0.2, config requires 1.0.4 => Upgrade
+* Controller has 1.0.6, config requires 1.0.4 => No change
+* Controller has 1.2.4, config requires 1.0.4 => Downgrade
+
+### With the parameter is set to true
+
+The firmware will always match the defined firmware version.
 
 ## Protocol Level
 
@@ -171,6 +189,6 @@ exclusion filter. Filters are evaluated in order and the first match wins.
 
 The following special filters exist:
 
-- The event filter `#NoStateEvents` will block the state change events that are automatically generated when an state property changes.
+* The event filter `#NoStateEvents` will block the state change events that are automatically generated when an state property changes.
 
-- The state filter `#NoDiagnosticStates` will block all state changes that are tagged as diagnostic.
+* The state filter `#NoDiagnosticStates` will block all state changes that are tagged as diagnostic.
