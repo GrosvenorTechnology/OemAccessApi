@@ -113,7 +113,7 @@ The option `person` allows you to only allow certain people (with permission) to
 
 ### RestoreCommand
 
-**[commandDefinition] (empty)** This allows you to specify a command to be issued when an Action has been disable.
+**[commandDefinition] (empty)** This allows you to specify a command to be issued when an Action has been disabled, changed or deleted.
 
 #### command
 
@@ -122,6 +122,10 @@ The option `person` allows you to only allow certain people (with permission) to
 #### arguments
 
 **[[string, object]] (empty)** The arguments you wish to add to the command when it is sent to the target.
+
+>The `restoreCommand` is only used if an action is disabled (action's operational mode), changed or deleted (in the application config). It enables the action to clean-up and restore the controller to a known state. For instance, if an action had unlocked a door, the door can be locked and not left in the wrong state.
+
+>When an action is using the `ChangeMode` command, the best command to use to restore the controller to the correct state, is to use the command `ClearOwnedFromModeStack`. This is best practise, in many cases a `ChangeMode` command, with no arguments, would suffice. But, if you had an action that was triggered by several sources and the source ids were being used as the reference, then the `ClearOwnedFromModeStack` command would have to be used for the controller to be restored correctly.
 
 ## States
 

@@ -2,8 +2,6 @@
 
 # OEM-Access-Controller
 
-**Beta documentation for V3.0.0**
-
 ## [Protocol](documentation/API/Overview.md)
 
 ## [Boot Configuration](documentation/BootConfiguration/Overview.md)
@@ -21,5 +19,3 @@
 ## [Quick Start](documentation/GettingStarted/GettingStarted.md)
 
 ## [OSDP](documentation/GettingStarted/GettingStarted-OSDP.md)
-
-**Beta documentation for V3.0.0**

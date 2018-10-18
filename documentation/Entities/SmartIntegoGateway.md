@@ -12,7 +12,7 @@ Defines the connection parameters for an individual Gateway node.
                     {
                         "id": "Gateway1",
                         "ipAddress": "192.168.1.110",
-                        "bus": 10,
+                        "address": "10-0-100",
                         "encryptionKey": "p@ssw0rd"
                     }
                 ]
@@ -27,9 +27,17 @@ Defines the connection parameters for an individual Gateway node.
 
 **[string(100)] [required]** The IP address of the gateway node.
 
+### address
+
+> Introduced after version 3.0.21739
+
+**[hardware-address]** The logical address for the gateway.  For SmartIntego the first number is the bus number, which is used to link [SmartIntego.Readers](SmartIntegoReader.md) to this gateway, the second is always zero and the third is the device ID in **hex**.
+
 ### bus
 
-**[uint] [required]** The bus prefix that will be used to link [SmartIntego.Readers](SmartIntegoReader.md) to this gateway.
+> Depreciated after version 3.0.21739, use address
+
+**[uint] [obsolete]** The bus prefix that will be used to link [SmartIntego.Readers](SmartIntegoReader.md) to this gateway.
 
 ### encryptionKey
 
