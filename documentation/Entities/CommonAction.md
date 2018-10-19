@@ -2,11 +2,9 @@
 
 **Supported >= 3.0.0**
 
-Actions provide a way for events fired locally on a controller to be mapped to commands on the same controller.
-This provides a way to link cause and effect locally on a controller, e.g. unlock one or more portals when a
-fire alarm input is active and re-lock the portals when the alarm clears.
+Actions provide a way for events fired locally on a controller to be mapped to commands on the same controller. This provides a way to link cause and effect locally on a controller, e.g. unlock one or more portals when a fire alarm input is active and re-lock the portals when the alarm clears.
 
-The input has the following operational modes:
+The action has the following operational modes:
 
 - **enabled** (Default) – The Action will trigger when matching events are received.
 - **disabled** - The Action will not trigger.
@@ -46,9 +44,7 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
 }
 ````
 
-The above example is taken from the [Fire Alarm Action](../Samples/ApplicationConfiguration/FireAlarmAction.json) sample
-which is designed to work with a Door Blade in slot 1.  The example shows how to wire up a single input to
-unlock multiple doors.
+The above example is taken from the [Fire Alarm Action](../Samples/ApplicationConfiguration/FireAlarmAction.json) sample which is designed to work with a Door Blade in slot 1.  The example shows how to wire up a single input to unlock multiple doors.
 
 ## Properties
 
@@ -83,6 +79,8 @@ unlock multiple doors.
 This can bee seen in action by looking at a more [advanced](../Samples/ApplicationConfiguration/FireAlarmActionAdvanced.json) form of the fire alarm example. In this example both inputs on the door blade are being used to unlock the portals.  When a `ChangeMode` command is sent, it requires a reference so it can be cancelled later.  When the `ReferenceFrom` is set to `source` the Id of the source of the event is used, this means that both inputs place their own unlock command into the 'mode stack' of each portals, so the portal remains unlocked until both inputs are reset.  If however the `ReferenceFrom` property is changed to `action` the reference used is the Id of the action itself, this means that only a single unlock command is placed in each portals stack; when the first input activates the portal's mode is changed with a reference of `UnlockFireAlarm` and the when the second input activates it see that the portals already have an unlock command with the reference `UnlockFireAlarm` so that is updated with any new settings but is left as the only entry.  When the first input then resets that single reference is removed and the door re-locks.  This allows you to tune the behaviour of the `Action`, in the case of our fire alarm example you probably want to use `source` so the doors remain unlocked until all inputs are cleared.
 
 The third option here `person` allows you to use use the identity of a person (user) associated to an event, such as a `Read` event from a `Hardware.Reader`.  In [this](../Samples/ApplicationConfiguration/ReaderCommandsUnlockPortal.json) example we show how to wire up reader keypad events to be used to unlock portals.  The 1 event unlocks the doors, the 2 event re-locks, or more precisely removes the unlock for the user. As the `ReferenceFrom` is the Id of the user **not** the reader, multiple people can unlock the portal, but and they must all re-lock the portal before it will finally close.  Again in this case they could change the `ReferenceFrom` to be `action` then any number of users could unlock the portal and the first user to re-lock the portal would cause it to actually lock.
+
+>It is also possible to override a reference within a `ChangeMode` command using the `reference` argument in the command. The `reference` can be any string, for instance "FireAlarm". This is useful when two separate actions are used to change an operational mode (probably one to set the mode, the other to restore it back). Both `ChangeMode` commands in each action need to have the same reference. This will tie the commands together and one will be able to reset the other.
 
 ### PermissionsFrom
 
@@ -131,7 +129,7 @@ The option `person` allows you to only allow certain people (with permission) to
 
 ### OperationalMode
 
-**[enum]** This shows the current mode (see Input Operational Modes for
+**[enum]** This shows the current mode (see Action Operational Modes for
 details).
 
 ## Events

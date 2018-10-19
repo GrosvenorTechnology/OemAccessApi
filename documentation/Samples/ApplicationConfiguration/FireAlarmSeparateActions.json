@@ -1,0 +1,145 @@
+{
+    "controller": {
+        "id": "Controller",
+        "timezone": "Europe/London",
+        "readers": [
+            {
+                "id": "101",
+                "description": "Reader on door",
+                "address": "1-0-1",
+                "operationalMode": "tokenOnly",
+                "tokenFormatType": "RDSATEONPRO",
+                "readerTamperType": "disabled",
+                "enterPinPeriod": "00:00:20",
+                "secondReadPeriod": "00:00:10",
+                "validReadLedPeriod": "00:00:03",
+                "validReadBeeperPeriod": "00:00:00",
+                "validReadBeeperMode": "constant",
+                "invalidReadLedPeriod": "00:00:00",
+                "invalidReadBeeperPeriod": "00:00:03",
+                "invalidReadBeeperMode": "urgentPulse"
+            },
+            {
+                "id": "102",
+                "description": "Reader to reset fire alarm command",
+                "address": "1-0-2",
+                "operationalMode": "tokenOnly",
+                "tokenFormatType": "RDSATEONPRO",
+                "readerTamperType": "disabled",
+                "enterPinPeriod": "00:00:20",
+                "secondReadPeriod": "00:00:10",
+                "validReadLedPeriod": "00:00:03",
+                "validReadBeeperPeriod": "00:00:00",
+                "validReadBeeperMode": "constant",
+                "invalidReadLedPeriod": "00:00:00",
+                "invalidReadBeeperPeriod": "00:00:03",
+                "invalidReadBeeperMode": "urgentPulse"
+            }
+        ],
+        "portals": [
+            {
+                "id": "101",
+                "description": "Door",
+                "address": "1-0-1",
+                "operationalMode": "normal",
+                "changeModePermissions":["PerReader-102"],
+                "lockType": "energiseToLock",
+                "requestExitEnabled": false,
+                "useAuxOutputForLock": true,
+                "sensorType": "disabled",
+                "breakGlass": "disabled",
+                "normalUnlockPeriod": "00:00:05",
+                "extendedUnlockPeriod": "00:00:10",
+                "normalMinimumOpenPeriod": "00:00:02",
+                "extendedMinimumOpenPeriod": "00:00:04",
+                "normalOpenTooLongPeriod": "00:00:30",
+                "extendedOpenTooLongPeriod": "00:01:00",
+                "forcedSounderMode": "urgentPulse",
+                "forcedSounderPeriod": "00:00:20",
+                "openTooLongSounderMode": "nonUrgentPulse",
+                "openTooLongSounderPeriod": "00:00:10",
+                "entry": {
+                    "readers": [
+                        "101"
+                    ],
+                    "accessPermissions": [
+                        "PerReader-101"
+                    ]
+                },
+                "unlockOnTimeTable": {
+                    "id": "OpenDoorProfile-Portal-RN101",
+                    "priority": 100
+                }
+            }
+        ],
+        "inputs": [{
+            "id": "101",
+            "description": "Fire Alarm Input",
+            "operationalMode": "enabled",
+            "address": "1-0-1",
+            "normallyOpen": false,
+            "inputType": "unsupervised",
+            "InputOperationType": "normal"
+        }],
+        "actions": [{
+            "id": "UnlockOnFireAlarm",
+            "sourceType": "Hardware.Input",
+            "sourceIds": ["101"],
+            "targetType": "AccessControl.Portal",
+            "targetIds": ["101"],
+            "map": [
+                {
+                    "event": "InputState:active",
+                    "command": "ChangeMode",
+                    "arguments":
+                    {
+                        "Mode": "Unlocked",
+                        "Reference": "FireAlarmCommand"
+                    }
+                }
+            ],            
+            "restoreCommand": {
+                "command": "ClearOwnedFromModeStack"
+              }            
+        },
+        {
+            "id": "ResetFireAlarm",
+            "sourceType": "Hardware.Reader",
+            "sourceIds": ["102"],
+            "targetType": "AccessControl.Portal",
+            "targetIds": ["101"],
+            "permissionsFrom": "person",
+            "map": [
+                {
+                    "event": "Read:Success",
+                    "command": "ChangeMode",
+                    "arguments":
+                    {
+                        "Reference": "FireAlarmCommand"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "DisableFireAlarmReset",
+            "sourceType": "Hardware.Input",
+            "sourceIds": ["101"],
+            "targetType": "Common.Action",
+            "targetIds": ["ResetFireAlarm"],
+            "map": [
+                {
+                    "event": "InputState:active",
+                    "command": "ChangeMode",
+                    "arguments":
+                    {
+                        "Mode": "Disabled"
+                    }
+                },
+                {
+                    "event": "InputState:inactive",
+                    "command": "ChangeMode"
+                }
+            ]
+        }
+    ]}
+}

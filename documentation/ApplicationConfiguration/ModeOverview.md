@@ -42,11 +42,11 @@ Add Entry to stack:
 - **Mode [entityId]** - The mode to change to.
 - **Priority [int]** - The priority for the mode entry.
 - **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
-- **Reference [string] (optional)** - A reference that can be used to remove the entry from the stack. If no reference is supplied it will normally default to the source entity `type:id`. An Action will supply a reference dependant on its configuration.
+- **Reference [string] (optional)** - A reference that can be used to remove or replace an entry on the stack. If no reference is supplied it will normally default to the source entity `type:id`. An Action will supply a reference dependant on its configuration, but it can be overridden in the command.
 
 Remove entry from stack:
 
-- **Reference [string] (optional)** - Remove the entry with the matching reference from the stack. If no reference is supplied it will normally default to the source entity `type:id`. An Action will supply a reference dependant on its configuration.
+- **Reference [string] (optional)** - Remove the entry with the matching reference from the stack. If no reference is supplied it will normally default to the source entity `type:id`. An Action will supply a reference dependant on its configuration, but it can be overridden in the command.
 
 The result of a command can be:
 
