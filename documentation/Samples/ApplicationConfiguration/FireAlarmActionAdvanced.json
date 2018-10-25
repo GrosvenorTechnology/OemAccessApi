@@ -17,7 +17,7 @@
 
         "portals": [{
             "id": "FrontDoor-East",
-            "address": "1-0-1",            
+            "address": "1-0-1",
             "requestExitEnabled": true,
             "entry": {
                 "readers": ["RDR-FrontDoor-East"],
@@ -26,7 +26,7 @@
         },
         {
             "id": "FrontDoor-West",
-            "address": "1-0-2",            
+            "address": "1-0-2",
             "requestExitEnabled": true,
             "entry": {
                 "readers": ["RDR-FrontDoor-West"],
@@ -36,11 +36,13 @@
 
         "inputs": [{
                 "id": "FireAlarm-1",
-                "address": "1-0-1"
+                "address": "1-0-1",
+                "normallyOpen": false
             },
             {
                 "id": "FireAlarm-2",
-                "address": "1-0-2"
+                "address": "1-0-2",
+                "normallyOpen": false
             }
         ],
 

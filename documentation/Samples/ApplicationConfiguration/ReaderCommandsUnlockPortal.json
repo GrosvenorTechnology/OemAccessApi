@@ -62,7 +62,7 @@
                     "command": "ClearOwnedFromModeStack"
                 },
                 "permissionsFrom": "person",
-                "referenceFrom": "person"
+                "referenceFrom": "action"
             }
         ]
     }

@@ -59,7 +59,7 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
                 "priority": 10
             },
             "normalOnSystemMode": {
-                "id": "Fire-Alarm",
+                "id": "Lock-Doors",
                 "priority": 50
             },
             "entry": {

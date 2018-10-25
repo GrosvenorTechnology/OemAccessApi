@@ -5,7 +5,8 @@ This guide will walk you through the basic steps that are essential in order to 
 ## Hardware
 
 * There can be up to 4 OSDP devices connected to a bus (RS485) and there are two buses on a Door Blade.
-* OSDP readers require power (normally +12V), GND and the two data lines, RS485-A and RS485-B. If there is more than one reader on a bus, then these need to be 'daisy-chained' from one to the other. The last OSDP device on the bus should have a 100 ohm resistor across the data lines (a terminating resistor). A terminating resistor on the blade end is not required, as it is built-in.
+* OSDP readers require power (normally +12V), GND and the two data lines, RS485-A and RS485-B. If there is more than one reader on a bus, these need to be 'daisy-chained' from one to the other. The last OSDP device on the bus should have a 100 ohm resistor across the data lines (a terminating resistor). A terminating resistor on the blade end is not required, as it is built-in (though it can be disabled in the software).
+* The data lines should always connect A to A and B to B. So all the 'A's are connected and all the 'B's are connected. You should link from one reader to the next 'daisy chained', not branch out or have a 'star' configuration. This becomes particularly important on long runs and high baud rates. You can get away with not being so strict if the runs are short and low baud rate.
 * If you have a Door Blade version **1V4** and the line is terminated (internally or externally), it is necessary to **put 1k ohm "pull-up" resistor between +5V and RS485-A.** This is often essential for the controller to communicate with the reader.
 
 ## Software

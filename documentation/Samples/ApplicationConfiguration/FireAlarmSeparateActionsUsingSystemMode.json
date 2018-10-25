@@ -2,6 +2,13 @@
     "controller": {
         "id": "Controller",
         "timezone": "Europe/London",
+        "systemModes": [
+            {
+                "id": "Fire-Alarm",
+                "operationalMode": "off",
+                "changeModePermissions": ["ResetFireAlarmPermission"]
+            }
+        ],
         "readers": [
             {
                 "id": "Reader-101",
@@ -24,8 +31,11 @@
                 "description": "Door 101",
                 "address": "1-0-1",
                 "operationalMode": "normal",
-                "changeModePermissions":["ResetFireAlarmPermission"],
-                "entry": {
+                "unlockOnSystemMode": {
+                    "id": "Fire-Alarm",
+                    "priority": 10
+                },
+                    "entry": {
                     "readers": [
                         "Reader-101"
                     ],
@@ -48,15 +58,15 @@
             "id": "UnlockOnFireAlarm",
             "sourceType": "Hardware.Input",
             "sourceIds": ["Input-101"],
-            "targetType": "AccessControl.Portal",
-            "targetIds": ["Door-101"],
+            "targetType": "Common.SystemMode",
+            "targetIds": ["Fire-Alarm"],
             "map": [
                 {
                     "event": "InputState:active",
                     "command": "ChangeMode",
                     "arguments":
                     {
-                        "Mode": "Unlocked",
+                        "Mode": "on",
                         "Reference": "FireAlarmCommand"
                     }
                 }
@@ -69,8 +79,8 @@
             "id": "ResetFireAlarm",
             "sourceType": "Hardware.Reader",
             "sourceIds": ["Reader-102"],
-            "targetType": "AccessControl.Portal",
-            "targetIds": ["Door-101"],
+            "targetType": "Common.SystemMode",
+            "targetIds": ["Fire-Alarm"],
             "permissionsFrom": "person",
             "map": [
                 {
