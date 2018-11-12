@@ -19,3 +19,7 @@
 ## [Quick Start](documentation/GettingStarted/GettingStarted.md)
 
 ## [OSDP](documentation/GettingStarted/GettingStarted-OSDP.md)
+
+# Version History
+
+## [Firmware](documentation/firmwareReleases.md)
