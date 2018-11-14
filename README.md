@@ -23,3 +23,5 @@
 # Version History
 
 ## [Firmware](documentation/firmwareReleases.md)
+
+## [Application](documentation/appRelease.md)
