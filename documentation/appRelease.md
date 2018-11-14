@@ -32,7 +32,7 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 - Permission Ids in user and portals are no longer case sensitive (#19199)
 - Portal does not raise event when exit switch is used (#19201)
-- Controller now reports hardware configuration to server (#19139) [link](api/DeviceHardwareReport.md)
+- Controller now reports hardware configuration to server (#19139) [link](API/DeviceHardwareReport.md)
 - Fix for controller communication failing (#19138)
 - Fix for null reference exception when presenting token to door (#18860)
 - Fixed app crash when SmartIntego reader references no existent token format (#19025)
