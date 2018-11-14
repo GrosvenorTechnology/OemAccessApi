@@ -28,9 +28,10 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
-## 3.0.21852 (FW >= 1.0.3)
+## 3.2.21853 (FW >= 1.0.3)
 
 - Server can now choose unique Blade IDs (#19200) [link](Entities/HardwareBlade.md)
+- Minor version number changed.
 
 ## 3.0.21845 (FW >= 1.0.3)
 
