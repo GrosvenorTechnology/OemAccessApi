@@ -1,9 +1,9 @@
 # Hardware.Blade
 
 **Beta >= 3.0.0**
-**Supported >= 3.1.0**
+**Supported >= 3.2.0**
 
-The configuration of the blades can be changed from the defaults by adding a section in the Application Configuration file. The Ids of the blades are defined as 'BLADE1', 'BLADE2', 'BLADE3' and 'BLADE4'. The properties of a blade will be determined by the blade type. Currently there are 'Door' and 'I/O' blade types.
+The configuration of the blades can be changed from the defaults by adding a section in the Application Configuration file. The addresses of the blades are defined as '1-0-1', '2-0-1', '3-0-1' and '4-0-1'. The properties of a blade will be determined by the blade type. Currently there are 'Door' and 'I/O' blade types.
 
 The blade has the following operational modes:
 
@@ -13,7 +13,8 @@ The blade has the following operational modes:
 {
     "controller": {
         "blades": [{
-                "id": "blade1",
+                "id": "blade-1",
+                "address": "1-0-1",
                 "v12CurrentLimit": 2000,
                 "v12CurrentMinimum": 2,
                 "v12CurrentMaximum": 1900,
@@ -26,10 +27,17 @@ The blade has the following operational modes:
         ]
     }
 }
-
 ````
 
 ## Properties
+
+### operationalMode
+
+**[enum] (normal)** Specifies which operational mode is the default.
+
+### address
+
+**[hardware-address] [required]** The controller logical address for the input
 
 ### V12CurrentLimit - Door blade only
 
@@ -86,8 +94,7 @@ N.B. Putting external lock power on the blade after power-up when the setting is
 
 ### OperationalMode
 
-**[enum]** This shows the current mode (see Input Operational Modes for
-details).
+**[enum]** This shows the current operational mode.
 
 ### ConnectedToBlade
 
@@ -149,7 +156,7 @@ details).
 
 ### V5RdrSupply
 
-**[enum]** TODO: description needed!
+**[enum]** State of the 5V supply for the readers
 
 - **normal**
 - **aboveMaxWarning**
@@ -242,9 +249,9 @@ Reset the blade.
 Depending on the result of the command the following items will be present in the
 event contents.
 
-| **Result**           | **Reason**            |   **Event Content** |
-|----------------------|-----------------------|---------------------|
-| Success              |                       |                     |
-| FailedOnPermissions  | NoPermissions         |                     |
-|                      | NoRelevantPermissions |                     |
-|                      | NoActivePermissions   |                     |
+| **Result**      | **Reason** |   **Event Content** |
+|-----------------|------------|---------------------|
+| Success         |            |                     |
+| FailedOnPermissions | NoPermissions |              |
+|                     | NoRelevantPermissions |      |
+|                     | NoActivePermissions   |      |

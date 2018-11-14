@@ -5,7 +5,7 @@ configure the AccessControl application on the controller.
 
 The controller has the following operational modes
 
-- **Normal** (Default)
+- **normal** (Default)
 
 ````json
 {
@@ -13,34 +13,25 @@ The controller has the following operational modes
         "id": "Ctrl-46537453278",
         "description": "Reception",
         "timezone": "Europe/London",
-        "areaMode": "local"
     }
 }
 ````
 
 ## Properties
 
+### operationalMode
+
+**[enum] (normal)** Specifies which operational mode is the default.
+
 ### Timezone
 
-**[string (200)] (Etc/UTC)** The IANA timezone to be used to evaluate local time.
-The list of timezones can be found in the [IANA Timezone database](https://www.iana.org/time-zones)
-of which a list can be found [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
-
-### AreaMode
-
-**[enum] (local)** Sets the mode for area processing. Acceptable values are:
-
-- **local** – All area processing is handled locally on the controller;
-    the server is responsible for distributing area state to all controllers.
-- **remote** – All error movement will be validated on the server. All local
-    functions such as max occupancy will be disabled.
+**[string (200)] (Etc/UTC)** The IANA timezone to be used to evaluate local time. The list of timezones can be found in the [IANA Timezone database](https://www.iana.org/time-zones) of which a list can be found [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
 ## States
 
 ### OperationalMode
 
-**[enum]** This shows the current portal mode (see Portal Operational Modes for
-details).
+**[enum]** This shows the current controller mode.
 
 ### ExternalTamper
 
@@ -79,10 +70,10 @@ details).
 
 When this state changes state, the following entries will be added to the event contents
 
-| Content    | Type     | Description                                 |
-|------------|----------|---------------------------------------------|
-| Voltage    | float    | Supply voltage at time of transition        |
-| Current    | float    | Current draw on supply in mA                |
+| Content    | Type     | Description |
+|------------|----------|-------------|
+| Voltage    | float    | Supply voltage at time of transition |
+| Current    | float    | Current draw on supply in mA |
 | Status     | enum     | NotCharging, Charging, Discharging, Unknown |
 
 ### Ps8Amp
@@ -94,10 +85,10 @@ When this state changes state, the following entries will be added to the event 
 
 When this state changes state, the following entries will be added to the event contents
 
-| Content    | Type     | Description                                 |
-|------------|----------|---------------------------------------------|
-| Voltage    | float    | Supply voltage at time of transition        |
-| Current    | float    | Current draw on supply in mA                |
+| Content    | Type     | Description |
+|------------|----------|-------------|
+| Voltage    | float    | Supply voltage at time of transition |
+| Current    | float    | Current draw on supply in mA         |
 | Status     | enum     | NotCharging, Charging, Discharging, Unknown |
 
 ### PsBattery
@@ -110,14 +101,33 @@ When this state changes state, the following entries will be added to the event 
 When this state changes between states, the following entries will be added to
 the event contents.
 
-| Content       | Type     | Description                                 |
-|---------------|----------|---------------------------------------------|
-| Voltage       | float    | Supply voltage at time of transition        |
-| Current       | float    | Current draw on supply in mA                |
-| Status        | enum     | NotCharging, Charging, Discharging, Unknown |
-| Online        | boolean  | TODO: What does this mean?                  |
-| BatteryHealth | enum     | TODO: What are the values?                  |
-| DieTemp       | int      | Temperature of charging circuit in degC     |
+| Content       | Type     | Description |
+|---------------|----------|-------------|
+| Voltage       | float    | Supply voltage at time of transition |
+| Current       | float    | Current draw on supply in mA |
+| Status        | enum     | Please see below for values |
+| Online        | boolean  | Battery being used to power controller |
+| BatteryHealth | enum     | Please see below for values |
+| DieTemp       | int      | Temperature of charging circuit in degC |
+
+#### Status
+
+**[enum]** - The status of the battery:
+
+- **Unknown**
+- **NotCharging**
+- **Charging**
+- **Discharging**
+
+#### BatteryHealth
+
+**[enum]** - The health of the battery:
+
+- **Unknown**
+- **Good**
+- **Dead**
+- **OverVoltage**
+- **Cold**
 
 ### PsPoe
 
@@ -128,9 +138,9 @@ the event contents.
 
 When this state changes state, the following entries will be added to the event contents
 
-| Content    | Type     | Description                                 |
-|------------|----------|---------------------------------------------|
-| Current    | float    | Current draw on supply in mA                |
+| Content    | Type     | Description |
+|------------|----------|-------------|
+| Current    | float    | Current draw on supply in mA |
 
 ### PsPoePlus
 
@@ -141,9 +151,9 @@ When this state changes state, the following entries will be added to the event 
 
 When this state changes state, the following entries will be added to the event contents
 
-| Content    | Type     | Description                                 |
-|------------|----------|---------------------------------------------|
-| Current    | float    | Current draw on supply in mA                |
+| Content    | Type     | Description |
+|------------|----------|-------------|
+| Current    | float    | Current draw on supply in mA |
 
 ### PsSys12Volt
 
@@ -154,9 +164,9 @@ When this state changes state, the following entries will be added to the event 
 
 When this state changes state, the following entries will be added to the event contents
 
-| Content    | Type     | Description                                 |
-|------------|----------|---------------------------------------------|
-| Voltage    | float    | Supply voltage at time of transition        |
+| Content    | Type     | Description |
+|------------|----------|-------------|
+| Voltage    | float    | Supply voltage at time of transition |
 
 ### PsBlade12Volt
 
@@ -174,9 +184,9 @@ When this state changes state, the following entries will be added to the event 
 
 When this state changes state, the following entries will be added to the event contents
 
-| Content    | Type     | Description                                 |
-|------------|----------|---------------------------------------------|
-| Voltage    | float    | Supply voltage at time of transition        |
+| Content    | Type     | Description |
+|------------|----------|-------------|
+| Voltage    | float    | Supply voltage at time of transition |
 
 ### SshState
 
@@ -203,17 +213,17 @@ This command will enable SSH.
 
 - **Period [timespan] (optional)** – The default is 12 hours.
 
-| **Result**           | **Reason**            | **Event Content** |
-|----------------------|-----------------------|-------------------|
-| Success              |                       |                   |
-| FailedBecauseOfError |                       |                   |
-| CommandArgumentError |                       |                   |
+| **Result**    | **Reason**     | **Event Content** |
+|---------------|----------------|-------------------|
+| Success              |         |                   |
+| FailedBecauseOfError |         |                   |
+| CommandArgumentError |         |                   |
 
 ### DisableSsh
 
 This command will disable SSH.
 
-| **Result**           | **Reason**            | **Event Content** |
-|----------------------|-----------------------|-------------------|
-| Success              |                       |                   |
-| FailedBecauseOfError |                       |                   |
+| **Result**    | **Reason**     | **Event Content** |
+|---------------|----------------|-------------------|
+| Success              |         |                   |
+| FailedBecauseOfError |         |                   |
