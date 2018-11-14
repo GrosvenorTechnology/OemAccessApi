@@ -28,6 +28,10 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
+## 3.0.21852 (FW >= 1.0.3)
+
+- Server can now choose unique Blade IDs (#19200) [link](Entities/HardwareBlade.md)
+
 ## 3.0.21845 (FW >= 1.0.3)
 
 - Permission Ids in user and portals are no longer case sensitive (#19199)
@@ -47,7 +51,7 @@ The Stable channel will contain all firmware versions as well as every applicati
 - Changed actions to trigger off a state's state if the 'event' name matches a state.
 - Added new compact timeTable format.​
 - Outputs now support Command Stack as well as absolute On/Off modes of operation.​
-- Controller main LED now flashes green when heatbeats successfully sent to server, reverts to yellow if connection fails.​
+- Controller main LED now flashes green when heartbeats successfully sent to server, reverts to yellow if connection fails.​
 - Implemented fault detection in Input PIR mode.​
 - Added option to sound reader beeper on valid read.​
 - Corrected typo is setting name OpenTooLongSounderPeriod.​
