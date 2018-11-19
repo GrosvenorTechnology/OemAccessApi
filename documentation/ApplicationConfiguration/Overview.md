@@ -27,15 +27,19 @@ The various sections can be defined in the controller node in any order.
 
 ## File Sections
 
+- [actions](../Entities/CommonAction.md)
+- [areas](../Entities/AccessControlArea.md)
+- [blade](../Entities/HardwareBlade.md)
 - [controller](../Entities/HardwareController.md)
-- [readers](../Entities/HardwareReader.md)
-- [portals](../Entities/AccessControlPortal.md)
+- [holidays](../Entities/CommonHoliday.md)
 - [inputs](../Entities/HardwareInput.md)
 - [outputs](../Entities/HardwareOutput.md)
-- [areas](../Entities/AccessControlArea.md)
-- [actions](../Entities/CommonAction.md) [>=V3.0.0]
-- [tokenFormats](TokenFormat.md)
-- [timeTables](../Entities/CommonTimeTable.md) [>=V1.0.19635]
+- [readers](../Entities/HardwareReader.md)
+- [portals](../Entities/AccessControlPortal.md)
+- [portal interlocks](../Entities/AccessControlPortalInterlock.md)
+- [system modes](../Entities/CommonSystemMode.md)
+- [time tables](../Entities/CommonTimeTable.md)
+- [token formats](TokenFormat.md)
 
 ## Common Properties
 

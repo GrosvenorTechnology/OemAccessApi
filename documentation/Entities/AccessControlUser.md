@@ -295,7 +295,18 @@ Checks to see if the current date-time is within the specified start and end dat
 
 Checks if the time table referenced in the data section is currently active.  The data section is expected to be an EntityKey in the format Namespace.Type:Id.  If only the Id is provided then Common.TimeTable will be assumed as the default for the entity type.
 
-#### InlineTime [>= 3.0.0]
+#### Holiday
+
+```json
+{
+    "type": "holiday",
+    "data": "BankHolidays"
+}
+```
+
+Checks if the holiday table referenced in the data section is currently active.  The data section is expected to be an EntityKey in the format Namespace.Type:Id.  If only the Id is provided then Common.Holiday will be assumed as the default for the entity type.
+
+#### InlineTime
 
 There are two ways of defining an inline time:
 
