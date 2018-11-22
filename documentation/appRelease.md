@@ -11,21 +11,7 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
-### 3.0.21413 (FW >= 1.0.3)
-
-- OSDP Support 
-- SmartIntego bug fixes and improvements (white lists)
-- Bug fix to verification areas not being configured correctly
-- Commands added for remotely enabling SSH
-- Bug fix for bad HTTP headers
-- Added delete all command for entities (e.g. Users)
-
-### 2.0.20447 (FW >= 1.0.3)
-
-- SmartIntego support added
-- Bug Fixes
-
-## 3.2.21863 (FW >= 1.0.3) - Released 21/11/2018
+### 3.2.21863 (FW >= 1.0.3) - Released 21/11/2018
 
 - Fixed issue where incorrect pin would result in a 'string format' error (#19203)
 - Implemented Holiday record type and permission gate (#19204) [link](Entities/CommonHoliday.md)
@@ -63,19 +49,33 @@ The Stable channel will contain all firmware versions as well as every applicati
 - Firmware will not downgrade when difference is only in patch level i.e. rolling back from 1.0.6 to 1.0.4.​
 - Fixed error downloading boot configuration file.
 
+### 3.0.21413 (FW >= 1.0.3)
+
+- OSDP Support
+- SmartIntego bug fixes and improvements (white lists)
+- Bug fix to verification areas not being configured correctly
+- Commands added for remotely enabling SSH
+- Bug fix for bad HTTP headers
+- Added delete all command for entities (e.g. Users)
+
+### 2.0.20447 (FW >= 1.0.3)
+
+- SmartIntego support added
+- Bug Fixes
+
 ## Beta Channel Releases
 
-## 3.2.21863 (FW > 1.0.3)
+### 3.2.21863 (FW > 1.0.3)
 
 - Fixed issue where incorrect pin would result in a 'string format' error (#19203)
 - Implemented Holiday record type and permission gate (#19204) [link](Entities/CommonHoliday.md)
 
-## 3.2.21853 (FW >= 1.0.3)
+### 3.2.21853 (FW >= 1.0.3)
 
 - Server can now choose unique Blade IDs (#19200) [link](Entities/HardwareBlade.md)
 - Minor version number changed.
 
-## 3.0.21845 (FW >= 1.0.3)
+### 3.0.21845 (FW >= 1.0.3)
 
 - Permission Ids in user and portals are no longer case sensitive (#19199)
 - Portal does not raise event when exit switch is used (#19201)
