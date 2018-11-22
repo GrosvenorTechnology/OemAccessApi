@@ -35,7 +35,7 @@ The SmartIntego System object is used to define common properties across all com
 
 ## gateways
 
-**[[SmartIntego.Gateway](SmartIntegoGateway.md)[]] (empty)** A list of gateway definition objects. Current only a single gateway is supported.
+**[[SmartIntego.Gateway](SmartIntegoGateway.md)[]] (empty)** A list of gateway definition objects. 
 
 ## States
 
