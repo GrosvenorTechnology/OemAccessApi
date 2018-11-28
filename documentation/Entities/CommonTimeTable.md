@@ -1,6 +1,13 @@
 # Common.TimeTable
 
-Time Tables can be used to control when a user has access to a specific door, when a door is unlocked, or an output operated and can also be used to trigger actions.
+Time Tables can be used to control when a user has access to a specific door, when a door is unlocked, or an output operated and can also be used to trigger actions. They can be controlled by changing their operational mode, either directly or indirectly by using actions.
+
+A Time Table has the following operational modes:
+
+- **normal** (default)
+- **disabled**
+
+Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverview.md) document for more information.
 
 Time Tables can be defined in the Application Configuration and in Entity Change messages.
 
@@ -136,7 +143,24 @@ The time table type is used to specify a series of periods based on the day of t
 
 If you require a continuous period that runs over midnight, you must use an end time of 24:00, this will ensure that the period from the first day is seamlessly linked to the next. e.g. Monday 9:00 to Tuesday 17:00, if you build the periods as 09:00-23:59 then 00:00-17:00, there will be a minute discontinuity at 23:59 to midnight on Monday where the timeTable will be inactive.  Instead use 09:00-24:00 and 00:00-17:00.
 
+## Properties
+
+### operationalMode
+
+**[enum] (normal)** Specifies which operational mode is the default.
+
+### changeModePermissions
+
+**[string[]] (empty)** A person with a permission on this list can execute the `ChangeMode` command.
+
 ## States
+
+### OperationalMode
+
+**[enum]** This shows the current operational mode for the time table.
+
+- **normal** (default)
+- **disabled**
 
 ### TimeTableState
 
