@@ -162,6 +162,10 @@ will also be operated, i.e. lock 1 drives output 1.
 - disabled
 - unsupervised
 
+### portalInterlock
+
+**[entityId] (empty)** If the portal belongs to a portal interlock, specify the portal interlock id here.
+
 ### normalUnlockPeriod
 
 **[timespan] (00:00:05)** The normal period a portal is unlocked for when a request for entry
