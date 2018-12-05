@@ -25,7 +25,6 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
             "normallyOpen": true,
             "inputType": "unsupervised",
             "InputOperationType": "normal",
-            "sensePeriod": "00:00:00.1",
             "pirInhibit": "00:30:00",
             "pirFault": "5:00:00",
             "changeModePermissions": ["Operator"]
@@ -64,11 +63,6 @@ is Open.
 - **outputPulseWhenTriggered** - The same as Normal but also pulses the corresponding
   output (.e. input 1-0-1, triggers output 1-0-1)
 - **pirDetector** - Enables special handling for PIR type inputs.
-
-### sensePeriod
-
-**[timespan] (00:00:00.1)** The time the input must be stable in a new state before
-the logical state of the input is changed.
 
 ### pirInhibit
 
