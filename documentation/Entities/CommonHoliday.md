@@ -2,7 +2,7 @@
 
 **Supported >= 3.2.0**
 
-Holidays can be used by permission gates. They can be controlled by changing their operational mode, either directly or indirectly by using actions.
+Holidays can be used by permission gates, time-tables and actions. They can be controlled by changing their operational mode, either directly or indirectly by using actions.
 
 A holiday has the following operational modes:
 

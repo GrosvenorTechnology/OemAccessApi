@@ -148,7 +148,9 @@ It is possible to define an enabled period for an identifier by using the proper
             {
                 "type": "inlineTime",
                 "data":
-                [
+                {
+                    "sets":
+                    [
                     {
                         "days": ["Mo","Tu","We","Th","Fr"],
                         "periods": [
@@ -162,7 +164,9 @@ It is possible to define an enabled period for an identifier by using the proper
                         }
                         ]
                     }
-                ]
+                    ],
+                    "holidayId": "BankHolidays"
+                }
             }
         },
         {
@@ -316,6 +320,75 @@ There are two ways of defining an inline time:
 {
     "type": "inlineTime",
     "data": {
+        "transitions": {
+            "monday": [
+                {
+                    "start": "9:00:00",
+                    "end": "17:00:00"
+                }
+            ],
+            "tuesday": [
+                {
+                    "start": "9:00:00",
+                    "end": "12:00:00"
+                },
+                {
+                    "start": "14:00:00",
+                    "end": "18:00:00"
+                }
+            ]
+        },
+        "holidayId": "BankHolidays"
+    }
+}
+```
+
+The days of the week enumeration is: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Holiday].
+
+The `holidayId` property is optional. When used, it points to a record in the holiday table. When in a holiday period, rather than using the time periods for the relevant day, it uses the `Holiday` time periods. If there are no time periods defined for the holiday period, the person will be denied access. This is useful for Bank Holidays.
+
+Similar to the `time` gate, this gate will be active if the time falls inside one of the transitions specified. The format is the same as the `transitions` method of the [Common.TimeTable](CommonTimeTable.md) type.
+
+##### Method 2
+
+```json
+{
+    "type": "inlineTime",
+    "data": {
+        "sets": [
+            {
+                "days": ["Mo","Tu","We","Th","Fr"],
+                "periods": [
+                {
+                    "start": "10:00:00",
+                    "end": "12:00:00"
+                },
+                {
+                    "start": "14:00:00",
+                    "end": "16:00:00"
+                }
+            ]
+            }
+        ],
+        "holidayId": "BankHolidays"
+    }
+}
+```
+
+This method tends to be more compact when defining regular periods throughout the week.
+
+The `days` enumeration is: [Su, Mo, Tu, We, Th, Fr, Sa, Ho].
+
+The `holidayId` property is optional. When used, it points to a record in the holiday table. When in a holiday period, rather than using the time periods for the relevant day, it uses the `Ho` (holiday) time periods. If there are no time periods defined for the holiday period, the person will be denied access. This is useful for Bank Holidays.
+
+Similar to the `time` gate, this gate will be active if the time falls inside one of the specified periods. The format is the same as the `sets` method of the [Common.TimeTable](CommonTimeTable.md) type.
+
+>N.B. There were two older methods which still can be used, but have now been deprecated. They are shown below for reference:
+
+```json
+{
+    "type": "inlineTime",
+    "data": {
             "monday": [
                 {
                     "start": "9:00:00",
@@ -335,10 +408,6 @@ There are two ways of defining an inline time:
         }
 }
 ```
-
-Similar to the `time` gate, this gate will be active if the time falls inside one of the transitions specified. The format of the data section is the same as the `transitions` section of the [Common.TimeTable](CommonTimeTable.md) type.
-
-##### Method 2
 
 ```json
 {
@@ -360,10 +429,6 @@ Similar to the `time` gate, this gate will be active if the time falls inside on
     ]
 }
 ```
-
-This method tends to be more compact when defining regular periods throughout the week.
-
-Similar to the `time` gate, this gate will be active if the time falls inside one of the specified periods. The format of the data section is the same as the `sets` section of the [Common.TimeTable](CommonTimeTable.md) type.
 
 #### ServerPermission
 

@@ -42,7 +42,8 @@ There are also two methods of defining a Time Table:
                         "end": "18:00:00"
                     }
                 ]
-            }
+            },
+            "holidayId": "BankHolidays"
         }]
     }
 }
@@ -73,10 +74,13 @@ There are also two methods of defining a Time Table:
                     "end": "18:00:00"
                 }
             ]
-        }
+        },
+        "holidayId": "BankHolidays"
     }
 }
 ````
+
+The days of the week enumeration is: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Holiday].
 
 ## Method 2
 
@@ -106,7 +110,8 @@ This method tends to be more compact when defining regular periods throughout th
                     }
                     ]
                 }
-            ]
+            ],
+            "holidayId": "BankHolidays"
         }]
     }
 }
@@ -134,16 +139,23 @@ This method tends to be more compact when defining regular periods throughout th
                 }
                 ]
             }
-        ]
+        ],
+        "holidayId": "BankHolidays"
     }
 }
 ````
 
-The time table type is used to specify a series of periods based on the day of the week. The number of transitions per day is not limited, but should be kept to a sensible limit of 10 or less. All transitions are processed as local times in the time zone specified in the Device Configuration.
+The `days` enumeration is: [Su, Mo, Tu, We, Th, Fr, Sa, Ho].
+
+The time table type is used to specify a series of periods based on the day of the week and holiday days. The number of transitions per day is not limited, but should be kept to a sensible limit of 10 or less. All transitions are processed as local times in the time zone specified in the Device Configuration.
 
 If you require a continuous period that runs over midnight, you must use an end time of 24:00, this will ensure that the period from the first day is seamlessly linked to the next. e.g. Monday 9:00 to Tuesday 17:00, if you build the periods as 09:00-23:59 then 00:00-17:00, there will be a minute discontinuity at 23:59 to midnight on Monday where the timeTable will be inactive.  Instead use 09:00-24:00 and 00:00-17:00.
 
 ## Properties
+
+### holidayId
+
+**[entityId] (empty)** An optional property that allows you define when a day is a holiday rather than a 'normal' day of the week. It points to a record in the holiday table. When in a holiday period, rather than using the time periods for the relevant day, it uses the `Ho` or `Holiday` time periods. If there are no time periods defined for the holiday period, the time table will be `OutOfPeriod`. This is useful for Bank Holidays, when you do not want scheduled doors to unlock.
 
 ### operationalMode
 
