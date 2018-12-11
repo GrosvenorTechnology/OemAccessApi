@@ -61,6 +61,16 @@ The controller has the following operational modes
 - **PowerFailed**
 - **PowerRestored**
 
+### BatteryHealth
+
+**[enum]** - The health of the battery:
+
+- **Unknown**
+- **Good**
+- **Dead**
+- **OverVoltage**
+- **Cold**
+
 ### Ps5Amp
 
 **[enum]** - The current state 5Amp power supply.
