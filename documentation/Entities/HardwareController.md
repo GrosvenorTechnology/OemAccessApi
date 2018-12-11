@@ -237,3 +237,15 @@ This command will disable SSH.
 |---------------|----------------|-------------------|
 | Success              |         |                   |
 | FailedBecauseOfError |         |                   |
+
+### SetPersonState
+
+Set a persons current state in all areas hosted by the controller.
+
+| **Result**           | **Reason**            | **Event Content** |
+|----------------------|-----------------------|-------------------|
+| Success              |                       | PersonId          |
+| FailedOnPermissions  | NoPermissions         | PersonId          |
+|                      | NoRelevantPermissions | PersonId          |
+|                      | NoActivePermissions   | PersonId          |
+| CommandArgumentError |                       | [PersonId]        |
