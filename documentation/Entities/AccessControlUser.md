@@ -46,23 +46,20 @@ The user entity is a unified view of all data related to a user, tokens, pins, p
                 "data": "c3RlcGhlbg=="
             }
         ],
-        "permissions": [{
-                "Permission1": [{
-                        "type": "systemMode",
-                        "data": "Common.SystemMode:C858774D-6B01-493B-BF52-B1817A9E6AF3"
-                    },
-                    {
-                        "type": "time",
-                        "data": "Common.TimeTable:7DF8D397-73D1-4A63-9F10-0F646C4EA87F"
-                    }
-                ]
-            },
-            {
-                "Permission2": [
-                    { "type": "always" }
-                ]
-            }
-        ]
+        "permissions": {
+            "Permission1": [{
+                    "type": "systemMode",
+                    "data": "Common.SystemMode:C858774D-6B01-493B-BF52-B1817A9E6AF3"
+                },
+                {
+                    "type": "time",
+                    "data": "Common.TimeTable:7DF8D397-73D1-4A63-9F10-0F646C4EA87F"
+                }
+            ],
+            "Permission2": [
+                { "type": "always" }
+            ]
+        }
     }
 }
 ````
