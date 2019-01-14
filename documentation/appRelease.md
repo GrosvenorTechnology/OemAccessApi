@@ -65,6 +65,17 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
+### 3.2.22252 (FW > 1.0.3)
+
+- Time Tables can be disabled vi operational modes (#19215)
+- Extended Command response messages (#19240)
+- Holiday periods support extended (#19241)
+- Added states for Battery Health (#19242)
+- Added controller wide SetPersonState command for areas (#19257)
+- Door blade firmware update to 3.0 release
+- Controller uses shared configuration nuget package (#19258)
+- Hardware report extended to contain network related information (#19259)
+
 ### 3.2.21863 (FW > 1.0.3)
 
 - Fixed issue where incorrect pin would result in a 'string format' error (#19203)
