@@ -4,7 +4,7 @@ The following entity types are used by the controller
 
 - [AccessControl.Area](AccessControlArea.md)
 - [AccessControl.Portal](AccessControlPortal.md)
-- [AccessControl.PortalInterlock](AccessControlPortalInterlock)
+- [AccessControl.PortalInterlock](AccessControlPortalInterlock.md)
 - [AccessControl.User](AccessControlUser.md)
 - [Common.Action](CommonAction.md)
 - [Common.SystemMode](CommonSystemMode.md)
