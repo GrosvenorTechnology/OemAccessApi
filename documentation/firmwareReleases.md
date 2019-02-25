@@ -1,5 +1,8 @@
 # Firmware Changelog
 
+## v1.0.8
+- Updated OemOobe-app to 3.3.22583 - Improves setup times when bootconfig posted to device over HTTP
+
 ## v1.0.7
 
 - Update OemOobe-app to 3.0.21739.

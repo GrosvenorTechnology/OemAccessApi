@@ -11,6 +11,23 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
+### 3.3.22855 (FW >= 1.0.3) - Released 21/2/2019 - [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-3.3.22855.zip)
+
+- Optimise XML sent to blade, was causing issues with OSDP when encryption was enabled.
+
+### 3.3.2267 (FW >= 1.0.3) - Released 5/2/2019 - [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-3.3.22667.zip)
+
+- Heartbeat can now contain a timestamp from server, controller will correct if more than 2 minutes adrift.  For use when no NTP available.
+- Removed unneeded reboots when updating the application only or changes to boot config that do not require restarts.
+- Made changes to how states are queued and sent, it was possible that the most recent state was not sent and a stale version sent instead.
+- Fixed reader decode type 'both' so that it works for Wiegand and clock and data reads.  (#19335)
+- Portal does not update portalState in some cases when changing operational mode. (#19334)
+- General clean up for trace message levels
+- Added set person state command to controller object for working with anti passback areas. (#19257)
+- Added new state to controller for battery health state (#19242)
+- Added support for holiday periods in permission gates (#19241)
+- Added disable mode for TimeTable entities (#19215)
+
 ### 3.2.21863 (FW >= 1.0.3) - Released 21/11/2018
 
 - Fixed issue where incorrect pin would result in a 'string format' error (#19203)

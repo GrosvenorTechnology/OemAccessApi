@@ -20,14 +20,15 @@ The device is required to send a heartbeat to the service on an interval defined
 
 > **Code:** 200
 >
-> The body contains the ids of the queues that have pending data. It is allowable to return an empty activity array.
+> The body contains the ids of the queues that have pending data. It is allowable to return an empty activity array.  Optionally the response may include the time on the server in UTC.  This is intended for cases where the controller does not have NTP access.  The timestamp will be used to correct the controller's time when drift is detected.
 >
 > ````json
 > {
 >     "activity": [
 >         "platformConfig",
 >         "changes"
->     ]
+>     ],
+>      "serverTime": "2019-02-25T12:53:16Z"
 > }
 >````
 
