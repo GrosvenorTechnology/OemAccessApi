@@ -129,11 +129,19 @@ If the URI is of type [queue] then you can set the *uri*, *frequency* of polling
 
 ### stateQueue
 
-[queue] The location of the state queue on the service tier.
+[queue] The location of the state queue on the service tier. **Only StateQueue or StateQueues can be used** A validation exception will be thrown if both are non null.
+
+### stateQueues (Added in app version (N))
+
+Array of [queue]. Just as stateQueue, allows to specify multiple locations of state queue on different services. **Only StateQueue or StateQueues can be used** A validation exception will be thrown if both are non null.
 
 ### commandQueue
 
-[queue] The location of the command queue on the service tier.
+[queue] The location of the command queue on the service tier. **Only commandQueue or CommandQueues can be used** A validation exception will be thrown if both are non null.
+
+### commandQueues (Added in app version (N))
+
+Array of [queue]. Just as commandQueue, allows to specify multiple locations of command queue on different services. **Only commandQueue or CommandQueues can be used** A validation exception will be thrown if both are non null.
 
 ### changeQueue
 

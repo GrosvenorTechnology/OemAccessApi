@@ -238,6 +238,77 @@ This command will disable SSH.
 | Success              |         |                   |
 | FailedBecauseOfError |         |                   |
 
+
+### Restart [>=4.0.0.0]
+
+This command will restart the application running on the controller.
+
+Added in version (N)
+
+| **Result**    | **Reason**     | **Event Content** |
+|---------------|----------------|-------------------|
+| Success              |         |                   |
+| FailedBecauseOfError |         |                   |
+
+### Reboot [>=4.0.0.0]
+
+This command will reboot the controller.
+
+Added in version (N)
+
+| **Result**    | **Reason**     | **Event Content** |
+|---------------|----------------|-------------------|
+| Success              |         |                   |
+| FailedBecauseOfError |         |                   |
+
+### EnableUsbUpdate [>=4.0.0.0]
+
+This command will enable USB update service on the controller for 1 hour.
+
+USB stick **MUST NOT** be larger than **4GB** and **MUST BE** formatted in **FAT32** or **FAT** format.
+
+New firmware and / or application **must** be located inside the "firmware" folder on the root of USB.
+
+Firmware file naming convention - "ADV10-fw-{build number}.bin" or "ADV40-fw-{build number}.bin" 
+
+Application file naming convention - "{application type}-app-{build number}.zip"
+
+
+| **Result**    | **Reason**     | **Event Content** |
+|---------------|----------------|-------------------|
+| Success              |         |                   |
+| FailedBecauseOfError |         |                   |
+
+### DisableUsbUpdate [>=4.0.0.0]
+
+This command will disable USB update service on the controller.
+
+| **Result**    | **Reason**     | **Event Content** |
+|---------------|----------------|-------------------|
+| Success              |         |                   |
+| FailedBecauseOfError |         |                   |
+
+### EnableLogging [>=4.0.0.0 & FW >=1.1.0]
+
+This command will enable logging service forcefully start / restart logging service.
+
+- **Period [timespan] (optional)** – The default is 12 hours.
+
+| **Result**    | **Reason**     | **Event Content** |
+|---------------|----------------|-------------------|
+| Success              |         |                   |
+| FailedBecauseOfError |         |                   |
+| CommandArgumentError |         |                   |
+
+### DisableLogging [>=4.0.0.0 & FW >=1.1.0]
+
+This command will forcefully stop logging service.
+
+| **Result**    | **Reason**     | **Event Content** |
+|---------------|----------------|-------------------|
+| Success              |         |                   |
+| FailedBecauseOfError |         |                   |
+
 ### SetPersonState
 
 Set a persons current state in all areas hosted by the controller.

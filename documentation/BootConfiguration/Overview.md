@@ -171,3 +171,35 @@ The following settings can be set regardless of DHCP/Static addressing. If a set
     }
 }
 ```
+### Optional Settings: Logging
+
+The fallowing settings allow forwarding log messages to the Custom Exchange platform or generic Azure Event Hub.
+
+- [bool] **Enabled** - The logging system will start at controller boot.
+- [bool] **DebugMessages** - Sets if debug messages should be sent. Turning debug messages off **greatly** reduces the number of messages forwarded.
+- [string] - **Url** - connection string, for custom exchange this will be provided, for generic event hub targets, the url is of the form:
+
+"amqps://{SAS Key Name}:{SAS key}@{namespace name}.servicebus.windows.net/syslogmessages".  
+
+The value for this can be found in the _Connection string–primary key_ under the shared access policy on the syslog event hub, the values map as follows
+
+**{SAS Key Name}** = Endpoint=sb://loggingtarget.servicebus.windows.net/;SharedAccessKeyName=**deviceTransmitterKey**;SharedAccessKey=hdahduhcuihuhh38294uehduhhjkcasjad=
+
+**{SAS key}** = Endpoint=sb://loggingtarget.servicebus.windows.net/;SharedAccessKeyName=deviceTransmitterKey;SharedAccessKey=**hdahduhcuihuhh38294uehduhhjkcasjad=**
+
+**{namespace name}** = Endpoint=sb://**loggingtarget**.servicebus.windows.net/;SharedAccessKeyName=deviceTransmitterKey;SharedAccessKey=hdahduhcuihuhh38294uehduhhjkcasjad=
+
+```json
+{
+    "boot": {
+        "logging": {
+            "enabled": true,
+            "debugMessages": false,
+            "url": "amqps://{SAS Key Name}:{SAS key}@{Namespace Name}.servicebus.windows.net/{SAS Hub Name}",
+        }
+    }
+}
+
+
+```
+
