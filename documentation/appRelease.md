@@ -82,6 +82,22 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
+### 4.0.23420 (FW >= 1.0.8)
+- Improved stability for OSDP readers when using encryption
+- Added support for controlling logStream app through commands and configuration (requires FW >= 1.1.2) [link1](Entities/HardwareController.md#enablelogging-4000--fw-110) [link2](BootConfiguration/Overview.md#optional-settings-logging)
+- Fix for dueDate error in logs when using Holidays (#19270)
+- Added support to receive commands from multiple servers
+- Added support to receive state requests from multiple servers
+- Fix for null reference on card swipe reported in logs (#19433)
+- Http stability improvements when server is intermittently available.
+  - Http default timeout reduced to 10 seconds from 100
+- Support for 485 communication between controllers (restrictions apply)
+  - New gateway application acts as network proxy to downstream 485 controllers 
+- Command argument checks improved when receiving malformed commands
+- Hardware reports now sent when changes detected
+- Reboot and Restart commands added to controller [link](Entities/HardwareController.md#restart-4000)
+- Controller Firmware and application can be updated via USB drive [link](Entities/HardwareController.md#enableusbupdate-4000)
+
 ### 3.2.22252 (FW > 1.0.3)
 
 - Time Tables can be disabled vi operational modes (#19215)
