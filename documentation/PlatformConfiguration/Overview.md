@@ -143,6 +143,14 @@ Array of [queue]. Just as stateQueue, allows to specify multiple locations of st
 
 Array of [queue]. Just as commandQueue, allows to specify multiple locations of command queue on different services. **Only commandQueue or CommandQueues can be used** A validation exception will be thrown if both are non null.
 
+### commandResponseSubmission
+
+A response to a command will be routed back to the service that submitted the command.
+
+#### uri
+
+The URI the command response will be sent to.
+
 ### changeQueue
 
 [queue] The location of the entity change queue on the service tier.

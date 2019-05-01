@@ -46,6 +46,24 @@ Add Entry to stack:
 
 Remove entry from stack:
 
+> N.B. You can now use the `ClearMode` command instead
+
+- **Reference [string] (optional)** - Remove the entry with the matching reference from the stack. If no reference is supplied it will normally default to the source entity `type:id`. An Action will supply a reference dependant on its configuration, but it can be overridden in the command.
+
+The result of a command can be:
+
+| **Result**           | **Reason**            |   **Event Content** |
+|----------------------|-----------------------|---------------------|
+| Success              |                       | [Mode]              |
+| FailedOnPermissions  | NoPermissions         | [Mode]              |
+|                      | NoRelevantPermissions | [Mode]              |
+|                      | NoActivePermissions   | [Mode]              |
+| CommandArgumentError |                       | [Mode]              |
+
+### ClearMode
+
+Remove an entry from the operational mode stack.
+
 - **Reference [string] (optional)** - Remove the entry with the matching reference from the stack. If no reference is supplied it will normally default to the source entity `type:id`. An Action will supply a reference dependant on its configuration, but it can be overridden in the command.
 
 The result of a command can be:
