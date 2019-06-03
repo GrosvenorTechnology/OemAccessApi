@@ -82,7 +82,23 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
-### 4.0.23420 (FW >= 1.0.8)
+### 4.0.24148 (FW Minimum >= 1.0.8 : Recommended >= 1.1.2)
+
+- TTL timeouts in commands now enforced at the controller, commands will complete with status TtlExceeded (#19641)
+- EnabledFrom/EnableTo are now nullable inside controller rather than defaulting to Min/Max values for DateTime which causes issues when changing timezones (#19640)
+- Main LED States are no longer overwritten on heartbeat (#19551)
+- Controller now caches last downloaded application config file in db directory for diagnostics (#19586)
+- Supression of controller app crash when bad data detected in TimeTable (#19526)
+- Device MAC and active IP (if any) not included in 485 device hardware report (#19535)
+- Controller now has much stronger validation of invalid application config file (#19586)
+- Controller now has stronger validation of invalid boot configuration file (#19548)
+- Controller writes system uptime to diagnostic log every minute (#19539)
+- Added 'Clear operational Mode' (ClearMode) command (#19564)
+- 485 Line headers now implement back pressure to prevent download of changes from server at a much faster rate than the can be sent to the target device (#19545)
+- Bug fix: Null reference error reported on first card swipe after controller start (#19515)
+
+### 4.0.23420 (FW Minimum >= 1.0.8 : Recommended >= 1.1.2)
+
 - Improved stability for OSDP readers when using encryption
 - Added support for controlling logStream app through commands and configuration (requires FW >= 1.1.2) [link1](Entities/HardwareController.md#enablelogging-4000--fw-110) [link2](BootConfiguration/Overview.md#optional-settings-logging)
 - Fix for dueDate error in logs when using Holidays (#19270)
@@ -98,9 +114,9 @@ The Stable channel will contain all firmware versions as well as every applicati
 - Reboot and Restart commands added to controller [link](Entities/HardwareController.md#restart-4000)
 - Controller Firmware and application can be updated via USB drive [link](Entities/HardwareController.md#enableusbupdate-4000)
 
-### 3.2.22252 (FW > 1.0.3)
+### 3.2.22252 (FW >= 1.0.3)
 
-- Time Tables can be disabled vi operational modes (#19215)
+- Time Tables can be disabled via operational modes (#19215)
 - Extended Command response messages (#19240)
 - Holiday periods support extended (#19241)
 - Added states for Battery Health (#19242)
@@ -109,7 +125,7 @@ The Stable channel will contain all firmware versions as well as every applicati
 - Controller uses shared configuration nuget package (#19258)
 - Hardware report extended to contain network related information (#19259)
 
-### 3.2.21863 (FW > 1.0.3)
+### 3.2.21863 (FW >= 1.0.3)
 
 - Fixed issue where incorrect pin would result in a 'string format' error (#19203)
 - Implemented Holiday record type and permission gate (#19204) [link](Entities/CommonHoliday.md)
