@@ -82,6 +82,10 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
+### 4.0.24217 (FW Minimum >= 1.0.8 : Recommended >= 1.1.2) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.0.24217.zip)
+
+- Updated simulator UI
+
 ### 4.0.24148 (FW Minimum >= 1.0.8 : Recommended >= 1.1.2)
 
 - TTL timeouts in commands now enforced at the controller, commands will complete with status TtlExceeded (#19641)
