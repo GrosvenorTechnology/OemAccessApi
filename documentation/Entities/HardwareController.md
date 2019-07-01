@@ -207,6 +207,27 @@ When this state changes state, the following entries will be added to the event 
 
 ## Events
 
+### ConfigurationDownload
+
+Event is only created on an application configuration error.
+
+| **Result**       | **Event Content**                |
+|------------------|----------------------------------|
+| Error            | ErrorDescription                 |
+
+There can be one or more errors listed in the ErrorDescription. Each error is in the following format:
+
+"Property: {PropertyPrefix}:{PropertyName}, ErrorType: {ErrorType}, Error: {ErrorDescription}"
+
+The error types are:
+
+- NotFound,
+- NotUnique,
+- BelowMin,
+- AboveMax,
+- NotInRange,
+- Invalid
+
 ## Commands
 
 For a command to be successful, it requires permission. There is a list of
@@ -215,7 +236,6 @@ one comes back positive, the command is allowed.
 
 If a command is marked is *internal,* then it is available only within the
 controller but will still raise events.
-
 
 ### EnableSsh
 
@@ -237,7 +257,6 @@ This command will disable SSH.
 |---------------|----------------|-------------------|
 | Success              |         |                   |
 | FailedBecauseOfError |         |                   |
-
 
 ### Restart [>=4.0.0.0]
 
@@ -269,10 +288,9 @@ USB stick **MUST NOT** be larger than **4GB** and **MUST BE** formatted in **FAT
 
 New firmware and / or application **must** be located inside the "firmware" folder on the root of USB.
 
-Firmware file naming convention - "ADV10-fw-{build number}.bin" or "ADV40-fw-{build number}.bin" 
+Firmware file naming convention - "ADV10-fw-{build number}.bin" or "ADV40-fw-{build number}.bin"
 
 Application file naming convention - "{application type}-app-{build number}.zip"
-
 
 | **Result**    | **Reason**     | **Event Content** |
 |---------------|----------------|-------------------|

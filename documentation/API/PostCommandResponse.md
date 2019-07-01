@@ -114,6 +114,7 @@ public class CommandProgress
 Valid values for the command response result property are
 
 - Success,
+- TtlExceeded,
 - FailedOnPermissions,
 - FailedBecauseOfError,
 - UnknownCommand,

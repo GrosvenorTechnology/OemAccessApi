@@ -1,25 +1,13 @@
 # AccessControl.Area
 
 An Area is the logical representation of a controlled area. Portals are the
-normal entry and exit points of an area, though commands can also be used. The
-area will keep a list of people known to be in or out of the area. People not
-known to the area will be set to their relevant state as soon as the area deals
-with them.
+normal entry and exit points of an area, though commands can also be used. The area will keep a list of people known to be in or out of the area. People not known to the area will be set to their relevant state as soon as the area deals with them.
 
-Areas can work over more than one controller. To allow for this a multi-master
-concept has been adopted. When a change happens, the originating area instance
-is responsible for creating the event and sending state, other area instances
-then set their state without repeating the event or state message. This should
-keep the instances in-sync. There will normally be an area instance in a host
-service. An instance can ask for a re-sync, which would normally be provided by
-the host service.
+Areas can work over more than one controller. To allow for this a multi-master concept has been adopted. When a change happens, the originating area instance is responsible for creating the event and sending state, other area instances then set their state without repeating the event or state message. This should keep the instances in-sync. There will normally be an area instance in a host service. An instance can ask for a re-sync, which would normally be provided by the host service.
 
-An area can be commanded to be in a operational mode. The default mode is set in
-the area configuration.
+An area can be commanded to be in a operational mode. The default mode is set in the area configuration.
 
-Whatever the mode, the area will keep account of who is in or out of the area.
-Restrictions on occupancy limits will also always apply when in ‘Enforce
-Occupancy Limits’ state, though certain people can be made exempt.
+Whatever the mode, the area will keep account of who is in or out of the area. Restrictions on occupancy limits will also always apply when in ‘Enforce Occupancy Limits’ state, though certain people can be made exempt.
 
 The area has the following operational modes:
 
