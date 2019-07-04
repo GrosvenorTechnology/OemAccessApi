@@ -13,6 +13,7 @@ The controller has the following operational modes
         "id": "Ctrl-46537453278",
         "description": "Reception",
         "timezone": "Europe/London",
+        "enableUserEntityRequest": false
     }
 }
 ````
@@ -23,9 +24,13 @@ The controller has the following operational modes
 
 **[enum] (normal)** Specifies which operational mode is the default.
 
-### Timezone
+### timezone
 
 **[string (200)] (Etc/UTC)** The IANA timezone to be used to evaluate local time. The list of timezones can be found in the [IANA Timezone database](https://www.iana.org/time-zones) of which a list can be found [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
+### enableUserEntityRequest
+
+**[bool] (false)** Specifies where the User Entity Request feature is enabled.
 
 ## States
 
