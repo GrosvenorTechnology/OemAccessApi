@@ -43,8 +43,12 @@ The Boot configuration are loaded from a USB key on boot. The Key should be FAT3
 
 ## Default URI
 
-[required] This URI will be used as the base for all default URIs and relative
+**[string] [required]** This URI will be used as the base for all default URIs and relative
 custom URIs.
+
+## autoRestart (>= V4.0.24734)
+
+**[bool] (true)** Controls if the controller will automatically restart when the boot config is updated.  If set to false the boot config will be stored, but controller app must be restarted (not rebooted) to pick up the changes.  This allows more fine grain control of when changes requiring restart are applied. Can also help protect against server errors that send a bootconfig file by mistake.
 
 ## Proxy
 

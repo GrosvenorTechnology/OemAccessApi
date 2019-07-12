@@ -11,6 +11,40 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
+### 4.0.24757 (FW Minimum >= 1.0.8 : Recommended >= 1.1.2) - Released 12/7/2019 [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.0.24757.zip)
+
+- Download of unknown tokens [link](API/UserEntityRequest.md)
+- Preview release of downstream 485 support - details from support on request
+- Log forwarding can be enabled without controller restart (#19650)
+- Nuget package now published on nuget.org is signed (GT.OemAccess.Configuration)
+- Updated simulator UI
+- TTL timeouts in commands now enforced at the controller, commands will complete with status TtlExceeded (#19641)
+- EnabledFrom/EnableTo are now nullable inside controller rather than defaulting to Min/Max values for DateTime which causes issues when changing timezones (#19640)
+- Main LED States are no longer overwritten on heartbeat (#19551)
+- Controller now caches last downloaded application config file in db directory for diagnostics (#19586)
+- Suppression of controller app crash when bad data detected in TimeTable (#19526)
+- Device MAC and active IP (if any) not included in 485 device hardware report (#19535)
+- Controller now has much stronger validation of invalid application config file (#19586)
+- Controller now has stronger validation of invalid boot configuration file (#19548)
+- Controller writes system uptime to diagnostic log every minute (#19539)
+- Added 'Clear operational Mode' (ClearMode) command (#19564)
+- 485 Line headers now implement back pressure to prevent download of changes from server at a much faster rate than the can be sent to the target device (#19545)
+- Bug fix: Null reference error reported on first card swipe after controller start (#19515)
+- Improved stability for OSDP readers when using encryption
+- Added support for controlling logStream app through commands and configuration (requires FW >= 1.1.2) [link1](Entities/HardwareController.md#enablelogging-4000--fw-110) [link2](BootConfiguration/Overview.md#optional-settings-logging)
+- Fix for dueDate error in logs when using Holidays (#19270)
+- Added support to receive commands from multiple servers
+- Added support to receive state requests from multiple servers
+- Fix for null reference on card swipe reported in logs (#19433)
+- Http stability improvements when server is intermittently available.
+  - Http default timeout reduced to 10 seconds from 100
+- Support for 485 communication between controllers (restrictions apply)
+  - New gateway application acts as network proxy to downstream 485 controllers 
+- Command argument checks improved when receiving malformed commands
+- Hardware reports now sent when changes detected
+- Reboot and Restart commands added to controller [link](Entities/HardwareController.md#restart-4000)
+- Controller Firmware and application can be updated via USB drive [link](Entities/HardwareController.md#enableusbupdate-4000)
+
 ### 3.3.22855 (FW >= 1.0.3) - Released 21/2/2019 - [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-3.3.22855.zip)
 
 - Optimise XML sent to blade, was causing issues with OSDP when encryption was enabled.
