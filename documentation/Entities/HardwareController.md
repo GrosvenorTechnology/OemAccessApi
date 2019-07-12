@@ -28,9 +28,13 @@ The controller has the following operational modes
 
 **[string (200)] (Etc/UTC)** The IANA timezone to be used to evaluate local time. The list of timezones can be found in the [IANA Timezone database](https://www.iana.org/time-zones) of which a list can be found [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
-### enableUserEntityRequest
+### unknownTokenRequestEnabled (>= V4.0.24734)
 
-**[bool] (false)** Specifies where the User Entity Request feature is enabled.
+**[bool] (false)** If set to true, the controller will make a network request to the server and request details of unknown tokens, [see here](../API/UserEntityRequest.md) for details
+
+### unknownTokenTimeout (>= V4.0.24734)
+
+**[timespan] (1 day)** How long to cache the unknown token result.  If the server returns a result that the token is unknown, the controller will not ask the server for the token again for the period defined in this setting.
 
 ## States
 
