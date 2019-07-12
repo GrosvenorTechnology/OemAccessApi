@@ -20,6 +20,8 @@
 
 ## [OSDP](documentation/GettingStarted/GettingStarted-OSDP.md)
 
+## [Unknown Token Download](documentation/GettingStarted/GettingStartedUnknownTokenDownload.md)
+
 # Version History
 
 ## [Firmware](documentation/firmwareReleases.md)
