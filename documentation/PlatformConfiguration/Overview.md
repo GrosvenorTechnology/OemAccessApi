@@ -159,6 +159,10 @@ The URI the command response will be sent to.
 
 [uri] The location of the permission request service. This is used by the `serverPermission` gate in an User entity permission.
 
+### userEntityRequest
+
+[uri] The location of the user request service. This is used by the [Unknown Token Request](../GettingStarted/GettingStartedUnknownTokenDownload.md) function.
+
 ### eventSubmission and stateSubmission
 
 All event and state updates send from the controller are sent via a platform level sender. It is possible to route selected to multiple different endpoints. Each configured endpoint has a filter associated to it that controls the states and events that will be forwarded to that URI.
