@@ -8,7 +8,7 @@ This getting started guid will walk you through getting the simulator up and run
 
 For this walk through we're going to use our OEM-Simulator application rather than a real controller as it's easier to get up and running at first, but the real controller will work the same.  
 
-We shall be using our test server application as the server component of this setup.  Later on you'll be replacing the test server with your own implementation, but the test server has all the endpoints implemented to get you started.  The test server has no UI, so we will be using [Postman](https://www.getpostman.com/) to interact with it.
+We shall be using our test server application as the server component of this setup.  For production systems you'll be replacing the test server with your own implementation, but the test server has all the endpoints implemented to get you started.  The test server has no UI, so we will be using [Postman](https://www.getpostman.com/) to interact with it.
 
 > The test server uses ports 8080 and 8081, if you're having problems please ensure that these ports are allowed in your local firewall.
 
@@ -92,9 +92,9 @@ The simulators default platform config overrides heartbeat for demo purposes, it
 
 ### Sample Application configuration
 
-Out the box, the simulator will open with the application config populated with a sime application config file that has a couple of inputs and outputs configured.  If the controller has never received an application config file no blade hardware will be initialized, i.e. Readers and Locks.
+Out the box, the simulator will open with the application config populated with a simple application config file that has a couple of inputs and outputs configured.  If the controller has never received an application config file no blade hardware will be initialized, i.e. Readers and Locks.
 
-As our intent for this demo is to experiment with users and tokens, we're going to change the default for one that has a fully configured Door blade.
+As our intent for this demo is to experiment with users and tokens, we're going to change the default for one that has a reader and door defined.
 
 One option we could use is the simulator has some example files, if you select the `Configuration` tab on the right hand side you will see a drop down for `Application Configuration` which by default is `app-default.json` if you change this to `appFullBlade.json`, this will populate the the `Application Configuration` tab with a fully populated app config file.
 
@@ -285,6 +285,8 @@ As a final step we're now going to update the user to give them permissions to u
 }
 ```
 
+> The way permissions work in the OemAccess application is once that controller has worked out what door a user is attempting to gain access to, it will look at the door and extract the list of permissions the door will accept (only one must work).  In our example we've called this `General-Access` but we could have called it `Door-1-Entry`; the naming and logical scheme is up to you.  Once the controller has this list in hand, it loads the user and looks at the list of permissions on the user; it then starts evaluating any that the Door and the User have in common.  As soon as one of these common permissions evaluates as true, the controller stops and allows the user through the door.
+
 Once you have seen the controller update it's Person's table a second time you can swipe the card again and you will see a successful `PortalEntryUsed` event logged and the valid LED on the blade light up.
 
 ```txt
@@ -369,7 +371,7 @@ This will block the user from using the door outside those hours and a failure e
 
 In this example the `Result` is `FailedOnPermissions:TimeGateClosed` which is an example of an event with a reason after the result code.
 
-As easy as the inline time gate is to use for demo usage, or cases where access rules vary wildly from user to user, a better route is the use of a shared common timetable.  Another downside of the inline time, is if the rule changed from 9-17 to 9-18, every user would have to be updated.  The use of a shared common timetable solves this.
+As easy as the inline time gate is to use for demo usage, or cases where access rules vary wildly from user to user, a better route is the use of a shared common timetable.  A downside of the inline time, is if the rule changed from 9-17 to 9-18, every user would have to be updated.  The use of a shared common timetable solves this.
 
 The first step in this is to update our user to the following:
 
