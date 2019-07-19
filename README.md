@@ -1,4 +1,4 @@
-![](documentation/media/0abe22ee2f204ba44e787a8acd1d1bd9.png)
+# ![Grosvenor Logo](documentation/media/0abe22ee2f204ba44e787a8acd1d1bd9.png)
 
 # OEM-Access-Controller
 
@@ -16,7 +16,9 @@
 
 # Getting Started Guides
 
-## [Quick Start](documentation/GettingStarted/GettingStarted.md)
+## [Getting Started with the Simulator](documentation/GettingStarted/GettingStartedSimulator.md)
+
+## [Provision Physical Device](documentation/GettingStarted/GettingStartedProvisionDevice.md)
 
 ## [OSDP](documentation/GettingStarted/GettingStarted-OSDP.md)
 
