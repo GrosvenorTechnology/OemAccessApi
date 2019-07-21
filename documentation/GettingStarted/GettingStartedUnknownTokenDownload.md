@@ -9,8 +9,7 @@ This feature was first supported in application version 4.0.24734.
 
 ## Getting set up
 
-For this walk through we're going to use our OEM-Simulator application rather than a real controller as it's easier to get up and running than a
-real controller, but the real controller will work the same.  
+For this walk through we're going to use our OEM-Simulator application rather than a real controller as it's easier to get up and running, but the real controller will work the same.  
 
 We shall be using our test server application as the server component of this setup, and we use Postman to load data into Postman.
 

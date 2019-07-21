@@ -374,6 +374,13 @@ details).
 
 **[boolean] [diagnostic]** Is the portal available on a connected blade.
 
+### portalLockState
+
+**[enum] [diagnostic]** State of the portal's lock.
+
+- locked
+- unlocked
+
 ## Events
 
 The following events are sent from the portal. All event have the portal
