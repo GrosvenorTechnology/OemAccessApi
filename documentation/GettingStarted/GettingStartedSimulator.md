@@ -545,13 +545,13 @@ In some cases you may not want to distribute your time tables via the changes sy
 
 ## Controlling the Door (or anything else) using Commands
 
-Now we've granted our users access to the doors they need, we're going to wlk through how to send a command to a door to tell it to unlock for 1 minute.  Commands are our way to temporarily change the properties of an entity in the system such as to unlock a door, operate and output or disable a reader on a door we don't want anyone to use.
+Now we've granted our users access to the doors they need, we're going to walk through how to send a command to a door to tell it to unlock for 1 minute.  Commands are our way to temporarily change the properties of an entity in the system such as to unlock a door, operate and output or disable a reader on a door we don't want anyone to use.
 
 Commands are in some ways similar to the user changes we used above, they are fragments of JSON that are queued on the server to send to the controller as soon as it's ready to pick them up, it's just that they use their own queue, not the changes queue.
 
 > POST <http://localhost:8080/configuration/VIR-ADV-C-MLT~00001001)/command>
 
-Our door unlock command we will send to the controller will look like the following example, the key points are `Entity` - The thing we want the command to operate on, `CommandName` - what to do, and the optional `Parameters` list.
+The door unlock command we will send to the controller will look like the following example, the key points are `Entity` - The thing we want the command to operate on, `CommandName` - what to do, and the optional `Parameters` list.
 
 ```json
 {
@@ -601,7 +601,7 @@ var dateNow= new Date();
 postman.setEnvironmentVariable("requestTimestamp", dateNow.toISOString());
 ```
 
-Which gives us nicely formatted commands, which when sent to the controller show result in the door unlocking and the successful `CommandResponse` message being emitted.  The also will also emit a bunch of state messages to tell you what the door is actually doing.
+Which gives us nicely formatted commands, which when sent to the controller should result in the door unlocking and the successful `CommandResponse` message being emitted.  The also will also emit a bunch of state messages to tell you what the door is actually doing.
 
 ```txt
 [19/07/2019 18:11:18] CommandResponse :
