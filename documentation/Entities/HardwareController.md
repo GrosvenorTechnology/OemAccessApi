@@ -222,13 +222,8 @@ Event is raised when application configuration is downloaded and applied.
 
 | **Result**       | **Event Content**                |
 |------------------|----------------------------------|
-| Success          | Outcome                          |
+| Success          |                                  |
 | Error            | ErrorDescription                 |
-
-The outcomes are:
-
- - ConfigurationDownloaded - event raised after the application configuration is downloaded on to the controller and passed the validation.
- - ConfigurationApplied - event raised after the controller applied the configuration.
 
 There can be one or more errors listed in the ErrorDescription. Each error is in the following format:
 
