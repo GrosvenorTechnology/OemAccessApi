@@ -11,6 +11,7 @@ The configuration of the controller is split into two sections, platform and app
         "protocolLevel": 1,
         "defaultPollFrequency": 30,
         "defaultQueueBatchSize": 100,
+        "verboseNetworkLogging":false,
         "services": [
             {"name": "myAccess", "uri": "http://myAccessService.com/api"}
         ],
@@ -102,6 +103,10 @@ The default batch size to be used when polling a queue unless overridden on a sp
 ## Services
 
 [optional] You can add extra service aliases to the ones already defined in the boot config. If the name of an existing service is specified, the value will be replaced.
+
+## VerboseNetworkLogging
+
+When set to **true**, controller will output additional network logging information that can be inspected by logging into the controller or by using log forwarding ([Boot Config Optional Settings: Logging](../BootConfiguration/Overview.md)). **Property defaults to false**.
 
 ## URI Locations
 
