@@ -1,6 +1,6 @@
 # Permission Request
 
-The permission request service is used by the `serverPermission` gate in an User entity permission.
+The permission request service is used by the `serverPermission` gate in an User entity permission and can also be used globally.
 
 ## URL
 
@@ -30,6 +30,8 @@ The permission request service is used by the `serverPermission` gate in an User
 }
 ````
 
+If the request is due to the global server permission being enabled, then the `requestId` will be "GlobalServerPermission". Otherwise it will be set by what is defined in the serverPermission gate.
+
 ## Response
 
 The recommended data to use on coming to a decision is the `RequestId` and `UserId`.
@@ -40,22 +42,64 @@ If using for area APB the `RequestId` can be used to determine the area and whet
 
 Request processed, result in response body.
 
-#### Allowed
+#### Method 1
+
+##### Allowed
 
 ````json
 {
-    "Allow":true
+    "Allow": true
 }
 ````
 
 N.B. A reason can be supplied if required.
 
-#### Not allowed
+##### Not allowed
 
 ````json
 {
-    "Allow":false,
+    "Allow": false,
     "Reason":"FailedAreaCheck"
+}
+````
+
+#### Method 2
+
+##### Allow
+
+````json
+{
+    "PermissionResponse ": "allow"
+}
+````
+
+##### Deny
+
+````json
+{
+    "PermissionResponse ": "deny",
+    "Reason":"FailedAreaCheck"
+}
+````
+
+##### FallBack
+
+Fall back to defined user permissions in the controller.
+
+````json
+{
+    "PermissionResponse ": "fallBack"
+}
+````
+
+##### Error
+
+When using global server permissions, if something goes wrong with the server processing of the request, returning `error` will get the controller to use its defined failure mode (Allow | Deny | FallBack).
+
+````json
+{
+    "PermissionResponse ": "error",
+    "Reason":"DatabaseError"
 }
 ````
 

@@ -13,7 +13,8 @@ The controller has the following operational modes
         "id": "Ctrl-46537453278",
         "description": "Reception",
         "timezone": "Europe/London",
-        "enableUserEntityRequest": false
+        "globalServerPermissionEnabled": true,
+        "globalServerPermissionFailureMode": "fallBack"
     }
 }
 ````
@@ -27,6 +28,18 @@ The controller has the following operational modes
 ### timezone
 
 **[string (200)] (Etc/UTC)** The IANA timezone to be used to evaluate local time. The list of timezones can be found in the [IANA Timezone database](https://www.iana.org/time-zones) of which a list can be found [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
+### globalServerPermissionEnabled (>= V4.1)
+
+**[bool] (false)** If set to true, the controller will send a server permission request to the server before using a users defined permissions.
+
+### globalServerPermissionFailureMode (>= V4.1)
+
+**[enum] (fallBack)** Specifies the default failure mode, if the controller can not get an answer from the server.
+
+- **allow**
+- **deny**
+- **fallBack**
 
 ### unknownTokenRequestEnabled (>= V4.0.24734)
 

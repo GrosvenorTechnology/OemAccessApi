@@ -432,11 +432,28 @@ Similar to the `time` gate, this gate will be active if the time falls inside on
 ```json
 {
     "type": "serverPermission",
-    "data":
-        {
-            "id": "building01_Entry",
-            "allowWhenOffline": true
+    "data": {
+        "id": "portal1",
+        "failureMode": "fallBack",
+        "fallBack": {
+            "type": "inlineTime",
+            "data": [
+                {
+                    "days": ["Mo","Tu","We","Th","Fr"],
+                    "periods": [
+                        {
+                            "start": "09:00:00",
+                            "end": "13:00:00"
+                        },
+                        {
+                            "start": "14:00:00",
+                            "end": "18:20:00"
+                        }
+                    ]
+                }
+            ]
         }
+    }
 }
 ```
 
@@ -452,7 +469,19 @@ This gate gets the decision on whether it is active from the server. The server 
 
 The recommended data to use on coming to a decision is the `RequestId` and `UserId`.
 
-In the event of the server being unavailable, the `allowWhenOffline` gate parameter is used to determine whether the gate is active.
+##### failureMode
+
+**[enum] (fallBack)** Specifies the failure mode, if the controller can not get an answer from the server.
+
+- **allow**
+- **deny**
+- **fallBack**
+
+##### fallBack
+
+**[permissionGate] (optional)** Specifies the permissions to use if the server permission request fails.
+
+In the event of the server being unavailable, the `failureMode` gate parameter is used to determine what the gate does. If the failure mode is set to `fallBack`, the fallBack permission gates are used.
 
 >The use of this gate is likely to be observed by the user as a delay between the read of the token and the resultant indication. This will be very apparent if the server is off-line, when a  delay of couple of seconds  may be possible.
 
