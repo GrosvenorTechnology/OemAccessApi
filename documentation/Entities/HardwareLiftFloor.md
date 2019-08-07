@@ -8,9 +8,9 @@ The lift floor entity is used to operate an output to allow a lift user to selec
 
 The lift floor has the following operational modes:
 
-- **Normal** (Default) – The output will change in response to the `RequestFloor` command, providing the user has an access permission.
-- **NoAccess** - The output will stay off (disabling the push button). The output will only respond to ChangeMode commands.
-- **OpenAccess** - The output will stay on (enabling the push button). The output will only respond to ChangeMode commands.
+- **normal** (Default) – The output will change in response to the `RequestFloor` command, providing the user has an access permission.
+- **noAccess** - The output will stay off (disabling the push button). The output will only respond to ChangeMode commands.
+- **openAccess** - The output will stay on (enabling the push button). The output will only respond to ChangeMode commands.
 
 Changing the mode with an action can allow general access to a floor, or completely prevent anyone accessing a floor altogether.
 
