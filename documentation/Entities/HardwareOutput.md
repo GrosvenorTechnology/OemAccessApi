@@ -34,7 +34,7 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
 
 ### address
 
-**[hardware-address]** The controller logical address for the input
+**[hardware-address]** The controller logical address for the output
 
 ### operationalMode
 

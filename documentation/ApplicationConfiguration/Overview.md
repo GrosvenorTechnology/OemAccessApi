@@ -33,6 +33,7 @@ The various sections can be defined in the controller node in any order.
 - [controller](../Entities/HardwareController.md)
 - [holidays](../Entities/CommonHoliday.md)
 - [inputs](../Entities/HardwareInput.md)
+- [lifts](../Entities/HardwareLift.md)
 - [outputs](../Entities/HardwareOutput.md)
 - [readers](../Entities/HardwareReader.md)
 - [portals](../Entities/AccessControlPortal.md)

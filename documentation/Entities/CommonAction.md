@@ -1,4 +1,4 @@
-# Common.Actions
+# Common.Action
 
 **Supported >= 3.0.0**
 

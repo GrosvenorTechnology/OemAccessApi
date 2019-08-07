@@ -53,4 +53,4 @@ No Standalone events.
 
 ## Commands
 
-No Standalone events.
+No Standalone commands.
