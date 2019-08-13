@@ -104,7 +104,7 @@ The default batch size to be used when polling a queue unless overridden on a sp
 
 [optional] You can add extra service aliases to the ones already defined in the boot config. If the name of an existing service is specified, the value will be replaced.
 
-## VerboseNetworkLogging
+## VerboseNetworkLogging (>=4.1)
 
 When set to **true**, controller will output additional network logging information that can be inspected by logging into the controller or by using log forwarding ([Boot Config Optional Settings: Logging](../BootConfiguration/Overview.md)). **Property defaults to false**.
 
