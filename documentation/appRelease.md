@@ -11,6 +11,19 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
+### 4.1.25068 (FW Minimum >= 1.1.2) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.1.25068.zip)
+
+- [Feature] Added support for simple lift support #19395 [link](Entities/HardwareLift.md)
+- [Feature] Global support for Server Permissions on readers #19724 [link](Entities/HardwareController.md#globalserverpermissionenabled--v41)
+- [Feature] Verbose network logging can now be enabled via platform config file (allows enabling without app restart) [link](PlatformConfiguration/Overview.md#verbosenetworklogging--v41)
+- [Feature] Batched heartbeat support for 485 Line Headers #19546 [link](Entities/HardwareController.md#configurationdownload)
+- [Feature] Configuration Event (Success) now sent when config is applied, fail event contains validation failures #19711
+- [Feature] Configuration app now writes entry and exit permissions IDs in doors
+- [Feature] Configuration app has 'development use only' banner removed 
+- [Bug] Fixed invalid validation of device addresses #19741
+- [Bug] Log stream on controller not correctly enabled via boot config file #19726
+- [Bug] DHCP status incorrectly reported #19690
+
 ### 4.0.24757 (FW Minimum >= 1.0.8 : Recommended >= 1.1.2) - Released 12/7/2019 [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.0.24757.zip)
 
 - Download of unknown tokens [link](API/UserEntityRequest.md)
@@ -116,15 +129,5 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
-### 4.1.25061 (FW Minimum >= 1.1.2) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.1.25061.zip)
 
-- [Feature] Added support for simple lift support #19395 [link](Entities/HardwareLift.md)
-- [Feature] Global support for Server Permissions on readers #19724 [link](Entities/HardwareController.md#globalserverpermissionenabled--v41)
-- [Feature] Verbose network logging can now be enabled via platform config file (allows enabling without app restart) [link](PlatformConfiguration/Overview.md#verbosenetworklogging--v41)
-- [Feature] Batched heartbeat support for 485 Line Headers #19546 [link](Entities/HardwareController.md#configurationdownload)
-- [Feature] Configuration Event (Success) now sent when config is applied, fail event contains validation failures #19711
-- [Bug] Fixed invalid validation of device addresses #19741
-- [Bug] Log stream on controller not correctly enabled via boot config file #19726
-- [Bug] DHCP status incorrectly reported #19690
-- [Known Issue] Controller to controller communications over 485 sometimes does not come on line.
 
