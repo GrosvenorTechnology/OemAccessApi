@@ -1,17 +1,20 @@
 # Application Configuration
 
-The Application Configuration is a JSON document that defines the behaviour of the access control logic portion of the application.
+The Application Configuration is a JSON document that defines the behavior of the access control logic portion of the application.
 
 ## Overview
 
+- There are application configuration files for the access control controller and the gateway (485 line header) controller.
 - **User** - Throughout this document the term ‘User’ will be used to mean an entity with access permissions associated to them. In practice this may be a User/Visitor/Car/Asset, but User is the most natural for descriptive purposes.
 - [Data Types](../Entities/DataTypes.md) - All the data types used are defined here.
 
 ## File Structure
 
-The Application Configuration is comprised of a single root controller node with a selection of sub nodes that can only appear once, such as readers and portals.  The controller type can have it's own configuration properties as well.
+The Application Configuration is comprised of a single root controller node with a selection of sub nodes that can only appear once, such as readers and portals. The controller type can have it's own configuration properties as well.
 
 The various sections can be defined in the controller node in any order.
+
+Format for the access control controller:
 
 ````json
 {
@@ -25,7 +28,17 @@ The various sections can be defined in the controller node in any order.
 }
 ````
 
-## File Sections
+Format for the gateway controller:
+
+````json
+{
+    "controller": {
+        "polledClients": [...]
+    }
+}
+````
+
+## File Sections for the access control controller
 
 - [actions](../Entities/CommonAction.md)
 - [areas](../Entities/AccessControlArea.md)
@@ -41,6 +54,12 @@ The various sections can be defined in the controller node in any order.
 - [system modes](../Entities/CommonSystemMode.md)
 - [time tables](../Entities/CommonTimeTable.md)
 - [token formats](TokenFormat.md)
+
+## File Sections for the gateway controller
+
+**Preview >= 4.1.0**
+
+- [polled clients](../Entities/HardwarePolledClient.md)
 
 ## Common Properties
 
