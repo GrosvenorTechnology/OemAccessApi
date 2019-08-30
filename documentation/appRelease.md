@@ -11,6 +11,10 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
+### 4.1.25118 (FW Minimum >= 1.1.2) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.1.25118.zip)
+
+- [Bug] Multi-digit keypad data not recognized #19759
+
 ### 4.1.25068 (FW Minimum >= 1.1.2) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.1.25068.zip)
 
 - [Feature] Added support for simple lift support #19395 [link](Entities/HardwareLift.md)
