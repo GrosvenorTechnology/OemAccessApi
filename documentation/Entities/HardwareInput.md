@@ -48,12 +48,57 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
 **[Boolean] (true)** If true the input will show a logical state of *Reset* when the input
 is Open.
 
+### sensePeriod
+
+**Supported >= 4.2.0**
+
+**[int] (50)** Defines the number of milliseconds before the input is deemed to be in the active state. The value can be from 50ms to 3600000ms (1 hour). Often used to ensure a non controlled fire door is not wedged open. A sense period of 30000ms (30 seconds) ensures the monitoring input does not go into alarm unless the door is open for more than this time.
+
 ### inputType
+
+**Supported >= 4.2.0**
 
 **[enum] (unsupervised)** Configures the input type.
 
 - **unsupervised** - The input is a basic Open/Closed type input.
-- **supervised** - The input is a 4 state input with open/closed/fault/tamper support.
+- **supervised** - The input is a 4 state input with open/closed/error support.
+- **custom** - The input is configured by defining the `customInputBandDefinitions` property. When using this input type the `normallyOpen` and `sensePeriod` properties are not required and are ignored.
+
+### customInputBandDefinitions
+
+Only used when the `inputType` is defined as `custom`. It allows the transition band voltages of an input to be defined along with the sense periods.
+
+There are four bands: `shortCircuit`, `inactive`, `active` and `openCircuit`. The `shortCircuit` and `openCircuit` can be omitted if the input should work like an unsupervised input. The `shortCircuit` minimum is fixed to 0V and the `openCircuit` maximum is fixed to the maximum voltage 5.5V.
+
+The `minVoltage` and `maxVoltage` values are in millivolts and configure the exit voltage levels. The `sensePeriod` value defines the time in milliseconds for switching into a new band. The time must be between 50ms and 1 hour (3600000ms).
+
+An input switches to a different band, if the voltage level is outside the
+min/max values of the current band for more than the `sensePeriod` time of the new band.
+
+The two or four band definitions need to cover the complete voltage range
+from 0V to 5.5V and leave no gaps. An overlap is allowed and allows for a hysteresis to be defined.
+
+See examples below: (The values shown are the default values the `unsupervised` and `supervised` input types use internally)
+
+````json
+{
+        "customInputBandDefinitions": {
+            "inactive": {"minVoltage": 0, "maxVoltage": 2550, "sensePeriod": 50},
+            "active": {"minVoltage": 2450, "maxVoltage": 5500, "sensePeriod": 50}
+        }
+}
+````
+
+````json
+{
+        "customInputBandDefinitions": {
+            "shortCircuit": {"maxVoltage": 1235, "sensePeriod": 50},
+            "active": {"minVoltage": 1188, "maxVoltage": 1978, "sensePeriod": 50},
+            "inactive": {"minVoltage": 1910, "maxVoltage": 2500, "sensePeriod": 50},
+            "openCircuit": {"minVoltage": 2460,  "sensePeriod": 50}
+        }
+}
+````
 
 ### inputOperationType
 
