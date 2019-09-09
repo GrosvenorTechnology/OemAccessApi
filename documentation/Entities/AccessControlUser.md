@@ -131,7 +131,7 @@ It is possible to define an enabled period for an identifier by using the proper
 ]
 ````
 
-**[verifier[]] (empty)** Verifiers provide secondary verification for a user that has been identified by an identifier. For example a PIN number. It is possible to also define a *duress* PIN that will also silently raise an event.
+**[verifier[]] (empty)** Verifiers provide secondary verification for a user that has been identified by an identifier. For example a PIN number. It is possible to also define a *duress* PIN that will also silently raise an event. Details on encoding the pin number are shown in the section on Encoding Pins. 
 
 ### Permissions
 
@@ -486,3 +486,59 @@ In the event of the server being unavailable, the `failureMode` gate parameter i
 >The use of this gate is likely to be observed by the user as a delay between the read of the token and the resultant indication. This will be very apparent if the server is off-line, when a  delay of couple of seconds  may be possible.
 
 Please see the [Permission Request](..\api\PermissionRequest.md) document for information on the protocol.
+
+### Encoding Pins
+
+Pins used in verifiers in the user record are hashed versions of the pin, the pins are strings and must match the target formatting required by the target reader type, no conversion will be don on the controller.  For numeric key pads, this means that the ping must be zero padded to match the number of expected pin digits, e.g. 0010 not 10.  
+
+The following C# example will encode the pins for use on the controller.
+
+```c#
+using System;
+using System.Security.Cryptography;
+
+namespace GT.OemAccess.Utils
+{
+    public static class Hasher
+    {
+        // The following constants may be changed without breaking existing hashes.
+        private const int SALT_BYTE_SIZE = 12;
+        private const int HASH_BYTE_SIZE = 12;
+        private const int PBKDF2_ITERATIONS = 1000;
+
+        /// <summary>
+        /// Creates a salted PBKDF2 hash of the password.
+        /// </summary>
+        /// <param name="pin">The pin to hash.</param>
+        /// <returns>The hash of the password.</returns>
+        public static string CreateHash(string pin)
+        {
+            // Generate a random salt
+            var csprng = new RNGCryptoServiceProvider();
+            var salt = new byte[SALT_BYTE_SIZE];
+            csprng.GetBytes(salt);
+
+            // Hash the password and encode the parameters
+            var hash = PBKDF2(pin, salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE);
+            return PBKDF2_ITERATIONS + ":" +
+                Convert.ToBase64String(salt) + ":" +
+                Convert.ToBase64String(hash);
+        }
+
+        /// <summary>
+        /// Computes the PBKDF2-SHA1 hash of a string.
+        /// </summary>
+        /// <param name="pin">The pin to hash.</param>
+        /// <param name="salt">The salt.</param>
+        /// <param name="iterations">The PBKDF2 iteration count.</param>
+        /// <param name="outputBytes">The length of the hash to generate, in bytes.</param>
+        /// <returns>A hash of the password.</returns>
+        private static byte[] PBKDF2(string pin, byte[] salt, int iterations, int outputBytes)
+        {
+            var pbkdf2 = new Rfc2898DeriveBytes(pin, salt) { IterationCount = iterations };
+            return pbkdf2.GetBytes(outputBytes);
+        }
+    }
+}
+```
+
