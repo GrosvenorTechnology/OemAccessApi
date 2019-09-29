@@ -133,5 +133,11 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
+### 4.2.25296 (FW Minimum >= 1.1.2) 
 
+- [Feature] Added support for Custom input levels and sense times #19616
+- [Feature] Improved OSDP reader setup to support setting up OSDP Reader encryption #19544
+- [Bug] Fixes for multiple fast reads on controller #19787
+- [Bug] Pins sent to controller with leading zeros do not work (i.e. 0012) #19759
+- [Bug] 485 Controller-to-Controller stability fixes #19725
 
