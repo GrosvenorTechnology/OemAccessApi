@@ -381,6 +381,23 @@ details).
 - locked
 - unlocked
 
+### egressSwitchState
+
+**[enum] [diagnostic]** State of the egress switch.
+
+- active
+- inactive
+- error
+- unknown
+
+### egressSwitchErrorState
+
+**[enum]** Error state of the egress switch.
+
+- Unknown
+- Ok
+- Error
+
 ## Events
 
 The following events are sent from the portal. All event have the portal
