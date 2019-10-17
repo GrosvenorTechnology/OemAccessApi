@@ -9,6 +9,7 @@ The following entity types are used by the controller
 - [Common.Action](CommonAction.md)
 - [Common.SystemMode](CommonSystemMode.md)
 - [Common.TimeTable](CommonTimeTable.md)
+- [Common.SharedPermissionSet](CommonSharedPermissionSet.md)
 - [Hardware.Blade](HardwareBlade.md)
 - [Hardware.Controller](HardwareController.md)
 - [Hardware.Input](HardwareInput.md)
