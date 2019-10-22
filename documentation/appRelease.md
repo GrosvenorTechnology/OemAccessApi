@@ -133,11 +133,22 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
-### 4.2.25296 (FW Minimum >= 1.1.2) 
+### 4.2.25532 (FW Minimum >= 1.1.2)
+
+- [Feature] For OSDP part coded blades, OSDP will be enabled by default at 9600, no termination using a default master key #19857
+- [Feature] Added extra vendor IDs for detecting Third Millennium OSDP readers #19815
+- [Feature] Minimum lift output activation time reduced to 500ms from 2 seconds #19849
+- [Feature] New state added for egress (REX) state (Normal/Tamper) #19845
+- [Bug] Performance improvement for Simple Lifts, outputs now activate faster #19850
+- [Bug] Unknown feature did not allow access on first read of card, access granted on second read #19854
+- [Bug] Message ID was set to empty guid on state notifications #19812
+- [Bug] OSDP Reader LED now defaults to constant not pulsed #19811
+- [Bug] Inputs not working after upgrading from older application versions #19838
+
+### 4.2.25296 (FW Minimum >= 1.1.2)
 
 - [Feature] Added support for Custom input levels and sense times #19616
 - [Feature] Improved OSDP reader setup to support setting up OSDP Reader encryption #19544
 - [Bug] Fixes for multiple fast reads on controller #19787
 - [Bug] Pins sent to controller with leading zeros do not work (i.e. 0012) #19759
 - [Bug] 485 Controller-to-Controller stability fixes #19725
-

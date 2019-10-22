@@ -317,3 +317,25 @@ Depending on the result of the command the following items will be present in th
 |----------------------|-----------------------|
 | FailedBecauseOfError |                       |
 | CommandArgumentError | NoKey                 |
+
+### SetupDeviceAndEncryption
+
+**Supported >= 4.2.0**
+
+This command will search for an offline device (reader) connected to the bus and change it's baud rate and address to the configured properties and set the devices encryption key based on the OSDP master key set on the blade. 
+This should then bring the device online. Never use this command when you have more than one device offline on the bus, as it will cause unpredictable results.
+
+Optional parameters are:
+
+- **LowestAddress [int] (0)** - The lowest address scanned.
+- **HighestAddress [int] (7)** - The highest address scanned.
+
+Depending on the result of the command the following items will be present in the event contents.
+
+| **Result**           | **Reason**            |
+|----------------------|-----------------------|
+| FailedBecauseOfError | DeviceAlreadyOnline   |
+|                      | UndefinedBaudRate     |
+|                      | FailedToSetConfig     |
+|                      | FailedToSetComms      |
+| CommandArgumentError | AddressRangeWrong     |
