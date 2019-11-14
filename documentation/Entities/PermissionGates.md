@@ -242,6 +242,8 @@ Similar to the `time` gate, this gate will be active if the time falls inside on
 
 ## SharedPermissionSet
 
+**Supported >= 4.3.0***
+
 ```json
 {
     "type": "sharedPermissionSet",
