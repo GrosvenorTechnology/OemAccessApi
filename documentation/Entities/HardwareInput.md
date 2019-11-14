@@ -25,8 +25,8 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
             "normallyOpen": true,
             "inputType": "unsupervised",
             "InputOperationType": "normal",
-            "pirInhibit": "00:30:00",
-            "pirFault": "5:00:00",
+            "pirInhibit": "00:00:30",
+            "pirFault": "00:05:00",
             "changeModePermissions": ["Operator"]
         }]
     }
@@ -52,7 +52,7 @@ is Open.
 
 **Supported >= 4.2.0**
 
-**[int] (50)** Defines the number of milliseconds before the input is deemed to be in the active state. The value can be from 50ms to 3600000ms (1 hour). Often used to ensure a non controlled fire door is not wedged open. A sense period of 30000ms (30 seconds) ensures the monitoring input does not go into alarm unless the door is open for more than this time.
+**[timespan] (00:00:00.05)** Defines the number of period before the input is deemed to be in the active state. The value can be from 50ms to 1 hour. Often used to ensure a non controlled fire door is not wedged open. A sense period of 30 seconds ensures the monitoring input does not go into alarm unless the door is open for more than this time.
 
 ### inputType
 
@@ -70,7 +70,7 @@ Only used when the `inputType` is defined as `custom`. It allows the transition 
 
 There are four bands: `shortCircuit`, `inactive`, `active` and `openCircuit`. The `shortCircuit` and `openCircuit` can be omitted if the input should work like an unsupervised input. The `shortCircuit` minimum is fixed to 0V and the `openCircuit` maximum is fixed to the maximum voltage 5.5V.
 
-The `minVoltage` and `maxVoltage` values are in millivolts and configure the exit voltage levels. The `sensePeriod` value defines the time in milliseconds for switching into a new band. The time must be between 50ms and 1 hour (3600000ms).
+The `minVoltage` and `maxVoltage` values are in millivolts and configure the exit voltage levels. The `sensePeriod` value defines the time before switching into a new band. The time must be between 50ms and 1 hour.
 
 An input switches to a different band, if the voltage level is outside the
 min/max values of the current band for more than the `sensePeriod` time of the new band.
@@ -83,8 +83,8 @@ See examples below: (The values shown are the default values the `unsupervised` 
 ````json
 {
         "customInputBandDefinitions": {
-            "inactive": {"minVoltage": 0, "maxVoltage": 2550, "sensePeriod": 50},
-            "active": {"minVoltage": 2450, "maxVoltage": 5500, "sensePeriod": 50}
+            "inactive": {"minVoltage": 0, "maxVoltage": 2550, "sensePeriod": "00:00:00.05"},
+            "active": {"minVoltage": 2450, "maxVoltage": 5500, "sensePeriod": "00:00:00.05"}
         }
 }
 ````
@@ -92,10 +92,10 @@ See examples below: (The values shown are the default values the `unsupervised` 
 ````json
 {
         "customInputBandDefinitions": {
-            "shortCircuit": {"maxVoltage": 1235, "sensePeriod": 50},
-            "active": {"minVoltage": 1188, "maxVoltage": 1978, "sensePeriod": 50},
-            "inactive": {"minVoltage": 1910, "maxVoltage": 2500, "sensePeriod": 50},
-            "openCircuit": {"minVoltage": 2460,  "sensePeriod": 50}
+            "shortCircuit": {"maxVoltage": 1235, "sensePeriod": "00:00:00.05"},
+            "active": {"minVoltage": 1188, "maxVoltage": 1978, "sensePeriod": "00:00:00.05"},
+            "inactive": {"minVoltage": 1910, "maxVoltage": 2500, "sensePeriod": "00:00:00.05"},
+            "openCircuit": {"minVoltage": 2460,  "sensePeriod": "00:00:00.05"}
         }
 }
 ````
@@ -111,13 +111,13 @@ See examples below: (The values shown are the default values the `unsupervised` 
 
 ### pirInhibit
 
-**[timespan] (00:30:00)** The amount of time the input's physical input, when in PIR
+**[timespan] (00:00:30)** The amount of time the input's physical input, when in PIR
 mode, must be reset before the input state will change to reset. Only used when
 `InputOperationType` is set to `PirDetector`
 
 ### pirFault
 
-**[timespan] (5:00:00)** The maximum amount of time the input's physical input, when
+**[timespan] (00:05:00)** The maximum amount of time the input's physical input, when
 in PIR mode, can stay active before the input is placed in the *Fault* state. Only used
 when `InputOperationType` is set to `PirDetector`
 
