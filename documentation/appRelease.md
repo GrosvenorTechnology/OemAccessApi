@@ -133,7 +133,12 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
-### 4.2.25532 (FW Minimum >= 1.1.2)
+### 4.3.25685 (FW Minimum >= 1.1.2) (Critical Update)
+
+- [Feature] Shared access permissions (#19327) [link](Entities/CommonSharedPermissionSet.md)
+- [Bug] This release resolves a critical issue where a controller would occasionally 'fall asleep' and stop communicating with server and responding to reads (#20013)
+
+### ~~4.2.25532 (FW Minimum >= 1.1.2)~~ -Withdrawn-
 
 - [Feature] For OSDP part coded blades, OSDP will be enabled by default at 9600, no termination using a default master key #19857
 - [Feature] Added extra vendor IDs for detecting Third Millennium OSDP readers #19815
