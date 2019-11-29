@@ -1,12 +1,11 @@
-# Application Configuration
+# Boot Configuration
 
-The controller will poll this endpoint to pick up the static configuration of
-the controller, this includes configuration for Readers, Doors, Areas, polling
-rates, mainly configuration other than user data.
+The controller will poll this endpoint to pick up the boot configuration of
+the controller.
 
 ## URL
 
-  /grosvenor-oem/device/\<DeviceSerialNumber\>/applicationconfiguration
+  /grosvenor-oem/device/\<DeviceSerialNumber\>/bootconfiguration
 
 ## Method
 
@@ -25,8 +24,8 @@ rates, mainly configuration other than user data.
 ## Success Response
 
 > **Code:** 200
-> **Content:** [Application Configuration](../ApplicationConfiguration/Overview.md)  
-> If-None-Match not provided or ETags do not match, Application Configuration returned
+> **Content:** [Boot Configuration](../BootConfiguration/Overview.md)  
+> If-None-Match not provided or ETags do not match, Boot Configuration returned
 with new ETag header.
 
 OR
