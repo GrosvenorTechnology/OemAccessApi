@@ -28,14 +28,15 @@ New entries may be added to message schemas in future version, therefore it is b
 
 ## Device Configuration
 
-1. [Platform Configuration Request](PlatformConfigurationRequest.md)
-2. [Application Configuration Requests](ApplicationConfigurationRequest.md)
-3. [Device Hardware Report](DeviceHardwareReport.md)
-4. [Entity Types](EntityTypes.md)
-5. [Entity Changes](EntityChanges.md)
-6. [Entity Requests](EntityRequests.md)
-7. [Entity Resync](EntityResync.md)
-8. [User lookup (by identifier)](LookUpUserByIdentifier.md)
+1. [Boot Configuration Request](BootConfigurationRequest.md)
+2. [Platform Configuration Request](PlatformConfigurationRequest.md)
+3. [Application Configuration Requests](ApplicationConfigurationRequest.md)
+4. [Device Hardware Report](DeviceHardwareReport.md)
+5. [Entity Types](EntityTypes.md)
+6. [Entity Changes](EntityChanges.md)
+7. [Entity Requests](EntityRequests.md)
+8. [Entity Resync](EntityResync.md)
+9. [User lookup (by identifier)](LookUpUserByIdentifier.md)
 
 ## Real Time Events
 
