@@ -268,6 +268,7 @@ the Result. These include:
     a value in the database, this is the unique identifier for that token.
 - **PersonId [identifier]** – The identifier for the person the token was
     associated with
+- **Data [string]** - A tokens raw binary data received from reader.
 
 The following table shows which items are present for each result, values in
 optional in these events.
@@ -283,6 +284,8 @@ optional in these events.
 | TokenNotEnabled  | TokenData, TokenId, PersonId     |
 | PersonNotEnabled | TokenData, TokenId, PersonId     |
 | ReaderDisabled   | TokenData, [TokenId], [PersonId] |
+| RejectedFormat   | Data                             |
+| TokenDiags       | Data                             |
 
 ## Commands
 

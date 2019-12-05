@@ -174,11 +174,12 @@ the Result. These include:
 - **TokenData [string]** – A textual representation of the data from the reader if
     possible, for a Wiegand reader this will likely be the card number, an ANPR
     system the car registration. If the reader is some form biometrics this
-    value will contain a static string like ‘finger’
+    value will contain a static string like ‘finger’.
 - **TokenId [identifier]** – if the value read from the reader could be matched to
     a value in the database, this is the unique identifier for that token.
 - **PersonId [identifier]** – The identifier for the person the token was
-    associated with
+    associated with.
+- **Data [string]** - A tokens raw binary data received from reader.
 
 The following table shows which items are present for each result, values in
 optional in these events.
@@ -194,6 +195,8 @@ optional in these events.
 | TokenNotEnabled  | TokenData, TokenId, PersonId     |
 | PersonNotEnabled | TokenData, TokenId, PersonId     |
 | ReaderDisabled   | TokenData, [TokenId], [PersonId] |
+| RejectedFormat   | Data                             |
+| TokenDiags       | Data                             |
 
 ## Commands
 
