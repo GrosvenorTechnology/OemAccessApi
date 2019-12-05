@@ -285,7 +285,6 @@ optional in these events.
 | PersonNotEnabled | TokenData, TokenId, PersonId     |
 | ReaderDisabled   | TokenData, [TokenId], [PersonId] |
 | RejectedFormat   | Data                             |
-| TokenDiags       | Data                             |
 
 ## Commands
 
