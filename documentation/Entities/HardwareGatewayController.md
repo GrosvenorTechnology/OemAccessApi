@@ -27,7 +27,7 @@ The controller has the following operational modes
 
 **[enum] (normal)** Specifies which operational mode is the default.
 
-### tamperMode
+### tamperMode [>=4.4.0.0]
 
 **[enum] (mechanicalAndOptical)** Specifies which tamper inputs to use.
 
