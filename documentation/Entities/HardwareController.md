@@ -13,6 +13,7 @@ The controller has the following operational modes
         "id": "Ctrl-46537453278",
         "description": "Reception",
         "timezone": "Europe/London",
+        "tamperMode": "mechanicalAndOptical",
         "globalServerPermissionEnabled": true,
         "globalServerPermissionFailureMode": "fallBack"
     }
@@ -24,6 +25,15 @@ The controller has the following operational modes
 ### operationalMode
 
 **[enum] (normal)** Specifies which operational mode is the default.
+
+### tamperMode
+
+**[enum] (mechanicalAndOptical)** Specifies which tamper inputs to use.
+
+- **none**
+- **mechanical**
+- **optical**
+- **mechanicalAndOptical**
 
 ### timezone
 
@@ -55,19 +65,26 @@ The controller has the following operational modes
 
 **[enum]** This shows the current controller mode.
 
-### ExternalTamper
+### Tamper
 
-**[enum]** - The current state of the external tamper input (if present)
+**[enum]** - The current state of the tamper (uses External and/or Proximity tampers depending on `TamperMode`)
 
 - **active**
-- **reset**
+- **normal**
+
+### ExternalTamper
+
+**[enum] [diagnostic]** - The current state of the external tamper input (if present) and depending on `TamperMode`
+
+- **active**
+- **normal**
 
 ### ProximityTamper
 
-**[enum]** - The current state of the optical tamper input (if present)
+**[enum] [diagnostic]** - The current state of the optical tamper input (if present) and depending on `TamperMode`
 
 - **active**
-- **reset**
+- **normal**
 
 ### ConfigButton
 
