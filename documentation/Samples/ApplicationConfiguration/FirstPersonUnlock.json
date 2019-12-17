@@ -1,0 +1,86 @@
+{
+    "controller": {
+        "id": "Controller",
+        "timezone": "Europe/London",
+        "systemModes": [],
+        "readers": [
+            {
+                "id": "Reader-101",
+                "description": "Reader on door 101",
+                "address": "1-0-1",
+                "operationalMode": "tokenOnly",
+                "tokenFormatType": "RDSATEONPRO"
+            }
+        ],
+        "portals": [
+            {
+                "id": "Door-101",
+                "description": "Door 101",
+                "address": "1-0-1",
+                "operationalMode": "normal",
+                "entry": {
+                    "readers": [
+                        "Reader-101"
+                    ],
+                    "accessPermissions": [
+                        "PortalUnlock"
+                    ]
+                }
+            }
+        ],
+        "actions": [
+            {
+                "id": "UnlockOnFirstRead",
+                "sourceType": "Common.TimeTable",
+                "sourceIds": [
+                    "DoorUnlocked"
+                ],
+                "targetType": "AccessControl.Portal",
+                "targetIds": [
+                    "Door-101"
+                ],
+                "map": [
+                    {
+                        "event": "TimeTableState:InPeriod",
+                        "command": "ChangeMode",
+                        "arguments": {
+                            "Mode": "FirstPersonUnlock"
+                        }
+                    },
+                    {
+                        "event": "TimeTableState:OutOfPeriod",
+                        "command": "ChangeMode"
+                    }
+                ],
+                "restoreCommand": {
+                    "command": "ClearOwnedFromModeStack"
+                }
+            }
+        ],
+        "timeTables": [
+            {
+                "type": "Common.TimeTable",
+                "id": "DoorUnlocked",
+                "description": "Example Time Table",
+                "sets": [
+                    {
+                        "days": [
+                            "Mo",
+                            "Tu",
+                            "We",
+                            "Th",
+                            "Fr"
+                        ],
+                        "periods": [
+                            {
+                                "start": "09:00:00",
+                                "end": "17:00:00"
+                            }
+                        ]
+                    }
+                ],
+                "holidayId": "BankHolidays"
+            }
+        ]
+    }
+}

@@ -46,12 +46,12 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
 
 There are several documented examples of using actions, see the list below:
 
+- [Using the portal's *FirstPersonUnlock* mode.](../Samples/ApplicationConfiguration/FirstPersonUnlock.md)
 - [Unlock portals on a fire alarm using a system mode.](../Samples/ApplicationConfiguration/FireAlarmAction.md)
 - [Unlock portals on a fire alarm, with two separate fire alarm inputs.](../Samples/ApplicationConfiguration/FireAlarmActionAdvanced.md)
 - [Unlock portals on a fire alarm using separate Actions.](../Samples/ApplicationConfiguration/FireAlarmSeparateActions.md)
 - [Unlock portals on a fire alarm using separate Actions and a System Mode.](../Samples/ApplicationConfiguration/FireAlarmSeparateActionsUsingSystemMode.md)
 - [Using reader commands to unlock portals.](../Samples/ApplicationConfiguration/ReaderCommandsUnlockPortal.md)
-
 
 ## Properties
 
