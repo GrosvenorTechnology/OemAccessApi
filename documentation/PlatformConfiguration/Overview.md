@@ -11,24 +11,55 @@ The configuration of the controller is split into two sections, platform and app
         "protocolLevel": 1,
         "defaultPollFrequency": 30,
         "defaultQueueBatchSize": 100,
-        "verboseNetworkLogging":false,
+        "verboseNetworkLogging": false,
         "services": [
-            {"name": "myAccess", "uri": "http://myAccessService.com/api"}
+            {
+                "name": "myAccess",
+                "uri": "http://myAccessService.com/api"
+            }
         ],
         "uris": {
             "heartbeat": [
-                { "uri": "device/{deviceSerial}/heartbeat", "frequency": 7 },
-                { "uri": "http://myAccessService.com/api/device/{deviceSerial}/heartbeat", "frequency": 13 }
+                {
+                    "uri": "device/{deviceSerial}/heartbeat",
+                    "frequency": 7
+                },
+                {
+                    "uri": "http://myAccessService.com/api/device/{deviceSerial}/heartbeat",
+                    "frequency": 13
+                }
             ],
             "hardwarereport": [
-                { "uri": "device/{deviceSerial}/hardwarereport", "frequency": 10 },
-                { "uri": "http://myAccessService.com/api/device/{deviceSerial}/hardwarereport", "frequency": 20 }
+                {
+                    "uri": "device/{deviceSerial}/hardwarereport",
+                    "frequency": 10
+                },
+                {
+                    "uri": "http://myAccessService.com/api/device/{deviceSerial}/hardwarereport",
+                    "frequency": 20
+                }
             ],
-            "applicationConfig": { "uri": "device/{deviceSerial}/configuration" },
-            "stateQueue": { "uri": "{myAccess}/device/{deviceSerial}/states/messages", "frequency": 10, "batchSize": 10 },
-            "commandQueue": { "uri": "{myAccess}/device/{deviceSerial}/commands/messages", "frequency": 10 },
-            "changeQueue": { "uri": "{myAccess}/device/{deviceSerial}/changes/messages", "frequency": 10, "batchSize": 500 },
-            "permissionRequest": { "uri": "device/{deviceSerial}/permissionrequest" },
+            "applicationConfig": {
+                "uri": "device/{deviceSerial}/configuration"
+            },
+            "stateQueue": {
+                "uri": "{myAccess}/device/{deviceSerial}/states/messages",
+                "frequency": 10,
+                "batchSize": 10
+            },
+            "commandQueue": {
+                "uri": "{myAccess}/device/{deviceSerial}/commands/messages",
+                "frequency": 10
+            },
+            "changeQueue": {
+                "uri": "{myAccess}/device/{deviceSerial}/changes/messages",
+                "frequency": 10,
+                "batchSize": 500,
+                "useNonDestructiveRead": true
+            },
+            "permissionRequest": {
+                "uri": "device/{deviceSerial}/permissionrequest"
+            },
             "eventSubmission": [
                 {
                     "uri": "{mgmt}/device/{deviceSerial}/events",
@@ -48,11 +79,15 @@ The configuration of the controller is split into two sections, platform and app
             "stateSubmission": [
                 {
                     "uri": "device/{deviceSerial}/states",
-                    "filters": [ "Hardware.Controller." ]
+                    "filters": [
+                        "Hardware.Controller."
+                    ]
                 },
                 {
                     "uri": "{myAccess}/device/{deviceSerial}/states",
-                    "filters": [ "*" ]
+                    "filters": [
+                        "*"
+                    ]
                 }
             ]
         }
@@ -118,7 +153,7 @@ If the URI is marked with [multi-uri] then it is possible to specify zero or mor
 
 If the URI is of type [polled] then you can set the *uri*, *frequency* of polling (in seconds).  If you set the *uri* of a [polled] setting to "disabled" then the system will not attempt to connect to that endpoint.
 
-If the URI is of type [queue] then you can set the *uri*, *frequency* of polling (in seconds) and *batchSize.*
+If the URI is of type [queue] then you can set the *uri*, *frequency* of polling (in seconds), *batchSize* and *useNonDestructiveRead* (defaults to false).
 
 ### Heartbeat
 
