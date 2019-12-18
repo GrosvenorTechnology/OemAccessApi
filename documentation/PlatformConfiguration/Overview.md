@@ -43,16 +43,16 @@ The configuration of the controller is split into two sections, platform and app
                 "uri": "device/{deviceSerial}/configuration"
             },
             "stateQueue": {
-                "uri": "{myAccess}/device/{deviceSerial}/states/messages",
+                "uri": "{myAccess}/device/{deviceSerial}/states",
                 "frequency": 10,
                 "batchSize": 10
             },
             "commandQueue": {
-                "uri": "{myAccess}/device/{deviceSerial}/commands/messages",
+                "uri": "{myAccess}/device/{deviceSerial}/commands",
                 "frequency": 10
             },
             "changeQueue": {
-                "uri": "{myAccess}/device/{deviceSerial}/changes/messages",
+                "uri": "{myAccess}/device/{deviceSerial}/changes",
                 "frequency": 10,
                 "batchSize": 500,
                 "useNonDestructiveRead": true
