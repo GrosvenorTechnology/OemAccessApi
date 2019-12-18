@@ -95,3 +95,5 @@ OR
 queue.
 
 ## Notes
+
+Please note that the OEM Controller will only use this method of transferring data for the `Changes` queue, if the "NonDestructiveRead" feature is set in the boot config. Other queues use the "Server Queue Destructive Read".

@@ -81,3 +81,5 @@ OR
 queue.
 
 ## Notes
+
+Please note that the OEM Controller will use this method of transferring data by default. If the "NonDestructiveRead" feature is set in the boot config, the `Changes` queue will use the "Server Queue Peek Read".
