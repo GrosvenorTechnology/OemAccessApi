@@ -108,6 +108,7 @@ custom URIs.
 - **TimeTableEndAdjustment [>=1.0.19635]** - Adds one minute to the end of transitions, allows the use of transitions such as 09:00->17:59 instead of the normal 09:00->18:00.  This only works when times are used in the HH:mm format, using HH:MM:ss will not have the intended results.
 - **EntityTypeFallbackExtension [>=2.0.20179]** - Used to convert the entity source of enhanced reader types (i.e. SmartIntego & OSDP) back to the native types.  This extension just remaps the Entity Source of Events and States, it does nothing to normalise events.
 - **SiForcedWhitelistTag [>=2.0.20440]** - When enabled every user change will have the tag  `Si-Whitelist` inserted into the tags for every identifier on that user.  Adding or removing this flag will not update users that have already been downloaded to the controller, a change for the user must be sent from the server to update the user record.
+- **NonDestructiveRead [>2.2]** - When enabled, the controller will use the non-destructive read method [ServerQueuesPeekRead](../API/ServerQueuesPeekRead.md) to transfer data in the changes queue.
 
 ## Network
 
