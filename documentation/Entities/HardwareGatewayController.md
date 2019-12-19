@@ -1,6 +1,6 @@
 # Hardware.GatewayController
 
-**Preview >= 4.1.0**
+**Preview >= 4.1.0**.
 
 The controller type is the base of the deviceConfig.json file that will
 configure the Gateway AccessControl application on the controller.

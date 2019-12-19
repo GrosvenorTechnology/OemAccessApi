@@ -25,30 +25,32 @@ messages back to the service.
 
 ## Data Parameters
 
-> ### Command Progress
-> ````json
-> {
->     "messageId": "BC6B64D2-14C7-465F-8177-54E2FC046C64",
->     "correlationId": "6CF3B367-FA19-4356-8325-6BC2002408BD",
->     "previousMessageId": "E4C65FF0-2107-4B8E-AE29-082C360C457F",
->     "timeStamp": "2017-10-1T15:39:10Z",
->     "progress": "20",
-> }
-> ````
+### Command Progress
+
+````json
+{
+    "messageId": "BC6B64D2-14C7-465F-8177-54E2FC046C64",
+    "correlationId": "6CF3B367-FA19-4356-8325-6BC2002408BD",
+    "previousMessageId": "E4C65FF0-2107-4B8E-AE29-082C360C457F",
+    "timeStamp": "2017-10-1T15:39:10Z",
+    "progress": "20",
+}
+````
 
 OR
 
-> ### Command Response
-> ````json
-> {
->     "messageId": "4F57465D-4E05-4BA4-B464-E36FAB4C8903",
->     "correlationId": "6CF3B367-FA19-4356-8325-6BC2002408BD",
->     "previousMessageId": "E4C65FF0-2107-4B8E-AE29-082C360C457F",
->     "timestamp": "2017-10-1T15:39:30Z",
->     "result": "FailedOnPermissions",
->     "explaination": "NoEnabledAPGs"
-> }
-> ````
+### Command Response
+
+````json
+{
+    "messageId": "4F57465D-4E05-4BA4-B464-E36FAB4C8903",
+    "correlationId": "6CF3B367-FA19-4356-8325-6BC2002408BD",
+    "previousMessageId": "E4C65FF0-2107-4B8E-AE29-082C360C457F",
+    "timestamp": "2017-10-1T15:39:30Z",
+    "result": "FailedOnPermissions",
+    "explanation": "NoEnabledAPGs"
+}
+````
 
 ## Success Response
 
@@ -88,11 +90,12 @@ The body of the call can be expressed in C# as
 public class CommandResponse
 {
     public Guid MessageId { get; } = Guid.NewGuid();
-    public Guid CorrelationId { get; } 
+    public Guid CorrelationId { get; }
     public Guid? PreviousMessageId { get; }
     public DateTimeOffset TimeStamp { get; } = DateTimeOffset.UtcNow;
     public CommandOutcomeCategory Result { get; }
-    public string Explaination { get; }
+    public string Explanation { get; }
+    public string Service { get; }
 }
 ````
 
@@ -100,7 +103,7 @@ public class CommandResponse
 public class CommandProgress
 {
     public Guid MessageId { get; } = Guid.NewGuid();
-    public Guid CorrelationId { get; } 
+    public Guid CorrelationId { get; }
     public Guid? PreviousMessageId { get; }
     public DateTimeOffset TimeStamp { get; } = DateTimeOffset.UtcNow;
     public int Progress { get; }

@@ -1,6 +1,6 @@
 # Hardware.LiftFloor
 
-**Supported >= 4.1.0**
+**Supported >= 4.1.0**.
 
 This entity is only defined within the Hardware.Lift entity.  See [Hardware.Lift](HardwareLift.md) for where they are defined.
 

@@ -42,7 +42,7 @@ The Stable channel will contain all firmware versions as well as every applicati
 - [Feature] Batched heartbeat support for 485 Line Headers #19546 [link](Entities/HardwareController.md#configurationdownload)
 - [Feature] Configuration Event (Success) now sent when config is applied, fail event contains validation failures #19711
 - [Feature] Configuration app now writes entry and exit permissions IDs in doors
-- [Feature] Configuration app has 'development use only' banner removed 
+- [Feature] Configuration app has 'development use only' banner removed
 - [Bug] Fixed invalid validation of device addresses #19741
 - [Bug] Log stream on controller not correctly enabled via boot config file #19726
 - [Bug] DHCP status incorrectly reported #19690
@@ -73,9 +73,9 @@ The Stable channel will contain all firmware versions as well as every applicati
 - Added support to receive state requests from multiple servers
 - Fix for null reference on card swipe reported in logs (#19433)
 - Http stability improvements when server is intermittently available.
-  - Http default timeout reduced to 10 seconds from 100
+  - Http default time-out reduced to 10 seconds from 100
 - Support for 485 communication between controllers (restrictions apply)
-  - New gateway application acts as network proxy to downstream 485 controllers 
+  - New gateway application acts as network proxy to downstream 485 controllers
 - Command argument checks improved when receiving malformed commands
 - Hardware reports now sent when changes detected
 - Reboot and Restart commands added to controller [link](Entities/HardwareController.md#restart-4000)

@@ -15,10 +15,10 @@ security and tracing will be provided in HTTP headers prefixed with x-gtl-oem
 
 - x-gtl-oem-client-application-name: name of the application that generated this request. Service records this value.
 
-## Required Response headers
+## Required response headers
 
 - x-gtl-oem-request-id: server generated request ID. Can be used to investigate issues with a particular request and to correlate application and service trace logs.
 
-## Optional response headers:
+## Optional response headers
 
 - ETag: When returning a resource, the response should include the ETag for the requested resource.

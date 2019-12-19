@@ -16,7 +16,7 @@ for example
     unique message id and will copy the correlation id and previous message id
     from the original command.
 
-3. There is a custom event workflow configured to operate an output when a door
+3. There is a custom event work-flow configured to operate an output when a door
     is locked, when the door is locked this fires from the door lock event and
     resets the output, this raises a state notification message for the new
     state of the output and an event (Output Reset) which again will get their

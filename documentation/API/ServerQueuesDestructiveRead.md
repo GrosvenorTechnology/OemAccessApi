@@ -27,33 +27,34 @@ enforce its own limits on the number of messages returned.
 
 ## Success Response
 
-> **Code:** 200
->
-> Messages successfully retrieved and deleted. Data is contained in the JSON
-response body
-> ````json
-> [
->     {
->         "messageId": "3a146f76afee41648677887ffced72d8",
->         "body": {
->             ...
->         }
->     },{
->         "messageId": "59ddbc558edf4c55828737a743f6f52e",
->         "body": {
->             ...
->         }
->     }
-> ]
-> ````
-> The messageId property is a reference to the message in the queue, it only has
+**Code:** 200
+
+Messages successfully retrieved and deleted. Data is contained in the JSON response body
+
+````json
+[
+    {
+        "messageId": "3a146f76afee41648677887ffced72d8",
+        "body": {
+            ...
+        }
+    },{
+        "messageId": "59ddbc558edf4c55828737a743f6f52e",
+        "body": {
+            ...
+        }
+    }
+]
+````
+
+The messageId property is a reference to the message in the queue, it only has
 meaning in the scope of the selected queue.
 
 OR
 
-> **Code:** 204
->
-> No message available for this queue
+**Code:** 204
+
+No message available for this queue
 
 ## Error Response
 

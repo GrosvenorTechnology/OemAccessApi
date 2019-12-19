@@ -1,6 +1,6 @@
 # Getting Started
 
-This guide is a companion to this walk-through video https://youtu.be/W_xtpKFG7dM
+This guide is a companion to this [walk-through video](https://youtu.be/W_xtpKFG7dM)
 
 ## General Set-up
 
@@ -11,7 +11,7 @@ This guide is a companion to this walk-through video https://youtu.be/W_xtpKFG7d
 
 ## Using the Configurator tool to bind controller to the server
 
-**Please note the tool shown is an early pre-releases tool due for release Q1-2019**
+**Please note the tool shown is an early pre-releases tool due for release Q1-2019**.
 
 - Open the Configurator tool
 - Select discovered controller and click install

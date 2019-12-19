@@ -1,6 +1,6 @@
 # Hardware.Lift
 
-**Supported >= 4.1.0**
+**Supported >= 4.1.0**.
 
 A lift provides a simple way to limit access to floors in a lift.  When a user swipes a card on the lift reader(s), they will be granted access to zero or more floors based on their access.
 

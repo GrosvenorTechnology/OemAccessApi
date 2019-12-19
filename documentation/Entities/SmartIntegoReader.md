@@ -1,6 +1,6 @@
 # SmartIntego.Reader
 
-**Supported >= 2.0.0**
+**Supported >= 2.0.0**.
 
 A reader is the logical representation of a token reader integrated into a SmartIntego Lock, and as a result can only be used with SmartIntego Portals.
 

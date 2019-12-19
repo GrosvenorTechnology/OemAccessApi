@@ -7,7 +7,7 @@ Events in the OEM-Access controller are raised in response to any of three sourc
 
 - The outcome of a command processed on the controller (i.e. Operate an output)
 - A change of a monitored state in the controller (an input state changed from reset to active)
-- An internal event (i.e. a token was presented to a reader) 
+- An internal event (i.e. a token was presented to a reader)
 
 All events, regardless of source, follow the same structure, a standard message header, with the contents being a dictionary of Key-Value pairs. The content property will always exist, even if the dictionary is empty.
 
@@ -74,7 +74,7 @@ OR
 
 ## Samples
 
-The body of the call can be expressed in C# as 
+The body of the call can be expressed in C# as
 
 ````c#
 public class Event
@@ -86,15 +86,15 @@ public class Event
     public string Entity { get; set; }
     public string EventName { get; set; }
     public bool DiagEvent { get; set; }
-    public Dictionary<string,string> Contents { get; set; } 
-            = new Dictionary<string, string>();
+    public Dictionary<string,string> Contents { get; set; } = new Dictionary<string, string>();
 }
 ````
 
 ## Notes
 
-### Versioning 
-New entries may be added to the event message schema or to the contents property in future version, therefor it is best practice to ignore unknown properties rather than cause an exception on the unknown data.  Removal of properties will be deemed a braking change.
+### Versioning
+
+New entries may be added to the event message schema or to the contents property in future version, therefore it is best practice to ignore unknown properties rather than cause an exception on the unknown data.  Removal of properties will be deemed a braking change.
 
 ### Message Contents
 

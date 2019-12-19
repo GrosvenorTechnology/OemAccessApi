@@ -29,9 +29,9 @@ When a controller starts up it will post it's detected hardware configuration to
         "applicationName": "Virtual.OemAccess.UI",
         "applicationVersion": "3.0.6879.25747",
         "bladeCount": 2,
-		"ipAddress": "192.168.1.4",
-		"macAddress": "00:01:ce:02:cd:03",
-		"dhcpStatus": false
+        "ipAddress": "192.168.1.4",
+        "macAddress": "00:01:ce:02:cd:03",
+        "dhcpStatus": false
     },
     "bladeHardware": [
         {

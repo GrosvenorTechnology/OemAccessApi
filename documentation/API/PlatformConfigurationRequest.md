@@ -23,9 +23,8 @@ The controller will poll this endpoint to get the static platform configuration 
 ## Success Response
 
 > **Code:** 200  
-> **Content:** [Platform Configuration](../PlatformConfigurtation/Overview.md)  
-> If-None-Match not provided or ETags do not match, Platform Configurtaion returned 
-with new ETag header.
+> **Content:** [Platform Configuration](../PlatformConfiguration/Overview.md)  
+> If-None-Match not provided or ETags do not match, Platform Configuration returned with new ETag header.
 
 ## Error Response
 

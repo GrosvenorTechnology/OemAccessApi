@@ -1,6 +1,6 @@
 # Application Configuration
 
-The Application Configuration is a JSON document that defines the behavior of the access control logic portion of the application.
+The Application Configuration is a JSON document that defines the behaviour of the access control logic portion of the application.
 
 ## Overview
 
@@ -57,7 +57,7 @@ Format for the gateway controller:
 
 ## File Sections for the gateway controller
 
-**Preview >= 4.1.0**
+**Preview >= 4.1.0**.
 
 - [polled clients](../Entities/HardwarePolledClient.md)
 

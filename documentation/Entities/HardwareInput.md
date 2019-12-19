@@ -50,13 +50,13 @@ is Open.
 
 ### sensePeriod
 
-**Supported >= 4.2.0**
+**Supported >= 4.2.0**.
 
 **[timespan] (00:00:00.05)** Defines the number of period before the input is deemed to be in the active state. The value can be from 50ms to 1 hour. Often used to ensure a non controlled fire door is not wedged open. A sense period of 30 seconds ensures the monitoring input does not go into alarm unless the door is open for more than this time.
 
 ### inputType
 
-**Supported >= 4.2.0**
+**Supported >= 4.2.0**.
 
 **[enum] (unsupervised)** Configures the input type.
 

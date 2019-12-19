@@ -1,6 +1,6 @@
 # Common.SystemMode
 
-**Supported >= 3.2.0**
+**Supported >= 3.2.0**.
 
 System Modes can be used by permission gates and actions. They are controlled by changing their operational mode, either directly or indirectly by using actions.
 

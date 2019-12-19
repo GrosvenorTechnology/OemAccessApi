@@ -1,6 +1,6 @@
 # SmartIntego.Gateway
 
-**Supported >= 2.0.0**
+**Supported >= 2.0.0**.
 
 Defines the connection parameters for an individual Gateway node.
 

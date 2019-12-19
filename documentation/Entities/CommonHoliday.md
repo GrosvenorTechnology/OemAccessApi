@@ -1,6 +1,6 @@
 # Common.Holiday
 
-**Supported >= 3.2.0**
+**Supported >= 3.2.0**.
 
 Holidays can be used by permission gates, time-tables and actions. They can be controlled by changing their operational mode, either directly or indirectly by using actions.
 

@@ -176,6 +176,7 @@ The following settings can be set regardless of DHCP/Static addressing. If a set
     }
 }
 ```
+
 ### Optional Settings: Logging
 
 The fallowing settings allow forwarding log messages to the Custom Exchange platform or generic Azure Event Hub.
@@ -207,4 +208,3 @@ The value for this can be found in the _Connection string–primary key_ under t
 
 
 ```
-

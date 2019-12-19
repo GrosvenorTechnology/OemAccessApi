@@ -1,19 +1,21 @@
 # Firmware Changelog
 
 ## v1.1.2 **CRITICAL**
+
 - Update OemOobe-app to 4.0.23246
-   - Adds support for setting device IP address via web interface
-   - Web server will rebind to new ip addresses if ethernet connected after controller boot
-   - Date is forced to 2019-01-01 if before this date
+  - Adds support for setting device IP address via web interface
+  - Web server will rebind to new ip addresses if ethernet connected after controller boot
+  - Date is forced to 2019-01-01 if before this date
 - Changes to device power management
   - Increased current available to RAM to fix stability issues under high load on single blade controllers
   - Disable unused charger and configure 4P2 as only input for DC-DC (multi only)
-- Changes to Ethernet clock initialization improves startup reliability
+- Changes to Ethernet clock initialization improves start-up reliability
 - Added logStream app, allows Syslog messages to be forwarded to Custom Exchange
 - Check for non-zero RTC calibration register
 - Increase boot loader version to force update, necessary for detecting new RAM size
 
 ## v1.0.8
+
 - Updated OemOobe-app to 3.3.22583 - Improves setup times when bootconfig posted to device over HTTP
 
 ## v1.0.7

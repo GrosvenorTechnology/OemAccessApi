@@ -1,6 +1,6 @@
 # User Entity Request
 
-**Supported >= 4.0.24734**
+**Supported >= 4.0.24734**.
 
 This endpoint allows the controller to directly access the controller specific data for a user by an identifier associated to the user. The main use case for this is to allow a controller to make access decisions immediately after downloading its initial device configuration, while user data is still being streamed. The controller on receiving an unknown identifier e.g. from a reader, will query this endpoint and attempt to access the user data directly. Implementation of this endpoint is optional, in which case the controller will deny access until the user data has been loaded via other means.
 

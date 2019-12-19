@@ -1,6 +1,6 @@
 # Common.Action
 
-**Supported >= 3.0.0**
+**Supported >= 3.0.0**.
 
 Actions provide a way for events fired locally on a controller to be mapped to commands on the same controller. This provides a way to link cause and effect locally on a controller, e.g. unlock one or more portals when a fire alarm input is active and re-lock the portals when the alarm clears.
 

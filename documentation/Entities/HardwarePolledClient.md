@@ -1,7 +1,6 @@
 # Hardware.PolledClient
 
-**Preview >= 4.1.0**
-
+**Preview >= 4.1.0**.
 
 The polled client has the following operational modes:
 

@@ -6,7 +6,7 @@ When a controller is powered on for the first time, or booted after a factory re
 
 If you browse to the IP address of the controller, which you can find using our [Advance Discovery Tool](https://aka.gtl.biz/AdvanceBrowser) or looking the device up in your local DHCP server, you will get a summary of the controllers network and software & hardware versions.
 
-### Changing the device IP via Webpage
+### Changing the device IP via Web page
 
 It is possible to change the controllers IP address via a web browser before it is configured, there is a link off the devices home page or you can browse directly to <http://---deviceip---/interactive/network>
 
@@ -37,7 +37,7 @@ The controller also has a HTTP API that can be used to configure the controller 
 
 ### SystemIno
 
-> GET /configuration/systeminfo 
+> GET /configuration/systeminfo
 
 This request will return a JSON payload that contains the system information of the controller, an example response is:
 
@@ -112,9 +112,9 @@ While the device is running in out of box mode, it will listen for discovery req
 
 The discovery protocol is designed to work over IPv6 link local addresses, so discovery is possible in the absence of any network infrastructure such as DHCP.
 
-Shown below is some sample C# code to implement a discovery client for the Advance controllers, all error hadling has been omitted for clarity.
+Shown below is some sample C# code to implement a discovery client for the Advance controllers, all error handling has been omitted for clarity.
 
-The first step is to get a list of all active network adapters, the muticast must be bound to each adapter individually.
+The first step is to get a list of all active network adapters, the multicast must be bound to each adapter individually.
 
 ```c#
 private IEnumerable<NetworkInterface> GetActiveNetworkInterfaces()

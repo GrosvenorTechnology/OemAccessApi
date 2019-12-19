@@ -98,7 +98,7 @@ As our intent for this demo is to experiment with users and tokens, we're going 
 
 One option we could use is the simulator has some example files, if you select the `Configuration` tab on the right hand side you will see a drop down for `Application Configuration` which by default is `app-default.json` if you change this to `appFullBlade.json`, this will populate the the `Application Configuration` tab with a fully populated app config file.
 
-> You can define your own selection of config files for the simulator or edit the ones we ship, they are in the `configuration` directory in the simulator directory. If you have a favorite combination of files, if you load or edit the files to what you want, then click the `Save Configuration as Default` the configuration will be saved into the `configuration\defaultConfig.json` file and will be loaded each time the simulator app is opened.
+> You can define your own selection of config files for the simulator or edit the ones we ship, they are in the `configuration` directory in the simulator directory. If you have a favourite combination of files, if you load or edit the files to what you want, then click the `Save Configuration as Default` the configuration will be saved into the `configuration\defaultConfig.json` file and will be loaded each time the simulator app is opened.
 
 For our example we're going to keep things a bit simpler, so copy and paste the file below into the `Application Configuration` tab and click `Save Configuration as Default`.
 
@@ -225,7 +225,7 @@ You should also see a line in the simulator log tab
 [16:17:48.674] [Debug] Added fa8ebeb2-a3bf-44e6-bff1-ac19483ac627 to Itac.OemAccess.Core.Entites.Person table.
 ```
 
-If you now swipe the same 123456 token on reader 1-0-1 you should now get two events, one identifing the user at the reader and the second denying them access through the door.
+If you now swipe the same 123456 token on reader 1-0-1 you should now get two events, one identifying the user at the reader and the second denying them access through the door.
 
 ```txt
 [19/07/2019 16:22:59] Event :
@@ -312,7 +312,7 @@ Once you have seen the controller update it's Person's table a second time you c
 
 Now we have a user able to get through a door, were going to limit the time the user can use that door.
 
-To get started, we're going to ammend the rules for our test user to allow them only to use the door between 9AM and 5PM using an [inline time](../Entities/AccessControlUser.md#inlinetime) permission gate.
+To get started, we're going to amend the rules for our test user to allow them only to use the door between 9AM and 5PM using an [inline time](../Entities/AccessControlUser.md#inlinetime) permission gate.
 
 ```json
 {
@@ -413,7 +413,7 @@ But if this user tries to use their token as it we will get the following failur
 
 The event is telling us that the user failed because a referenced entity could not be found `TargetNotFound` and a textual description is provided as the `reason`.
 
-So the next step is to get the [TimeTable](../Entities/CommonTimeTable.md) definition sent down to the controller.  Fortunatly this is quite easy as it uses the same mechanism as the users to get the change to the controller.  We just post the following JSON payload to the `Test Server` as we did for the user
+So the next step is to get the [TimeTable](../Entities/CommonTimeTable.md) definition sent down to the controller.  Fortunately this is quite easy as it uses the same mechanism as the users to get the change to the controller.  We just post the following JSON payload to the `Test Server` as we did for the user
 
 > <http://localhost:8080/configuration/VIR-ADV-C-MLT~00001001/change>
 
@@ -571,11 +571,11 @@ The door unlock command we will send to the controller will look like the follow
 }
 ```
 
-> The command used in this example changes the `Operational Mode` of the door, more deatils on this concept can be found [here](../ApplicationConfiguration/ModeOverview.md)
+> The command used in this example changes the `Operational Mode` of the door, more details on this concept can be found [here](../ApplicationConfiguration/ModeOverview.md)
 
 > All entity types have a list of available commands listed on their definition pages, e.g. for Outputs they can be found [here](../Entities/HardwareOutput.md#commands)
 
-Now there's a couple of tricky bits to sending a command to the controller via Postman; the `MessageId` and `CorrelationId` should be unique guids, and the commands have a Time To Live (TTL) which requires the `TimeStamp` property to be set correctly.  Luckly these are quite easy to deal with in Postman.  The body we actually use in Postman is:
+Now there's a couple of tricky bits to sending a command to the controller via Postman; the `MessageId` and `CorrelationId` should be unique GUIDs, and the commands have a Time To Live (TTL) which requires the `TimeStamp` property to be set correctly.  Luckily these are quite easy to deal with in Postman.  The body we actually use in Postman is:
 
 ```json
 {
@@ -611,4 +611,3 @@ Which gives us nicely formatted commands, which when sent to the controller shou
         [Explanation]     :
         [Service]         :
 ```
-

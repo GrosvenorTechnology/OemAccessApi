@@ -1,6 +1,6 @@
 # AccessControl.PortalInterlock
 
-**Supported >= 3.1.0**
+**Supported >= 3.1.0**.
 
 The Portal Interlock has the following operational modes:
 

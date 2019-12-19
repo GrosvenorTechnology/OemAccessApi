@@ -1,5 +1,14 @@
 {
     "cSpell.words": [
+        "Configurator",
+        "DHCP",
+        "GUIDs",
+        "Janus",
+        "Nuget",
+        "OOBE",
+        "Permissioned",
+        "RDSATEONPRO",
+        "Versioning",
         "biometrics",
         "intego",
         "mode",
@@ -7,5 +16,8 @@
         "simons",
         "timespan",
         "voss"
-    ]
+    ],
+    "markdownlint.config": {
+        "MD024": { "siblings_only": true }
+    }
 }

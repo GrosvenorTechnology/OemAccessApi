@@ -1,6 +1,6 @@
 # Common.SharedPermissionSet
 
-**Supported >= 4.3.0**
+**Supported >= 4.3.0**.
 
 Shared Permission Sets can be used by the `sharedPermissionSet` permission gate (defined in a `User` record under the `permissions` property).
 

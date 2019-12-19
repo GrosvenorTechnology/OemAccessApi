@@ -131,7 +131,7 @@ It is possible to define an enabled period for an identifier by using the proper
 ]
 ````
 
-**[verifier[]] (empty)** Verifiers provide secondary verification for a user that has been identified by an identifier. For example a PIN number. It is possible to also define a *duress* PIN that will also silently raise an event. Details on encoding the pin number are shown in the section on Encoding Pins. 
+**[verifier[]] (empty)** Verifiers provide secondary verification for a user that has been identified by an identifier. For example a PIN number. It is possible to also define a *duress* PIN that will also silently raise an event. Details on encoding the pin number are shown in the section on Encoding Pins.
 
 ### Permissions
 

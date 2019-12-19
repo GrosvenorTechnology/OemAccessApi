@@ -1,6 +1,6 @@
 # SmartIntego.Portal
 
-**Supported >= 2.0.0**
+**Supported >= 2.0.0**.
 
 A portal is the logical representation of a door.  In a SmartIntego Lock a reader and portal tightly integrated as a single unit and can only work with other SmartIntego devices, and as a result can only be used with SmartIntego Readers. The hardware address of the portal is inferred from the attached readers.
 

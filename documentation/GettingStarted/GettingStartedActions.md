@@ -265,8 +265,6 @@ To see the demo work, copy the following to the application configuration tab an
 
 Our Configurator action allows the configuration of actions, the same ideas apply an example of what the above configuration would look like in the too is shown below
 
-
-
 ## Extending the example - Source and targets
 
 As both the `sourceIds` and `targetIds` properties are arrays you can put more than one id in each.  So say you wanted all the doors on the controller to operate the same output, you would configure the fan-in action like this:
@@ -394,4 +392,3 @@ Both events events pass different arguments to the `Output` entity `OperateForPe
     }
 }
 ```
-

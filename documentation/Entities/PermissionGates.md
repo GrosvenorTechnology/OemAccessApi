@@ -295,7 +295,7 @@ This gate gets the decision on whether it is active from the server. The server 
 
 The recommended data to use on coming to a decision is the `RequestId` and `UserId`.
 
-##### failureMode
+### failureMode
 
 **[enum] (fallBack)** Specifies the failure mode, if the controller can not get an answer from the server.
 
@@ -303,7 +303,7 @@ The recommended data to use on coming to a decision is the `RequestId` and `User
 - **deny**
 - **fallBack**
 
-##### fallBack
+### fallBack
 
 **[permissionGate] (optional)** Specifies the permissions to use if the server permission request fails.
 

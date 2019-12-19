@@ -63,7 +63,7 @@ OR
 
 ## Samples
 
-The body of the call can be expressed in C# as 
+The body of the call can be expressed in C# as
 
 ````c#
 public class StateNotification
@@ -84,4 +84,4 @@ public class StateNotification
 
 ### Versioning
 
-New entries may be added to the state notification schema in future version, therefor it is best practice to ignore unknown properties rather than cause an exception on the unknown data.  Removal of properties will be deemed a braking change.
+New entries may be added to the state notification schema in future version, therefore it is best practice to ignore unknown properties rather than cause an exception on the unknown data.  Removal of properties will be deemed a braking change.

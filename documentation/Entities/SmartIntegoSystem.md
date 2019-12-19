@@ -1,6 +1,6 @@
 # SmartIntego.System
 
-**Supported >= 2.0.0**
+**Supported >= 2.0.0**.
 
 The SmartIntego System object is used to define common properties across all components of the SmartIntego system.
 
@@ -35,7 +35,7 @@ The SmartIntego System object is used to define common properties across all com
 
 ## gateways
 
-**[[SmartIntego.Gateway](SmartIntegoGateway.md)[]] (empty)** A list of gateway definition objects. 
+**[[SmartIntego.Gateway](SmartIntegoGateway.md)[]] (empty)** A list of gateway definition objects.
 
 ## States
 
