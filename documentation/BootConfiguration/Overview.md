@@ -60,7 +60,7 @@ custom URIs.
  - HttpBasic (default)
  - Rs485 
 
-## autoRestart (>= V4.0.24734)
+## AutoRestart (>= V4.0.24734)
 
 **[bool] (true)** Controls if the controller will automatically restart when the boot config is updated.  If set to false the boot config will be stored, but controller app must be restarted (not rebooted) to pick up the changes.  This allows more fine grain control of when changes requiring restart are applied. Can also help protect against server errors that send a bootconfig file by mistake.
 
