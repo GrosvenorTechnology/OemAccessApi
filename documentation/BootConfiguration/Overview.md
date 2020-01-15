@@ -46,9 +46,40 @@ The Boot configuration are loaded from a USB key on boot. The Key should be FAT3
 **[string] [required]** This URI will be used as the base for all default URIs and relative
 custom URIs.
 
+## Application (>= V4.1.0)
+
+**[string]** If set this string tells the controller what mode it should operate in.  At the moment the valid options are
+
+ - OemAccess (default)
+ - OemGateway (Line Header)
+
+## CommunicationsType (>= V4.1.0)
+
+**[string]** This setting is only valid in the OemAccess application, and defines if the device should use network or 485 communications
+
+ - HttpBasic (default)
+ - Rs485 
+
 ## autoRestart (>= V4.0.24734)
 
 **[bool] (true)** Controls if the controller will automatically restart when the boot config is updated.  If set to false the boot config will be stored, but controller app must be restarted (not rebooted) to pick up the changes.  This allows more fine grain control of when changes requiring restart are applied. Can also help protect against server errors that send a bootconfig file by mistake.
+
+## BootRs485 (>= V4.1.0)
+[optional] Defines communication properties when working in 485 mode
+
+```json
+{
+    "portSpeed": 19200
+}
+```
+
+### PortSpeed (>= V4.1.0)
+
+**[int32]** [optional] Sets the baud rate for the 485 port.  Valid values are:
+
+- 9600
+- 19200 (default)
+- 57500
 
 ## Proxy
 
