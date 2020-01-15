@@ -1,11 +1,10 @@
 # Post State Notification
 
-This endpoint is used by the controller to push state notification messages to
-the service.
+This endpoint is used by the controller to push state notification messages to the service.
 
 ## URL
 
-/grosvenor-oem/device/\<DeviceSerialNumber\>/states
+/grosvenor-oem/batch/states
 
 ## Method
 

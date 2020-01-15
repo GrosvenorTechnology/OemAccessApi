@@ -106,6 +106,8 @@ OR
 
 ## Notes
 
+It is the responsibility of the service to validate that the line header that is posting heartbeat data for downstream controllers is actually authorised to do so.
+
 Valid Activities
 
 - bootConfig
