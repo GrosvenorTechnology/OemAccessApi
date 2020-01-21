@@ -104,6 +104,6 @@ Nothing of note here, just defining a reader, portal and time table. The time ta
         ]
 ```
 
-This action takes the time table state `TimeTableState` as its input and changes the target's portal mode to `FirstPersonUnlock` when the state changes to `InPeriod`. The `OutOfPeriod` them resets the portal mode (which will lock the portal, assuming a valid token unlocked the portal during that period).
+This action takes the time table state `TimeTableState` as its input and changes the target's portal mode to `FirstPersonUnlock` when the state changes to `InPeriod`. The `OutOfPeriod` then resets the portal mode (which will lock the portal, assuming a valid token unlocked the portal during that period).
 
 The action has also a `restoreCommand` "ClearOwnedFromModeStack". This command will be issued on the action being disabled, changed or deleted. In the event of one of these things happening, any outstanding change mode commands will be cleared. In this case, the portal will be locked.
