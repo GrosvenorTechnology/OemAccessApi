@@ -33,25 +33,28 @@ The highest priority (and only) entry remains the disable command until the guar
 
 ## The mode stack implementation
 
-Under the covers, the mode stack actually has a few extra properties that we omitted above, in reality it looks more like this
+Under the covers, the mode stack actually has an extra property that we omitted above, in reality it looks more like this:
 
-| Mode     | Priority | Reference    | Expiries           | Source   |
-|----------|----------|--------------|--------------------|----------|
-| Disabled | 30       | UserCommand  | 20190721T22:00:00  |          |
-| Unlocked | 100      | M-F-9-17     |                    | M-F-9-17 |
+| Mode     | Priority | Reference    | Expires            |
+|----------|----------|--------------|--------------------|
+| Disabled | 30       | UserCommand  | 20190721T22:00:00  |
+| Unlocked | 100      | M-F-9-17     |                    |
 
-The two extra columns are an expiry time for the entry, so in our above example if the guard had unlocked the door for 1 hour, this period is stored with the mode stack entry, and will clear at this time with no other interaction required by the server.  The second column is an internal source that is used for house keeping; if an action has unlocked a door, the source will be set to the ID of the action, and if the action is deleted, the controller will clean up all active entries belonging to that action, causing the doors to relock.
+The extra column is the expiry time for the entry, so in our above example if the guard had unlocked the door for 1 hour, this period is stored with the mode stack entry, and will clear at this time with no other interaction required by the server.
+
+The reference is used to look-up the entry on the stack and is supplied by the command. The reference is normally set to the entity id that triggered the command, but this can be overridden.
 
 ## Commands affecting Operational Mode
 
 ### ChangeMode
 
-Add or remove an entry from the operational mode stack.
+Add, update or remove an entry from the operational mode stack. The reference is used to look-up the entry on the stack.
 
-Add Entry to stack:
+Add or Update Entry to stack:
 
-- **Mode [enum]** - The mode to change to.
-- **Priority [int]** - The priority for the mode entry.
+- **Mode [enum]** - The mode to change to, unless the `ToggleMode` arg is defined and entry is already set to `Mode` arg.
+- **ToggleMode [enum] (optional)** - If entry already on stack and set to the `Mode` arg, use `ToggleMode` arg instead.
+- **Priority [int] (optional)** - Defaults to 99. The priority for the mode entry. The lower the number, the higher the priority.
 - **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
 - **Reference [string] (optional)** - A reference that can be used to remove or replace an entry on the stack. If no reference is supplied it will normally default to the source entity `type:id`. An Action will supply a reference dependant on its configuration, but it can be overridden in the command.
 
