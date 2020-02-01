@@ -1,0 +1,161 @@
+{
+    "controller": {
+        "id": "Controller",
+        "timezone": "Europe/London",
+        "readers": [
+            {
+                "id": "Reader-101",
+                "description": "Reader on door 101",
+                "address": "1-0-1",
+                "operationalMode": "tokenOnly",
+                "tokenFormatType": "RDSATEONPRO"
+            }
+        ],
+        "portals": [
+            {
+                "id": "Door-101",
+                "description": "Door 101",
+                "address": "1-0-1",
+                "operationalMode": "normal",
+                "changeModePermissions": [
+                    "PortalUnlock"
+                ],
+               "entry": {
+                    "readers": [
+                        "Reader-101"
+                    ],
+                    "accessPermissions": [
+                        "PortalUnlock"
+                    ]
+                }
+            }
+        ],
+        "actions": [
+            {
+                "id": "ToggleUnlockOnRead",
+                "sourceType": "Hardware.Reader",
+                "sourceIds": [
+                    "Reader-101"
+                ],
+                "targetType": "AccessControl.Portal",
+                "targetIds": [
+                    "Door-101"
+                ],
+                "permissionsFrom": "person",
+                "map": [
+                    {
+                        "event": "Read:Success",
+                        "command": "ChangeMode",
+                        "arguments": {
+                            "Mode": "Unlocked",
+                            "ToggleMode": "Normal",
+                            "Priority": 5,
+                            "Reference": "Toggle"
+                        }
+                    }
+                ],
+                "restoreCommand": {
+                    "command": "ClearOwnedFromModeStack"
+                }
+            },
+            {
+                "id": "DisablePortalUnlock",
+                "sourceType": "Common.TimeTable",
+                "sourceIds": [
+                    "DoorUnlocked"
+                ],
+                "targetType": "AccessControl.Portal",
+                "targetIds": [
+                    "Door-101"
+                ],
+                "map": [
+                    {
+                        "event": "TimeTableState:InPeriod",
+                        "command": "ClearMode"
+                    },
+                    {
+                        "event": "TimeTableState:OutOfPeriod",
+                        "command": "ChangeMode",
+                        "arguments": {
+                            "Mode": "Normal",
+                            "Priority": 2
+                        }
+                    },
+                    {
+                        "event": "TimeTableState:InPeriod",
+                        "command": "ChangeMode",
+                        "arguments": {
+                            "Mode": "Normal",
+                            "Priority": 5,
+                            "Reference": "Toggle"
+                        }
+                    }
+                ],
+                "restoreCommand": {
+                    "command": "ClearOwnedFromModeStack"
+                }
+            },
+            {
+                "id": "DisableToggleAction",
+                "sourceType": "Common.TimeTable",
+                "sourceIds": [
+                    "DoorUnlocked"
+                ],
+                "targetType": "Common.Action",
+                "targetIds": [
+                    "ToggleUnlockOnRead"
+                ],
+                "map": [
+                    {
+                        "event": "TimeTableState:InPeriod",
+                        "command": "ClearMode"
+                    },
+                    {
+                        "event": "TimeTableState:OutOfPeriod",
+                        "command": "ChangeMode",
+                        "arguments": {
+                            "Mode": "Disabled"
+                        }
+                    }
+                ],
+                "restoreCommand": {
+                    "command": "ClearOwnedFromModeStack"
+                }
+            }
+        ],
+        "timeTables": [
+            {
+                "type": "Common.TimeTable",
+                "id": "DoorUnlocked",
+                "description": "Example Time Table",
+                "sets": [
+                    {
+                        "days": [
+                            "Mo",
+                            "Tu",
+                            "We",
+                            "Th",
+                            "Fr",
+                            "Sa"
+                        ],
+                        "periods": [
+                            {
+                                "start": "09:00:00",
+                                "end": "17:00:00"
+                            },
+                            {
+                                "start": "18:49:00",
+                                "end": "18:51:00"
+                            },
+                            {
+                                "start": "18:53:00",
+                                "end": "18:55:00"
+                            }
+                        ]
+                    }
+                ],
+                "holidayId": "BankHolidays"
+            }
+        ]
+    }
+}
