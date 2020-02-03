@@ -48,7 +48,7 @@
                         "command": "ChangeMode",
                         "arguments": {
                             "Mode": "Unlocked",
-                            "ToggleMode": "Normal",
+                            "ToggleMode": "ClearEntry",
                             "Priority": 5,
                             "Reference": "Toggle"
                         }
@@ -83,10 +83,8 @@
                     },
                     {
                         "event": "TimeTableState:InPeriod",
-                        "command": "ChangeMode",
+                        "command": "ClearMode",
                         "arguments": {
-                            "Mode": "Normal",
-                            "Priority": 5,
                             "Reference": "Toggle"
                         }
                     }
@@ -142,14 +140,6 @@
                             {
                                 "start": "09:00:00",
                                 "end": "17:00:00"
-                            },
-                            {
-                                "start": "18:49:00",
-                                "end": "18:51:00"
-                            },
-                            {
-                                "start": "18:53:00",
-                                "end": "18:55:00"
                             }
                         ]
                     }
