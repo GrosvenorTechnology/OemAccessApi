@@ -1,7 +1,8 @@
 # Osdp.Reader
 
-**Beta >= 3.0.0**
-**Supported >= 3.1.0**
+**Beta >= 3.0.0** **Supported >= 3.1.0**
+
+## Introduction
 
 A reader is the logical representation of a OSDP token reader. A token may be
 physical, bio-metric or entered through a keypad. In addition to identification a
@@ -11,6 +12,12 @@ N.B. The term PIN is a misnomer and should really be referred to as a PVN
 
 The readers element of the controller configuration maps a logical reader
 instance to a physical reader on an OSDP bus which connects to a blade in a controller.
+
+### Reader Commands
+
+Keypad readers also support the concept of 'Reader Commands'. These commands are not sent directly to an associated portal, but can be picked-up and used by Actions. An Action could then command a portal to change its mode to 'unlocked' or 'disabled', or do something completely different. To enter a reader command the user enters the command number followed by `Enter` (or `#`), followed by a token read (and then a PIN, if required).
+
+### Modes of Operation
 
 A reader can be configured to be in a specific operational mode. The
 reader can be commanded to change its mode at any time, a trigger based on a
@@ -285,6 +292,8 @@ optional in these events.
 | PersonNotEnabled | TokenData, TokenId, PersonId     |
 | ReaderDisabled   | TokenData, [TokenId], [PersonId] |
 | RejectedFormat   | Data                             |
+
+>N.B. Reader Commands have the event name of `Read:n` where 'n' is the command number 1 to 9. See above for information on Reader Commands.
 
 ## Commands
 
