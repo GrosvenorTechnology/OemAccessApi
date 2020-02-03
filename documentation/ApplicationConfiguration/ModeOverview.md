@@ -53,7 +53,7 @@ Add, update or remove an entry from the operational mode stack. The reference is
 Add or Update Entry to stack:
 
 - **Mode [enum]** - The mode to change to, unless the `ToggleMode` arg is defined and entry is already set to `Mode` arg.
-- **ToggleMode [enum] (optional)** - If entry already on stack and set to the `Mode` arg, use `ToggleMode` arg instead.
+- **ToggleMode [enum] (optional)** - If an entry already is already on the stack and set to the `Mode` arg, use the `ToggleMode` arg instead. Setting arg to 'ClearEntry' will clear the entry from the stack.
 - **Priority [int] (optional)** - Defaults to 99. The priority for the mode entry. The lower the number, the higher the priority.
 - **Period [timespan] (optional)** - If provided the entry will be automatically removed after the given time period.
 - **Reference [string] (optional)** - A reference that can be used to remove or replace an entry on the stack. If no reference is supplied it will normally default to the source entity `type:id`. An Action will supply a reference dependant on its configuration, but it can be overridden in the command.
