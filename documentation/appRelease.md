@@ -152,27 +152,15 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
-### 4.3.25685 (FW Minimum >= 1.1.2) (Critical Update)
+### 4.4.27032 (FW Minimum >= 1.1.4)
 
-- [Feature] Shared access permissions (#19327) [link](Entities/CommonSharedPermissionSet.md)
-- [Bug] This release resolves a critical issue where a controller would occasionally 'fall asleep' and stop communicating with server and responding to reads (#20013)
-
-### ~~4.2.25532 (FW Minimum >= 1.1.2)~~ -Withdrawn-
-
-- [Feature] For OSDP part coded blades, OSDP will be enabled by default at 9600, no termination using a default master key #19857
-- [Feature] Added extra vendor IDs for detecting Third Millennium OSDP readers #19815
-- [Feature] Minimum lift output activation time reduced to 500ms from 2 seconds #19849
-- [Feature] New state added for egress (REX) state (Normal/Tamper) #19845
-- [Bug] Performance improvement for Simple Lifts, outputs now activate faster #19850
-- [Bug] Unknown feature did not allow access on first read of card, access granted on second read #19854
-- [Bug] Message ID was set to empty guid on state notifications #19812
-- [Bug] OSDP Reader LED now defaults to constant not pulsed #19811
-- [Bug] Inputs not working after upgrading from older application versions #19838
-
-### 4.2.25296 (FW Minimum >= 1.1.2)
-
-- [Feature] Added support for Custom input levels and sense times #19616
-- [Feature] Improved OSDP reader setup to support setting up OSDP Reader encryption #19544
-- [Bug] Fixes for multiple fast reads on controller #19787
-- [Bug] Pins sent to controller with leading zeros do not work (i.e. 0012) #19759
-- [Bug] 485 Controller-to-Controller stability fixes #19725
+- [Feature] Added RejectedFormat to read event (#19702) [link](Entities/HardwareReader.md#read)
+- [Feature] Now have TamperMode and Tamper property, allows selecting between Optical and mechanical tamper (#19465) [link](Entities/HardwareController.md#tampermode)
+- [Feature] CPU temperature checked and reported every 10 minutes (#19858)
+- [Feature] If OSDP device is online, only the `SetDeviceKey` is performed. (#20020)
+- [Feature] Implemented Non-destructive read on sever queue. (#20015)
+- [Feature] Time Table Adjustment only done when the seconds are zero. (#20021)
+- [Feature] Added `ToggleMode` option to Operation Mode command set for all entities (#20167) [link](ApplicationConfiguration/ModeOverview.md#changemode)
+- [Bug] Reconcile no longer blocks access (#20017)
+- [Bug] Updated Timezone files (#20054)
+- [Bug] Support TLS 1.2 in OEM-1.2.0 firmware (#20114)
