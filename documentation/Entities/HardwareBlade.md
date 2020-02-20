@@ -3,7 +3,7 @@
 **Beta >= 3.0.0**
 **Supported >= 3.2.0**
 
-The configuration of the blades can be changed from the defaults by adding a section in the Application Configuration file. The addresses of the blades are defined as '1-0-1', '2-0-1', '3-0-1' and '4-0-1'. The properties of a blade will be determined by the blade type. Currently there are 'Door' and 'I/O' blade types.
+The configuration of the blades can be changed from the defaults by adding a section in the Application Configuration file. The addresses of the blades are defined as '1-0-1', '2-0-1', '3-0-1' and '4-0-1'. The properties of a blade will be determined by the blade type. Currently there are 'Door', 'OSDP' and 'I/O' blade types.
 
 The blade has the following operational modes:
 
@@ -39,19 +39,19 @@ The blade has the following operational modes:
 
 **[hardware-address] [required]** The controller logical address for the input
 
-### V12CurrentLimit - Door blade only
+### V12CurrentLimit - Door & OSDP blades only
 
 **[int] (2000)** This sets the maximum current (defined in mAmps) allowed to be drawn from the V12 supply. Above this level the supply will trip and not be restored until the load is reduced.
 
-### V12CurrentMinimum - Door blade only
+### V12CurrentMinimum - Door & OSDP blades only
 
 **[int] (2)** This sets the minimum current (defined in mAmps) that is expected to be drawn from the V12 supply. Any less than this will cause the V12InCurrent state to change to 'belowMinWarning'.
 
-### V12CurrentMaximum - Door blade only
+### V12CurrentMaximum - Door & OSDP blades only
 
 **[int] (1900)** This sets the maximum current (defined in mAmps) that is expected to be drawn from the V12 supply. Any more than this will cause the V12InCurrent state to change to 'aboveMaxWarning'.
 
-### LockPowerSource - Door blade only
+### LockPowerSource - Door & OSDP blades only
 
 **[enum] (auto)** This defines the lock's power source. The 'auto' setting will get the blade to test for an external lock power supply on blade power-up. If it is found, the external power supply is used.
 N.B. Putting external lock power on the blade after power-up when the setting is 'auto', will NOT allow the blade to use the external lock supply. Valid options are:
@@ -60,17 +60,17 @@ N.B. Putting external lock power on the blade after power-up when the setting is
 - **external**
 - **auto**
 
-### LockVoltageMinimum - Door blade only
+### LockVoltageMinimum - Door & OSDP blades only
 
 **[int] (11000)** This sets the minimum voltage (defined in mVolts) that is expected on the lock power supply. Any less than this will cause the LocksVoltage state to change to 'belowMinWarning'.
 
-### LockVoltageMaximum - Door blade only
+### LockVoltageMaximum - Door & OSDP blades only
 
 **[int] (14000)** This sets the maximum voltage (defined in mVolts) that is expected on the lock power supply. Any more than this will cause the LocksVoltage state to change to 'aboveMaxWarning'.
 
-### OsdpBaudRate - Door blade only
+### OsdpBaudRate - OSDP blade only
 
-**[enum] (baudDisabled)** This defines the OSDP baud rate for both OSDP ports on the blade. Valid options are:
+**[enum] (baud9600)** This defines the OSDP baud rate for both OSDP ports on the blade. Valid options are:
 
 - **baudDisabled**
 - **baud9600**
@@ -78,15 +78,15 @@ N.B. Putting external lock power on the blade after power-up when the setting is
 - **baud38400**
 - **baud115200**
 
-### OsdpMKey - Door blade only
+### OsdpMKey - OSDP blade only
 
-**[string] ('')** This defines the encryption key to use to encrypt the OSDP line. As empty string signifies that no encryption is to be used.
+**[stringHex16] ('')** If using the 'derived key' encryption option. This defines the encryption key to use to create the derived keys. *This is not the preferred option*
 
-### OsdpTerminate - Door blade only
+### OsdpTerminate - OSDP blade only
 
 **[bool] (false)** Set to true to use the blades internal line terminating resistor.
 
-### OsdpBusStats - Door blade only
+### OsdpBusStats - OSDP blade only
 
 **[bool] (true)** If true the OSDP devices get polling statistics and save them as diagnostic states.
 

@@ -158,12 +158,7 @@ configured in `invalidReadBeeperMode`.
 
 ### osdpDeviceKey
 
-**[string] (null)** Key to use to encrypt communications to reader.
->N.B. If the default '303132333435363738393A3B3C3D3E3F' key is used, you will need to set `osdpDefaultDeviceKey` to true.
-
-### osdpDefaultDeviceKey
-
-**[bool] (false)** Set to true if the defined device key is the default used by OSDP.
+**[stringHex16] (null)** Key to use to encrypt communications to reader. Not the preferred option. Example "303132333435363738393A3B3C3D3E3F". **N.B. Don't use this example key!**
 
 ### changeModePermissions
 
@@ -299,46 +294,31 @@ optional in these events.
 
 ### SetupDevice
 
-This command will search for an offline device (reader) connected to the bus and change it's baud rate and address to the configured properties. This should then bring the device online. Never use this command when you have more than one device offline on the bus, as it will cause unpredictable results.
-
-Optional parameters are:
-
-- **LowestAddress [int] (0)** - The lowest address scanned.
-- **HighestAddress [int] (7)** - The highest address scanned.
-
-Depending on the result of the command the following items will be present in the event contents.
-
-| **Result**           | **Reason**            |
-|----------------------|-----------------------|
-| FailedBecauseOfError | DeviceAlreadyOnline   |
-|                      | UndefinedBaudRate     |
-|                      | FailedToSetConfig     |
-|                      | FailedToSetComms      |
-| CommandArgumentError | AddressRangeWrong     |
-
-### SetKey
-
-This command will change the encryption key and should be used with caution.
-
-- **Key [string]** - The new key.
-
-Depending on the result of the command the following items will be present in the event contents.
-
-| **Result**           | **Reason**            |
-|----------------------|-----------------------|
-| FailedBecauseOfError |                       |
-| CommandArgumentError | NoKey                 |
+Same as the `SetupDeviceAndEncryption` command.
 
 ### SetupDeviceAndEncryption
 
 **Supported >= 4.2.0**.
 
-This command will search for an offline device (reader) connected to the bus and change it's baud rate and address to the configured properties and set the devices encryption key based on the OSDP master key set on the blade. This should then bring the device online. Never use this command when you have more than one device offline on the bus, as it will cause unpredictable results.
+This command will search for an offline device (reader) connected to the bus and change it's baud rate and address (if necessary) to the configured properties, and also set the devices encryption key. This should then bring the device online.
+
+The reader must be set to 'install mode' before issuing this command.
+
+If you have more than one device offline on the bus, you must define the `ScanAddresses` argument to `false` and have set-up each readers' address beforehand. Not doing this will cause unpredictable results.
+
+ The encryption key used to set-up the reader will be based on the following order:
+
+1. Derived from the OSDP master key `osdpMKey` defined in the blade config.
+2. Provided by the `osdpDeviceKey` defined in the reader config. See above.
+3. Provided in the command, using the `Key` argument.
+4. Randomly created by the controller, unique to that reader. This is the preferred method, as the key is then only known to the controller and reader.
 
 Optional parameters are:
 
+- **Key [stringHex16] (empty)** - Overrides controller key allocation. This is not the preferred option (see above). Example "303132333435363738393A3B3C3D3E3F". **N.B. Don't use this example key!**.
 - **LowestAddress [int] (0)** - The lowest address scanned.
 - **HighestAddress [int] (7)** - The highest address scanned.
+- **ScanAddresses [bool] (true)** - If false the `LowestAddress` and `HighestAddress` arguments are ignored and the search for the a device will only be on the defined address. The different baud rates will be scanned regardless if this setting.
 
 Depending on the result of the command the following items will be present in the event contents.
 
@@ -349,3 +329,5 @@ Depending on the result of the command the following items will be present in th
 |                      | FailedToSetConfig     |
 |                      | FailedToSetComms      |
 | CommandArgumentError | AddressRangeWrong     |
+|                      | KeyDefinedInReaderConfig |
+|                      | KeyDefinedInBladeConfig  |
