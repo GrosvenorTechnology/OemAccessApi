@@ -152,7 +152,14 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
-### 4.4.27032 (FW Minimum >= 1.1.4)
+### 4.4.27322 (FW Minimum >= 1.1.4)
+
+- [Bug] Software updates now delayed for 5 minutes after controller start to improve stability
+- [Bug] Reliability of OSDP setup commands improved
+- [Bug] System update commands improved to avoid triggering watchdog on slow networks
+- [Bug] OSDP readers do not show correct portal state if portal is unlocked after restart
+
+### ~~4.4.27032 (FW Minimum >= 1.1.4)~~
 
 - [Feature] Added RejectedFormat to read event (#19702) [link](Entities/HardwareReader.md#read)
 - [Feature] Now have TamperMode and Tamper property, allows selecting between Optical and mechanical tamper (#19465) [link](Entities/HardwareController.md#tampermode)
