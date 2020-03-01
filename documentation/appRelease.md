@@ -11,7 +11,7 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
-### 4.4.27675
+### 4.4.27675 (FW Minimum >= 1.1.4) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.4.27675.zip)
 
 - [Feature] Added RejectedFormat to read event (#19702) [link](Entities/HardwareReader.md#read)
 - [Feature] Now have TamperMode and Tamper property, allows selecting between Optical and mechanical tamper (#19465) [link](Entities/HardwareController.md#tampermode)
