@@ -11,6 +11,26 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
+### 4.4.27675
+
+- [Feature] Added RejectedFormat to read event (#19702) [link](Entities/HardwareReader.md#read)
+- [Feature] Now have TamperMode and Tamper property, allows selecting between Optical and mechanical tamper (#19465) [link](Entities/HardwareController.md#tampermode)
+- [Feature] CPU temperature checked and reported every 10 minutes (#19858)
+- [Feature] If OSDP device is online, only the `SetDeviceKey` is performed. (#20020)
+- [Feature] Implemented Non-destructive read on sever queue. (#20015)
+- [Feature] Time Table Adjustment only done when the seconds are zero. (#20021)
+- [Feature] Added `ToggleMode` option to Operation Mode command set for all entities (#20167) [link](ApplicationConfiguration/ModeOverview.md#changemode)
+- [Feature] OSDP Readers are now taken off poll when disabled (#20243)
+- [Bug] OSDP readers reported online when blade has OSDP disabled (#20224)
+- [Bug] Unable to set lock maximum voltage above 15V (#20226)
+- [Bug] Software updates now delayed for 5 minutes after controller start to improve stability
+- [Bug] Reliability of OSDP setup commands improved
+- [Bug] System update commands improved to avoid triggering watchdog on slow networks
+- [Bug] OSDP readers do not show correct portal state if portal is unlocked after restart
+- [Bug] Reconcile no longer blocks access (#20017)
+- [Bug] Updated Timezone files (#20054)
+- [Bug] Support TLS 1.2 in OEM-1.2.0 firmware (#20114)
+
 ### 4.3.25685 (FW Minimum >= 1.1.2) (Critical Update) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.3.25685.zip)
 
 - [Feature] Shared access permissions (#19327) [link](Entities/CommonSharedPermissionSet.md)
@@ -151,6 +171,13 @@ The Stable channel will contain all firmware versions as well as every applicati
 - Bug Fixes
 
 ## Beta Channel Releases
+
+### 4.4.27675
+
+- [Bug] OSDP readers reported online when blade has OSDP disabled (#20224)
+- [Feature] OSDP Readers are now taken off poll when disabled (#20243)
+- [Bug] Unable to set lock maximum voltage above 15V (#20226)
+
 
 ### 4.4.27322 (FW Minimum >= 1.1.4)
 
