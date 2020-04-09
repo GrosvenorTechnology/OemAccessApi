@@ -178,4 +178,10 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
-None.
+## 4.5.28520 (FM >= 1.1.2)
+
+ - Support for 1.2.0 Firmware
+ - Support for TLS 1.2 when running on 1.2.0 or later firmware (#19591)
+ - Batch Sending of States and Events (#20016)
+ - Added more content to PortalUsed, PortalEntryUsed, PortalExitUsed events about event source (#20382) 
+ - Controller history persisted to flash when controller is offline (#19636)
