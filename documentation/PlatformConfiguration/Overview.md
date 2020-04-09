@@ -211,6 +211,14 @@ All event and state updates send from the controller are sent via a platform lev
 
 The URI the events or states will be sent to as per the OEM-Controller-Protocol document, Event-Submission.
 
+#### batched
+
+Boolean specifying whether using the batched endpoint. Default is `false`
+
+#### batchSize
+
+Only used when batching. Integer specifying the batch size. Default is `100`.
+
 #### filters
 
 The list of events or states (as defined by the type above) that will be sent to the Uri. Event and states are defined by the triplets

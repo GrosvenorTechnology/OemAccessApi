@@ -1,4 +1,4 @@
-# Batched Heartbeat
+# Batched Heartbeat for Line Header (Gateway)
 
 The batched heartbeat endpoint is a performance enhancement to the standard per device heartbeat that has been implemented for performance reasons on a line header.
 
@@ -23,31 +23,29 @@ the response payload will return the id of any endpoints or queues that requires
 
 ````json
 [
-	{
-		"serialNumber": "OEM-ADV-C2-LH~00002001",
-		"downStreamOnline": true,
-		"includeCommands": true
-	},
-	{
-		"serialNumber": "OEM-ADV-C2-SNG~00002003",
-		"downStreamOnline": true,
-		"includeCommands": true
-	}
+    {
+        "serialNumber": "OEM-ADV-C2-LH~00002001",
+        "downStreamOnline": true,
+        "includeCommands": true
+    },
+    {
+        "serialNumber": "OEM-ADV-C2-SNG~00002003",
+        "downStreamOnline": true,
+        "includeCommands": true
+    }
 ]
 ````
 
 The Line header will post a heartbeat notification for itself and all downstream controllers configured in the application config file.
 
 The `downStreamOnline` property indicates if the Line Header has active 485 communication with the controller.
-The `includeCommands` property indicates that the server should return the first 10 pending commands for the in the heartbeat response. 
+The `includeCommands` property indicates that the server should return the first 10 pending commands for the in the heartbeat response.
 
 ## Success Response
 
 > **Code:** 200
 >
-> The body contains the ids of the queues that have pending data. It is allowable to return an empty activity array.  Optionally the response 
-> may include the time on the server in UTC.  This is intended for cases where the controller does not have NTP access.  The timestamp will be
-> used to correct the controller's time when drift is detected.
+> The body contains the ids of the queues that have pending data. It is allowable to return an empty activity array.  Optionally the response may include the time on the server in UTC.  This is intended for cases where the controller does not have NTP access.  The timestamp will be used to correct the controller's time when drift is detected.
 >
 > ````json
 > {
@@ -117,6 +115,4 @@ Valid Activities
 - commands
 - states
 
-
-The body of the command messages in the request body above has been omitted for clarity, it has the same content as messages 
-received via the command queue as shown [here](Commands.md) 
+The body of the command messages in the request body above has been omitted for clarity, it has the same content as messages received via the command queue as shown [here](Commands.md

@@ -1,7 +1,7 @@
-# Command Response & Progress Submission
+# Command Response & Progress Submission from Line Header (Gateway)
 
 When using controllers in 485 mode, the controllers will forward their command responses to the line header, which will then send these states up to the service.
-To improve performance of the line header, messages from all controllers are delivered to the service in batches. 
+To improve performance of the line header, messages from all controllers are delivered to the service in batches.
 
 For command responses is allowed to mix command progress and command response messages in the same batch.
 
@@ -88,8 +88,6 @@ OR
 > ### **Code:** 404 NOT FOUND
 >
 > Requested resource does not exist, i.e. unknown device serial number
-
-
 
 ## Notes
 

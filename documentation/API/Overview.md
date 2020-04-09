@@ -43,6 +43,8 @@ New entries may be added to message schemas in future version, therefore it is b
 1. [Event Submission](PostEvent.md)
 2. [State Notification](PostStateNotification.md)
 3. [State Requests Queue](StateRequests.md)
+4. [Batched Event Submission](PostBatchedEvents.md)
+5. [Batched State Notifications](PostBatchedStateNotification.md)
 
 ## Commanding
 

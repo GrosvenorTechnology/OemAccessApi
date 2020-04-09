@@ -236,10 +236,10 @@ portal, or signal an error if they didn't. The event may contain the following e
 
 | **Result**            | **Event Content** |
 |-----------------------|-------------------|
-| Success               | PersonId          |
-| FailedMinOpenTime     | PersonId          |
-| FailedPortalNotOpened | PersonId          |
-| FailedNoEscort        | PersonId          |
+| Success               | PersonId, TokenId, TokenData, ReaderId |
+| FailedMinOpenTime     | PersonId, TokenId, TokenData, ReaderId |
+| FailedPortalNotOpened | PersonId, TokenId, TokenData, ReaderId |
+| FailedNoEscort        | PersonId, TokenId, TokenData, ReaderId |
 
 ### PortalUsed
 

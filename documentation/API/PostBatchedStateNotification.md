@@ -1,11 +1,10 @@
-# Post Batched State Notification
+# Post Batched State Notifications
 
-When using controllers in 485 mode, the controllers will forward their state notifications to the line header, which will then send these states up to the service.
-To improve performance of the line header, messages from all controllers are delivered to the service in batches. 
+To improve performance, state notification messages can be delivered to the service in batches.
 
 ## URL
 
-/grosvenor-oem/batch/states
+/grosvenor-oem/device/\<DeviceSerialNumber\>/batchedstates
 
 ## Method
 
@@ -22,18 +21,13 @@ To improve performance of the line header, messages from all controllers are del
 ````json
 [
     {
-        "serialNumber": "OEM-ADV-C2-SNG~00002003",
-        "message":{
-            {
-                "messageId": "C5D6194D-3C5F-4A30-92B0-D45F8E92D71D",
-                "correlationId": "5E3F03E9-A382-4604-80CF-B96729D3E07A",
-                "previousMessageId": null,
-                "entity": "AccessControl.Input:Reception-Lights",
-                "stateName": "Tamper",
-                "stateValue": "Active",
-                "lastChanged": "2017-10-1T15:39:00Z"
-            }
-        }
+        "messageId": "C5D6194D-3C5F-4A30-92B0-D45F8E92D71D",
+        "correlationId": "5E3F03E9-A382-4604-80CF-B96729D3E07A",
+        "previousMessageId": null,
+        "entity": "AccessControl.Input:Reception-Lights",
+        "stateName": "Tamper",
+        "stateValue": "Active",
+        "lastChanged": "2017-10-1T15:39:00Z"
     },
     {...},
     {...}
@@ -44,7 +38,7 @@ To improve performance of the line header, messages from all controllers are del
 
 > **Code:** 204
 >
-> The state notification has been stored.
+> The state notifications have been stored.
 
 ## Error Response
 
@@ -74,6 +68,4 @@ OR
 
 ### Versioning
 
-The structure of the state notifications sent to the batch endpoint are the same as for the per device endpoints as described [here](PostStateNotification.md)
-
-It is the responsibility of the service to validate that the line header that is posting state data for downstream controllers is actually authorised to do so.
+The structure of the state notifications sent to the batch endpoint are the same as for the single endpoint as described [here](PostStateNotification.md)
