@@ -51,7 +51,7 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
 
 ### outputStateType
 
-**[enum] (activeHigh)** TODO: What does this actually do??
+**[enum] (activeHigh)** This allows you to define whether the 'contacts' close (activeHigh) or open (activeLow) when operated.
 
 - activeLow
 - activeHigh
