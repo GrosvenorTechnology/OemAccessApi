@@ -185,3 +185,7 @@ The Stable channel will contain all firmware versions as well as every applicati
  - Batch Sending of States and Events (#20016)
  - Added more content to PortalUsed, PortalEntryUsed, PortalExitUsed events about event source (#20382) 
  - Controller history persisted to flash when controller is offline (#19636)
+
+## 4.5.28780 (FM >= 1.1.2)
+
+ - Added new AuxOutputType property to allow the output to be defined as normal activeHigh/activeLow 

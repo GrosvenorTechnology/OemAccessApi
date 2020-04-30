@@ -132,7 +132,7 @@ N.B. An exit switch or reader is required at each side of the portal, if monitor
 **[boolean] (false)** If set to true, when a look it energised the matching aux output
 will also be operated, i.e. lock 1 drives output 1.
 
-### auxOutputForLockOutputType
+### auxOutputType
 
 **[enum] (activeHigh)** This allows you to define whether the 'contacts' close (activeHigh) or open (activeLow) when operated.
 
