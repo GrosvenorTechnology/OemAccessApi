@@ -277,7 +277,7 @@ one comes back positive, the command is allowed.
 If a command is marked is *internal,* then it is available only within the
 controller but will still raise events.
 
-### EnableSsh
+### EnableSSH
 
 This command will enable SSH.
 
@@ -289,7 +289,7 @@ This command will enable SSH.
 | FailedBecauseOfError |         |                   |
 | CommandArgumentError |         |                   |
 
-### DisableSsh
+### DisableSSH
 
 This command will disable SSH.
 
