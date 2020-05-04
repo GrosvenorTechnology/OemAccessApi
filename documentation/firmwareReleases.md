@@ -1,5 +1,28 @@
 # Firmware Changelog
 
+## v1.2.0 (Minimum supported application version v4.4, recommended v4.5)
+
+ - Mount filesystem in sync-mode to minimise file system corruption if power fails.
+ - Synchronise filesystem after application installation.
+ - Enable USB FTDI serial driver support in Linux kernel.
+ - Fix PID-file creation of log stream service (#18).
+ - Update Linux (from 4.1 to 4.14) and U-Boot (from 2009.08 to 2016.07).
+ - Update packages
+   - busybox from 1.25.0 to 1.30.1,
+   - connman 1.33 to 1.36,
+   - dropbear from 2016.74 to 2019.78,
+   - libcurl from 7.50.1 to 7.64.1,
+   - openssl from 1.0.2o to 1.0.2s,
+   - zlib from 1.2.8 to 1.2.11.
+   - mono from 5.12.0.226 to 6.8.0.105.	
+ - Enable support for TLS 1.2 in Mono.
+ - Add ntptest command line tool.
+ - Add RS-485 unit test.
+ - Fix RS-485 interrupt latency issue by using FIFO for higher braudrates.
+ - Configure getaddrinfo to prefer IPv4 over IPv6.
+ - Update OemOobe-app to version 4.4.27735.
+ - Fix netcfg to properly configure NTP if set to enabled.
+
 ## V1.1.4
  - Fix Linux UART driver to disable UART loopback mode (LBE) in DE-check timer.
 
@@ -69,25 +92,3 @@
 
 ## Beta Channel Releases
 
-## v1.2.0 (Minimum supported application version v4.4, recommended v4.5)
-
- - Mount filesystem in sync-mode to minimise file system corruption if power fails.
- - Synchronise filesystem after application installation.
- - Enable USB FTDI serial driver support in Linux kernel.
- - Fix PID-file creation of log stream service (#18).
- - Update Linux (from 4.1 to 4.14) and U-Boot (from 2009.08 to 2016.07).
- - Update packages
-   - busybox from 1.25.0 to 1.30.1,
-   - connman 1.33 to 1.36,
-   - dropbear from 2016.74 to 2019.78,
-   - libcurl from 7.50.1 to 7.64.1,
-   - openssl from 1.0.2o to 1.0.2s,
-   - zlib from 1.2.8 to 1.2.11.
-   - mono from 5.12.0.226 to 6.8.0.105.	
- - Enable support for TLS 1.2 in Mono.
- - Add ntptest command line tool.
- - Add RS-485 unit test.
- - Fix RS-485 interrupt latency issue by using FIFO for higher braudrates.
- - Configure getaddrinfo to prefer IPv4 over IPv6.
- - Update OemOobe-app to version 4.4.27735.
- - Fix netcfg to properly configure NTP if set to enabled.

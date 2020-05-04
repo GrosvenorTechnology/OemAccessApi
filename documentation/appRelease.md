@@ -11,6 +11,16 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
+## 4.5.28794 (FM >= 1.1.2) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.5.28794.zip)
+
+ - Support for 1.2.0 Firmware
+ - Support for TLS 1.2 when running on 1.2.0 or later firmware (#19591)
+ - Batch Sending of States and Events (#20016)
+ - Added more content to PortalUsed, PortalEntryUsed, PortalExitUsed events about event source (#20382) 
+ - Controller history persisted to flash when controller is offline (#19636)
+ - Added new AuxOutputType property to allow the output to be defined as normal activeHigh/activeLow 
+ - Fixed bad casing of Enable/DisableSSH commands in Metadata 
+
 ### 4.4.27819 (FW Minimum >= 1.1.2) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.4.27819.zip)
 
 - [Compatibility] Reverted minimum supported firmware version to 1.1.2
@@ -178,15 +188,3 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
-## 4.5.28520 (FM >= 1.1.2)
-
- - Support for 1.2.0 Firmware
- - Support for TLS 1.2 when running on 1.2.0 or later firmware (#19591)
- - Batch Sending of States and Events (#20016)
- - Added more content to PortalUsed, PortalEntryUsed, PortalExitUsed events about event source (#20382) 
- - Controller history persisted to flash when controller is offline (#19636)
-
-## 4.5.28794 (FM >= 1.1.2)
-
- - Added new AuxOutputType property to allow the output to be defined as normal activeHigh/activeLow 
- - Fixed bad casing of Enable/DisableSSH commands in Metadata 
