@@ -11,7 +11,8 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
-## 4.5.28892 (FW >= 1.1.2)
+## 4.5.28894 (FW >= 1.1.2)
+ - [Bug] Portals may fail to unlock when using UnlockOnMode (#20410)
  - [Bug] Actions sometimes skip a target when multiple targets are specified (#20410)
 
 ## 4.5.28794 (FW >= 1.1.2) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.5.28794.zip)
