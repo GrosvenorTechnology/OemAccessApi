@@ -11,6 +11,10 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
+## 4.5.28895 (FW >= 1.1.2)
+ - [Bug] In some cases, settings from application configuration were applied incorrectly (#20410)
+ - Reduced the amount of network activity logged by default, can still be shown using the [verboseNetworkLogging](https://github.com/GrosvenorTechnology/OemAccessApi/blob/master/documentation/PlatformConfiguration/Overview.md#verbosenetworklogging-41) setting in the platform config file.
+
 ## 4.5.28894 (FW >= 1.1.2)
  - [Bug] Portals may fail to unlock when using UnlockOnMode (#20410)
  - [Bug] Actions sometimes skip a target when multiple targets are specified (#20410)
