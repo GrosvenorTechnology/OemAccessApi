@@ -147,9 +147,14 @@ This method tends to be more compact when defining regular periods throughout th
 
 The `days` enumeration is: [Su, Mo, Tu, We, Th, Fr, Sa, Ho].
 
-The time table type is used to specify a series of periods based on the day of the week and holiday days. The number of transitions per day is not limited, but should be kept to a sensible limit of 10 or less. All transitions are processed as local times in the time zone specified in the Device Configuration.
+The time table type is used to specify a series of periods based on the day of the week and holiday days. The number of transitions per 
+day is not limited, but should be kept to a sensible limit of 10 or less. All transitions are processed as local times in the time zone 
+specified in the Device Configuration.
 
-If you require a continuous period that runs over midnight, you must use an end time of 24:00, this will ensure that the period from the first day is seamlessly linked to the next. e.g. Monday 9:00 to Tuesday 17:00, if you build the periods as 09:00-23:59 then 00:00-17:00, there will be a minute discontinuity at 23:59 to midnight on Monday where the timeTable will be inactive.  Instead use 09:00-24:00 and 00:00-17:00.
+If you require a continuous period that runs over midnight, you must use an end time of 1.00:00:00 (midnight), this will ensure that the period from the 
+first day is seamlessly linked to the next. e.g. Monday 9:00:00 to Tuesday 17:00:00, if you build the periods as 09:00:00-23:59:00 then 00:00:00-17:00:00, 
+there will be a minute discontinuity at 23:59:00 to midnight on Monday where the timeTable will be inactive.  
+Instead use 09:00:00-1.00:00:00 and 00:00:00-17:00:00.
 
 ## Properties
 
