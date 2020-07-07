@@ -119,9 +119,6 @@ The open circuit based lock detection works by detecting an open circuit situati
 This is a very reliable method and ideally suited for energise-to-unlock locks. The lock current based detection works by expecting a
 minimum current when a lock is energised. The minimum current is fixed at 100mA and de-bounce time of one second is used.
 
-**Note:** The lock detection only works when the lock power supply is working (e.g. 12V available) and the lock is not energised. 
-No state changes will occur when lock detection is not possible.
-
 ### lockCurrentLimit
 
 **[int] (4000)** The lock current limit at which power to the lock will be cut.
