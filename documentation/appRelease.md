@@ -20,7 +20,7 @@ The Stable channel will contain all firmware versions as well as every applicati
    - Portal : BreakglassState
    - Input (door & IO blades) : InputState
    - Reader : ReaderTamperState
- - [Bug] The performance of the event persistence system has been massively improved.  We noticed that as the number of events persisted to flash increased the the time required to store and read an event would increase.  This is now resolved so that it is constant regardless of the number of events stored, and the controller should be able to send the events to the server at the same velocity as online events.
+ - [Bug] The performance of the event persistence system has been massively improved.  We noticed that as the number of events persisted to flash increased the time required to store and read an event would increase.  This is now resolved so that it is constant regardless of the number of events stored, and the controller should be able to send the events to the server at the same velocity as online events.
   
 
 ## 4.5.28895 (FW >= 1.1.2)
