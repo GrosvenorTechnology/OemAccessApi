@@ -5,9 +5,9 @@
  - USB Network interface now sends OS descriptors when connected
    - Windows will now have more information to allow it to load the correct RNIDS driver, this will prevent the BSOD crashes seen with older firmware versions, and will also stop windows sending the wrong replies to the controller that was causing the controllers to restart when connected.
  - Fix byte alignment issue in application runtime with String comparison and BitConverter.
-   - We found a bug in runtime that is used to run the app on the controller. This issue manifested its self in alignment issues when trying to read memory that was not aligned to a 32nit boundary.  The most common manifestation of this is that sometimes when comparing stings of specific length, the last character was ignored in the comparison.  This lead to an issue where device IDs 101 and 102 were seen as the same thing, but rdr101 and rdr102 were seen as different.  If you were using Guids as identifiers this issue would not have effected you due to the randomness in the ids. 
+   - We found a bug in runtime that is used to run the app on the controller. This issue manifested its self in alignment issues when trying to read memory that was not aligned to a 32bit memory boundary.  The most common manifestation of this is that sometimes when comparing stings of specific length, the last character was ignored in the comparison.  This lead to an issue where device IDs 101 and 102 were seen as the same thing, but rdr101 and rdr102 were seen as different.  If you were using Guids as identifiers this issue would not have effected you due to the randomness in the ids. 
  - Watchdog timer now logs timeout messages as errors rather than info
-   - This makes the app restarts triggered by the watch dog easier to see in the log files
+   - This makes the app restarts triggered by the watch dog easier to see in the log files, mainly for use while the app is under development.
  - Out of box app has beed updated
    - This addresses the issue where a boot config file could bot be loaded from USB that contains the device serial number.
 
