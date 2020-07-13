@@ -2,6 +2,19 @@
 
 ## v1.2.0 (Minimum supported application version v4.4, recommended v4.5)
 
+ - USB Network interface now sends OS descriptors when connected
+   - Windows will now have more information to allow it to load the correct RNIDS driver, this will prevent the BSOD crashes seen with older firmware versions, and will also stop windows sending the wrong replies to the controller that was causing the controllers to restart when connected.
+ - Fix byte alignment issue in application runtime with String comparison and BitConverter.
+   - We found a bug in runtime that is used to run the app on the controller. This issue manifested its self in alignment issues when trying to read memory that was not aligned to a 32nit boundary.  The most common manifestation of this is that sometimes when comparing stings of specific length, the last character was ignored in the comparison.  This lead to an issue where device IDs 101 and 102 were seen as the same thing, but rdr101 and rdr102 were seen as different.  If you were using Guids as identifiers this issue would not have effected you due to the randomness in the ids. 
+ - Watchdog timer now logs timeout messages as errors rather than info
+   - This makes the app restarts triggered by the watch dog easier to see in the log files
+ - Out of box app has beed updated
+   - This addresses the issue where a boot config file could bot be loaded from USB that contains the device serial number.
+
+## ~~v1.2.0 (Minimum supported application version v4.4, recommended v4.5)~~
+
+**This release is deprecated and not recommended for use due to the runtime bug resolved in 1.2.1**
+
  - Mount filesystem in sync-mode to minimise file system corruption if power fails.
  - Synchronise filesystem after application installation.
  - Enable USB FTDI serial driver support in Linux kernel.

@@ -11,6 +11,18 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
+## 4.5.29023 (FW >= 1.1.2 Recommended 1.2.1)
+ - [Diagnostics] Extra logging added to reconcile messages.  IDs of messages deleted or missing are now logged to help in trouble shooting issues.
+ - [Bug] The validation logic was wrong for the Portal fields NormalOpenTooLongPeriod & ExtendedOpenTooLongPeriod.  This was set to 10 minutes; for use cases such as roller shutter doors in loading areas this was to short.  Both have now been extended to 2 hours.
+ - [Bug] Several inputs types would not correctly clear their error states when disabled.  For example, the portal egress switch can be set to 'Supervised'.  If this was done by mistake the switch would signal an error state.  When the switch was then returned to a disabled state, the error state would remain until the controller is restarted.  Affected states are:
+   - Portal : LockDetectionState
+   - Portal : EgressSwitchState
+   - Portal : BreakglassState
+   - Input (door & IO blades) : InputState
+   - Reader : ReaderTamperState
+ - [Bug] The performance of the event persistence system has been massively improved.  We noticed that as the number of events persisted to flash increased the the time required to store and read an event would increase.  This is now resolved so that it is constant regardless of the number of events stored, and the controller should be able to send the events to the server at the same velocity as online events.
+  
+
 ## 4.5.28895 (FW >= 1.1.2)
  - [Bug] In some cases, settings from application configuration were applied incorrectly (#20410)
  - Reduced the amount of network activity logged by default, can still be shown using the [verboseNetworkLogging](https://github.com/GrosvenorTechnology/OemAccessApi/blob/master/documentation/PlatformConfiguration/Overview.md#verbosenetworklogging-41) setting in the platform config file.
