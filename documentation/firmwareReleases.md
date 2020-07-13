@@ -1,6 +1,6 @@
 # Firmware Changelog
 
-## v1.2.0 (Minimum supported application version v4.4, recommended v4.5)
+## v1.2.1 (Minimum supported application version v4.4, recommended v4.5)
 
  - USB Network interface now sends OS descriptors when connected
    - Windows will now have more information to allow it to load the correct RNIDS driver, this will prevent the BSOD crashes seen with older firmware versions, and will also stop windows sending the wrong replies to the controller that was causing the controllers to restart when connected.
