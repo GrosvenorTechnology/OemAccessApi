@@ -385,14 +385,23 @@ details).
 
 **[boolean] [diagnostic]** Is the portal available on a connected blade.
 
-### portalLockState
+### PortalLockState
 
 **[enum] [diagnostic]** State of the portal's lock.
 
 - locked
 - unlocked
 
-### egressSwitchState
+### PortalSenseState
+
+**[enum] [diagnostic]** State of the portal's open sensor.
+
+- open
+- closed
+- error
+- unknown
+
+### EgressSwitchState
 
 **[enum] [diagnostic]** State of the egress switch.
 
@@ -401,13 +410,27 @@ details).
 - error
 - unknown
 
-### egressSwitchErrorState
+### EgressSwitchErrorState
 
 **[enum]** Error state of the egress switch.
 
 - Unknown
 - Ok
 - Error
+
+### SounderState
+
+**[enum] [diagnostic]** State of the sounder.
+
+- off
+- on
+
+### Interlocked
+
+**[enum] [diagnostic]** Whether portal is in interlock.
+
+- false
+- true
 
 ## Events
 

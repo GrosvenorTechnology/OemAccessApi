@@ -117,4 +117,4 @@ Holidays can be defined in the Application Configuration and in Entity Change me
 
 ## Commands
 
-No Standalone events.
+No Standalone commands.

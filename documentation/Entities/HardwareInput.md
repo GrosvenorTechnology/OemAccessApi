@@ -144,8 +144,18 @@ details).
 - **Inactive**
 - **Active**
 - **Error** - If the input is in a supervised mode, this state means the input
-  is in a tamper, open circuit or short circuit state.
+  is in an open circuit or short circuit state.
 - **Unknown**
+
+### RawInputState
+
+**[enum] [diagnostic]** The raw state of the input, valid values are
+
+- Inactive
+- Active
+- Error - If the input is in a supervised mode, this state means the input
+  is in an open circuit or short circuit state.
+- Unknown
 
 ## Events
 
