@@ -85,30 +85,6 @@ A token was read and found on the whitelist with the local verification flag set
 |------------------|----------------------------------|
 | Success          | TokenData, TokenId, PersonId     |
 
-### UserUnlocked
-
-| **Result**       | **Event Content**                |
-|------------------|----------------------------------|
-| Success          | TokenData, TokenId, PersonId     |
-
-### UserLocked
-
-| **Result**       | **Event Content**                |
-|------------------|----------------------------------|
-| Success          | TokenData, TokenId, PersonId     |
-
-### Unlocked
-
-| **Result**       | **Event Content**                |
-|------------------|----------------------------------|
-| Success          |                                  |
-
-### Locked
-
-| **Result**       | **Event Content**                |
-|------------------|----------------------------------|
-| Success          |                                  |
-
 ## Commands
 
 None.

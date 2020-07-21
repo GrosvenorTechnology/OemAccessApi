@@ -276,6 +276,18 @@ The number of accesses granted while the lock was off-line, allowed because the 
 |-----------------------|-------------------|
 | [int]                 |                   |
 
+### UserUnlocked
+
+| **Result**       | **Event Content**                |
+|------------------|----------------------------------|
+| Success          | TokenData, TokenId, PersonId     |
+
+### UserLocked
+
+| **Result**       | **Event Content**                |
+|------------------|----------------------------------|
+| Success          | TokenData, TokenId, PersonId     |
+
 ## Commands
 
 For a command to be successful, it requires permission. There is a list of
