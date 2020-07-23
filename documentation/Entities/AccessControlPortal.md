@@ -115,9 +115,7 @@ N.B. An exit switch or reader is required at each side of the portal, if monitor
 - openCircuit
 - lockCurrent
 
-The open circuit based lock detection works by detecting an open circuit situation when the lock is not powered. 
-This is a very reliable method and ideally suited for energise-to-unlock locks. The lock current based detection works by expecting a
-minimum current when a lock is energised. The minimum current is fixed at 100mA and de-bounce time of one second is used.
+The open circuit based lock detection works by detecting an open circuit situation when the lock is not powered. This is a very reliable method and ideally suited for energise-to-unlock locks. The lock current based detection works by expecting a minimum current when a lock is energised. The minimum current is fixed at 100mA and de-bounce time of one second is used.
 
 ### lockCurrentLimit
 
@@ -400,6 +398,14 @@ details).
 - closed
 - error
 - unknown
+
+### PortalSenseErrorState
+
+**[enum]** Error state of the portal's open sensor.
+
+- Unknown
+- Ok
+- Error
 
 ### EgressSwitchState
 
