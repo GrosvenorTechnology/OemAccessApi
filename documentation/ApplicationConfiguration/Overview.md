@@ -72,6 +72,7 @@ All objects will have the following common properties unless otherwise noted.
 - a-z
 - 0-9
 - \-
+- _
 
 ### description
 
