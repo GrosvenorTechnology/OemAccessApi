@@ -16,7 +16,11 @@ When two or more portals are allocated to a portal interlock, those portals obey
 
 - The `disabled` mode allows the portals to open with no interlock restrictions.
 
-Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverview.md) document for more information.
+Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverview.md) document for more information on modes.
+
+All portals to be interlocked together must be on the same controller. To add a portal to a portal interlock, the portal record must contain the reference to the controlling interlock by setting the `portalInterlock` property to a portal interlock id. The portals sensor's must be set to `unsupervised` or `supervised` for the interlock to work.
+
+It is possible to have one or more portals in the `Unlocked` mode. If this is the case, the unlocked portals will be temporarily locked, while another is open.
 
 ````json
 {
