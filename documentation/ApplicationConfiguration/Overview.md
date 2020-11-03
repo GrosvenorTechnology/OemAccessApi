@@ -127,7 +127,29 @@ message id to the message id of the source command.
 ### Command Response
 
 Response messages are linked to the originating command by setting the previous
-message id to the message id of the source command
+message id to the message id of the source command.
+
+Within the command response there is a Command Outcome.
+
+#### Command Outcome
+
+The Command Outcome has two parts, Result and Reason. The Result can be one of the following:
+
+- Success
+- TtlExceeded
+- FailedOnPermissions
+- FailedBecauseOfError
+- UnknownCommand
+- TargetNotFound
+- CommandArgumentError
+
+There maybe no Reason part for Success messages, but this is not always the case. The Reason maybe multi-part and divided with a semi-colon ';'. There are some standard Reasons which are associated with commands using Server Permissions, they are as follows:
+
+- ServerDecision
+- ServerError
+- FallBack
+
+These reasons will be multi-part and have further explanation parts.
 
 ## Operational Mode
 
