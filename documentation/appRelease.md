@@ -208,6 +208,9 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
+## 4.5.30605 (FW >= 1.1.2 Recommended 1.2.1)
+ - [Feature] The max OSDP reader limit per port was increased from 4 to 8.
+
 ## 4.5.30457 (FW >= 1.1.2 Recommended 1.2.1)
  - [Bug] The max reader limit was incorrectly set to 16 instead of 36.
 
