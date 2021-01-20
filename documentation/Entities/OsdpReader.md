@@ -28,7 +28,8 @@ reader will operate in. The available operational modes are:
 - **tokenAndPin** – Both a token number and PIN verification is required.
 - **tokenViaKeypadAndPin** - Both token number and PIN verification is required.
   Optionally, the token number can be entered using the keypad.
-- **disabled** – All reads from the reader will be ignored.
+- **disabled** – All communications with reader will be stopped.
+- **isolated** – All reads from the reader will be ignored.
 
 Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverview.md) document for more information.
 
@@ -275,8 +276,8 @@ the Result. These include:
 The following table shows which items are present for each result, values in
 optional in these events.
 
-| **Result**       | **Event Content**                |
-|------------------|----------------------------------|
+| **Result**       | **Event Content**                ||
+|------------------|----------------------------------|-|
 | Success          | TokenData, TokenId, PersonId     |
 | PinTimeout       | TokenData, [TokenId], [PersonId] |
 | DuressPinUsed    | TokenData, TokenId, PersonId     |
@@ -285,7 +286,8 @@ optional in these events.
 | UnknownPerson    | TokenData, TokenId               |
 | TokenNotEnabled  | TokenData, TokenId, PersonId     |
 | PersonNotEnabled | TokenData, TokenId, PersonId     |
-| ReaderDisabled   | TokenData, [TokenId], [PersonId] |
+| ReaderDisabled   | TokenData, [TokenId], [PersonId] | Very unlikely as reader comms is disabled! |
+| ReaderIsolated   | TokenData, [TokenId], [PersonId] |
 | RejectedFormat   | Data                             |
 
 >N.B. Reader Commands have the event name of `Read:n` where 'n' is the command number 1 to 9. See above for information on Reader Commands.

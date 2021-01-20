@@ -26,7 +26,8 @@ reader will operate in. The available operational modes are:
 - **tokenAndPin** – Both a token number and PIN verification is required.
 - **tokenViaKeypadAndPin** - Both token number and PIN verification is required.
   Optionally, the token number can be entered using the keypad.
-- **disabled** – All reads from the reader will be ignored.
+- **disabled** – All reads and tamper from the reader will be ignored.
+- **isolated** – All reads from the reader will be ignored.
 
 Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverview.md) document for more information.
 
@@ -205,6 +206,7 @@ optional in these events.
 | TokenNotEnabled  | TokenData, TokenId, PersonId     |
 | PersonNotEnabled | TokenData, TokenId, PersonId     |
 | ReaderDisabled   | TokenData, [TokenId], [PersonId] |
+| ReaderIsolated   | TokenData, [TokenId], [PersonId] |
 | RejectedFormat   | Data                             |
 
 >N.B. Reader Commands have the event name of `Read:n` where 'n' is the command number 1 to 9. See above for information on Reader Commands.

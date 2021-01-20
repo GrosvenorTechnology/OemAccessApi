@@ -28,3 +28,7 @@ The name specified here is used to reference this reader format in the [Reader](
 This is a base64 encoded version of a reader definition. The reader definition
 can be created and exported by the reader format tool (included in the SDK)
 Details of the reader format can be found [here](TokenFormatDefinition.md)
+
+## Tools
+
+There is a Windows application that can be used to create and maintain token format definitions. It will also produce the definition in the base64 encoded format. Please ask Grosvenor Technology for details.

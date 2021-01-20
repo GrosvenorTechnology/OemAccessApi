@@ -75,10 +75,11 @@ access control application are:
 - **keypadDigit** - Used to give keypad digit
 - **keypadClear** - Used to clear keypad digit buffer
 - **keypadBackSpace** - Used to delete previous keypad digit
-- **keypadEnter** - Used to signify end of keypad digit input (PIN input does not require
-  this as they are of fixed length)
-- **keypadAndTokenEnter** - Used to signify end of keypad digit input, will allow a token
-  number to be entered, regardless of reader settings.
+- **keypadEnter** - Used to signify end of keypad digit input (PIN input does not require this as they are of fixed length)
+- **keypadAndTokenEnter** - Used to signify end of keypad digit input, will allow a token number to be entered, regardless of reader settings.
+- **lowBattery** - Used to give indication when a token has a low battery. '1' indicates low battery, '0' battery OK.
+- **deniedByReader** - Used to indicate that the reader denies permission. Usually because of biometric verification failure. '1' indicates denied, '0' is OK.
+- **readerTamper** - Used to indicate reader tamper. '1' indicates in tamper, '0' is OK. Normally sent in it's own format definition, not in a 'normal' read.
 
 In addition to the above there are the following reserved data names which are
 used by the decoder to convey additional information:
@@ -222,7 +223,7 @@ interpretations.
 
 | Attribute name     | Required | Type                                           | Comment                                                                         |
 |--------------------|----------|------------------------------------------------|---------------------------------------------------------------------------------|
-| dataName           | true     | enumerable                                     | Currently one of the following: `tokenNumber`, `keypadNumber` or `keypadDigit`. |
+| dataName           | true     | enumerable                                     | Often one of the following: `tokenNumber`, `keypadNumber` or `keypadDigit`. See above for full list.|
 | Child Element name | Required | Comment                                        |                                                                                 |
 | bitSequences       | true     | Contains a list of one or more bit sequences.  |                                                                                 |
 | controlCodes       | false    | Contains a list of zero or more control codes. |                                                                                 |
@@ -340,7 +341,7 @@ interpretations.
 
 | Attribute name     | Required | Type                                                | Comment                                                                         |
 |--------------------|----------|-----------------------------------------------------|---------------------------------------------------------------------------------|
-| dataName           | true     | enumerable                                          | Currently one of the following: `tokenNumber`, `keypadNumber` or `keypadDigit`. |
+| dataName           | true     | enumerable                                          | Often one of the following: `tokenNumber`, `keypadNumber` or `keypadDigit`. See above for full list. |
 | Child Element name | Required | Comment                                             |                                                                                 |
 | charSequences      | true     | Contains a list of one or more character sequences. |                                                                                 |
 | controlCodes       | false    | Contains a list of zero or more control codes.      |                                                                                 |
