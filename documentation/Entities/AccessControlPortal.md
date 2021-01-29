@@ -504,6 +504,19 @@ request is allowed, they are:
 |                     | NoActivePermissions   | PersonId          |
 |                     | PortalDisabled        | PersonId          |
 
+The **Result** can be complemented with one or more reasons for the outcome. The format of the **Result** with reason(s) is as follows : `result`:`reason1`;`reason2`;`reason3` etc. The reasons can be given by the access control server, so it is not possible to give a definitive list of all possible reasons. That said, when using server permission gates the following reasons are used:
+
+- Fallback
+- ServerDecision
+- ServerError
+
+Examples would be:
+
+- Success:ServerDecision;Allow100001
+- Success:Fallback;ServerError;RequestFail_NotFound
+- Success:Fallback;ServerDecision;FallBack100014
+- FailedOnPermissions:Fallback;ServerError;Error100013;NeverGateClosed
+
 ### SingleUnlock
 
 The portal will been commanded to unlock e.g. via interactive user command. The

@@ -26,10 +26,10 @@ reader will operate in. The available operational modes are:
 
 - **tokenOnly** – Only the token number is required.
 - **tokenAndPin** – Both a token number and PIN verification is required.
-- **tokenViaKeypadAndPin** - Both token number and PIN verification is required.
-  Optionally, the token number can be entered using the keypad.
+- **tokenViaKeypadAndPin** - Both token number and PIN verification is required. Optionally, the token number can be entered using the keypad.
+- **tokenOnlyViaKeypad** - The token number can be entered using the keypad. Mode supported >= Version 4.6 .
 - **disabled** – All communications with reader will be stopped.
-- **isolated** – All reads from the reader will be ignored.
+- **isolated** – All reads from the reader will be ignored. Mode supported >= Version 4.6 .
 
 Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverview.md) document for more information.
 

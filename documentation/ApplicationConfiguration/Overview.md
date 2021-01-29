@@ -49,6 +49,7 @@ Format for the gateway controller:
 - [lifts](../Entities/HardwareLift.md)
 - [outputs](../Entities/HardwareOutput.md)
 - [readers](../Entities/HardwareReader.md)
+- [readers OSDP](../Entities/OsdpReader.md)
 - [portals](../Entities/AccessControlPortal.md)
 - [portal interlocks](../Entities/AccessControlPortalInterlock.md)
 - [system modes](../Entities/CommonSystemMode.md)
