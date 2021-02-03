@@ -1,0 +1,66 @@
+{
+    "controller": {
+      "areaMode": "local",
+      "timeZone": "Europe/London",
+      "readers": [
+        {
+          "tokenFormatType": "RDSATEONPRO",
+          "address": "1-0-1",
+          "id": "Reader-101",
+          "description": "Reader 101"
+        }
+      ],
+      "outputs": [
+        {
+          "operationalMode": "Off",
+          "address": "1-0-1",
+          "changeModePermissions": [
+            "Output101"
+          ],
+          "id": "Output-101",
+          "description": "Output 101"
+        },
+        {
+          "operationalMode": "Off",
+          "address": "1-0-2",
+          "changeModePermissions": [
+            "Output102"
+          ],
+          "id": "Output-102",
+          "description": "Output 102"
+        }
+      ],
+      "actions": [
+        {
+          "sourceType": "Hardware.Reader",
+          "sourceIds": [
+            "Reader-101"
+          ],
+          "targetType": "Hardware.Output",
+          "targetIds": [
+            "Output-101",
+            "Output-102"
+          ],
+          "permissionsFrom": "Person",
+          "map": [
+            {
+              "event": "Read:success",
+              "command": "ChangeMode",
+              "arguments": {
+                "mode": "On",
+                "period": "00:00:05"
+              }
+            }
+          ],
+          "restoreCommand": {
+            "command": "ClearOwnedFromModeStack",
+            "arguments": {}
+          },
+          "id": "Action-1",
+          "description": "Operate Outputs Action"
+        }
+      ],
+      "id": "controller",
+      "description": "The Controller"
+    }
+  }
