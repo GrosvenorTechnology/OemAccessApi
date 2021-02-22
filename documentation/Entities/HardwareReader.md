@@ -110,6 +110,12 @@ or `Partially Sighted` attribute the beeper output mode is non-urgent.
 - **unsupervised**
 - **supervised**
 
+## ReaderTamperNormallyOpen
+
+**Supported >= 4.6.30851**
+
+**[boolean] (true)** Is the reader tamper state normally open or closed 
+
 ### validReadLedPeriod
 
 **[timespan] (00:00:03)** How long the valid LED stays on for a valid read.

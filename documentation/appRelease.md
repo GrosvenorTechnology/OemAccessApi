@@ -11,6 +11,12 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
+## 4.5.30614 (FW >= 1.1.2 Recommended 1.2.1)
+ - [Feature] The max OSDP reader limit per port was increased from 4 to 8.
+ - [Bug] The max reader limit was incorrectly set to 16 instead of 36.
+ - [Bug] Improved error handling around detection of offline event target detection.  This caused events to buffer on the controller. 
+ - Note: No functional change compared to 4.5.30605, just rebuilt with release tagging.
+
 ## 4.5.29023 (FW >= 1.1.2 Recommended 1.2.1)
  - [Diagnostics] Extra logging added to reconcile messages.  IDs of messages deleted or missing are now logged to help in trouble shooting issues.
  - [Bug] The validation logic was wrong for the Portal fields NormalOpenTooLongPeriod & ExtendedOpenTooLongPeriod.  This was set to 10 minutes; for use cases such as roller shutter doors in loading areas this was to short.  Both have now been extended to 2 hours.
@@ -208,12 +214,20 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
-## 4.5.30605 (FW >= 1.1.2 Recommended 1.2.1)
- - [Feature] The max OSDP reader limit per port was increased from 4 to 8.
+## 4.6.30851 (FW >= 1.2.1) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.6.30851.zip)
 
-## 4.5.30457 (FW >= 1.1.2 Recommended 1.2.1)
- - [Bug] The max reader limit was incorrectly set to 16 instead of 36.
-
-## 4.5.30313 (FW >= 1.1.2 Recommended 1.2.1)
- - [Bug] Improved error handling around detection of offline event target detection.  This caused events to buffer on the controller. 
-
+ - [Feature] The reader tamper input on Hardware.Reader and now be configured as normally open or closed (#21675) [link](Entities/ApplicationHardwareReader.md#ReaderTamperNormallyOpen)
+ - [Feature] New operational modes added to reader 'isolated'.  This has been added primarily to disable OSDP readers without taking them offline. (#21924) [link1](Entities/OsdpReader.md#modes-of-operation) [link2](Entities/HardwareReader.md#modes-of-operation)
+ - [Feature] Transfer reader and token states via reader interface.  New options are 'Denied By Reader', 'Low Battery' and 'Reader Tamper'  (#21546) [link](ApplicationConfiguration/TokenFormatDefinition.md#xml-document-definition)
+ - [Feature] Added PortalSenseErrorState to portal. This allows to wach for error states at the portal, without the traffic overhead of open/close states (#20583) [link](Entities/AccessControlPortal.md#portalsenseerrorstate)
+ - [Feature] Extended AccessGranted/Denied events to include a reason for the event, i.e. ServerDecision. (#21463) [link](Entities/AccessControlPortal.md#portalsenseerrorstate)
+ - [Feature] Added new reader mode **TokenOnlyViaKeypad**.  These is not recommended only for low security areas as the token number is generally isn't secret.  **TokenAndPinViaKeypad** is a safer option where practical. (#21464) [link](Entities/HardwareReader.md#modes-of-operation)
+ - [Feature] Added new application to SDK to allow stand alone verification of config file (#21417)
+ - [Enhancement] Hardware IDs for SimonsVoss devices increased form 4 to 8 chars (#21414)
+ - [Bug] A significant change of time on the controller would trigger the watchdog to reboot the controller. (#21432)
+ - [Bug] Sending a configuration file to controller with more than 8 readers per OSDP port would crash the blade requiring a controller restart. (#21888)
+ - [Bug] Command Response messages do not include the device ID when used with a RS485 Line Header (#22047)
+ - [Bug] Unable to control SSH via local actions (#20551)
+ - [Bug] Local actions do not process the reset state of the configuration button correctly (#20547)
+ - [Bug] Local actions do not process Area movement events correctly (#20545)
+    
