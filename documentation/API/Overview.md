@@ -32,7 +32,7 @@ New entries may be added to message schemas in future version, therefore it is b
 2. [Platform Configuration Request](PlatformConfigurationRequest.md)
 3. [Application Configuration Requests](ApplicationConfigurationRequest.md)
 4. [Device Hardware Report](DeviceHardwareReport.md)
-5. [Entity Types](EntityTypes.md)
+5. [Entity Types](../Entities/EntityTypes.md)
 6. [Entity Changes](EntityChanges.md)
 7. [Entity Requests](EntityRequests.md)
 8. [Entity Resync](EntityResync.md)
