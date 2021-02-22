@@ -216,12 +216,12 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## 4.6.30851 (FW >= 1.2.1) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.6.30851.zip)
 
- - [Feature] The reader tamper input on Hardware.Reader and now be configured as normally open or closed (#21675) [link](Entities/ApplicationHardwareReader.md#ReaderTamperNormallyOpen)
+ - [Feature] The reader tamper input on Hardware.Reader and now be configured as normally open or closed (#21675) [link](Entities/HardwareReader.md#ReaderTamperNormallyOpen)
  - [Feature] New operational modes added to reader 'isolated'.  This has been added primarily to disable OSDP readers without taking them offline. (#21924) [link1](Entities/OsdpReader.md#modes-of-operation) [link2](Entities/HardwareReader.md#modes-of-operation)
  - [Feature] Transfer reader and token states via reader interface.  New options are 'Denied By Reader', 'Low Battery' and 'Reader Tamper'  (#21546) [link](ApplicationConfiguration/TokenFormatDefinition.md#xml-document-definition)
  - [Feature] Added PortalSenseErrorState to portal. This allows to wach for error states at the portal, without the traffic overhead of open/close states (#20583) [link](Entities/AccessControlPortal.md#portalsenseerrorstate)
  - [Feature] Extended AccessGranted/Denied events to include a reason for the event, i.e. ServerDecision. (#21463) [link](Entities/AccessControlPortal.md#portalsenseerrorstate)
- - [Feature] Added new reader mode **TokenOnlyViaKeypad**.  These is not recommended only for low security areas as the token number is generally isn't secret.  **TokenAndPinViaKeypad** is a safer option where practical. (#21464) [link](Entities/HardwareReader.md#modes-of-operation)
+ - [Feature] Added new reader mode **TokenOnlyViaKeypad**.  These is only recommended for low security areas as the token number is generally isn't secret.  **TokenAndPinViaKeypad** is a safer option where practical. (#21464) [link](Entities/HardwareReader.md#modes-of-operation)
  - [Feature] Added new application to SDK to allow stand alone verification of config file (#21417)
  - [Enhancement] Hardware IDs for SimonsVoss devices increased form 4 to 8 chars (#21414)
  - [Bug] A significant change of time on the controller would trigger the watchdog to reboot the controller. (#21432)
