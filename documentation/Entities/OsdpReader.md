@@ -302,11 +302,11 @@ Same as the `SetupDeviceAndEncryption` command.
 
 **Supported >= 4.2.0**.
 
-This command will search for an offline device (reader) connected to the bus and change it's baud rate and address (if necessary) to the configured properties, and also set the devices encryption key. This should then bring the device online.
+Two modes of operation:
 
-The reader must be set to 'install mode' before issuing this command.
+1. This command will search for an offline device (reader) connected to the bus and change it's baud rate and address (if necessary) to the configured properties, and also set the devices encryption key. This should then bring the device online. The reader must be set to 'install mode' before issuing this command. If you have more than one device offline on the bus, you must define the `ScanAddresses` argument to `false` and have set-up each readers' address beforehand. Not doing this will cause unpredictable results.
 
-If you have more than one device offline on the bus, you must define the `ScanAddresses` argument to `false` and have set-up each readers' address beforehand. Not doing this will cause unpredictable results.
+2. If the device (reader) is online (it maybe using unencrypted communications), the encryption key will be set for that device.
 
  The encryption key used to set-up the reader will be based on the following order:
 
@@ -326,10 +326,15 @@ Depending on the result of the command the following items will be present in th
 
 | **Result**           | **Reason**            |
 |----------------------|-----------------------|
-| FailedBecauseOfError | DeviceAlreadyOnline   |
-|                      | UndefinedBaudRate     |
+| FailedBecauseOfError | UndefinedBaudRate     |
 |                      | FailedToSetConfig     |
 |                      | FailedToSetComms      |
 | CommandArgumentError | AddressRangeWrong     |
 |                      | KeyDefinedInReaderConfig |
 |                      | KeyDefinedInBladeConfig  |
+
+### ClearInternalDeviceKey
+
+**Supported >= 4.5.0**.
+
+This allows the device key to be cleared. This is required if you want to communicate with the device (reader) without encryption, when a key was previously set.
