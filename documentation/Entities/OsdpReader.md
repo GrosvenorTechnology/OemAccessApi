@@ -335,6 +335,6 @@ Depending on the result of the command the following items will be present in th
 
 ### ClearInternalDeviceKey
 
-**Supported >= 4.5.0**.
+**Supported >= 4.6.30929**.
 
 This allows the device key to be cleared. This is required if you want to communicate with the device (reader) without encryption, when a key was previously set.
