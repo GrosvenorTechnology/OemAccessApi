@@ -308,7 +308,7 @@ Two modes of operation:
 
 2. If the device (reader) is online (it maybe using unencrypted communications), the encryption key will be set for that device.
 
- The encryption key used to set-up the reader will be based on the following order:
+The encryption key used to set-up the reader will be based on the following order:
 
 1. Derived from the OSDP master key `osdpMKey` defined in the blade config.
 2. Provided by the `osdpDeviceKey` defined in the reader config. See above.
