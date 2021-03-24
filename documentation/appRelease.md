@@ -11,6 +11,9 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
+## 4.5.31191 (FW >= 1.1.2 Recommended 1.2.1)
+ - [Bug] Fixed application crash when overlapping reader Read events happen while requesting user record from server (#22647)
+
 ## 4.5.30614 (FW >= 1.1.2 Recommended 1.2.1)
  - [Feature] The max OSDP reader limit per port was increased from 4 to 8.
  - [Bug] The max reader limit was incorrectly set to 16 instead of 36.
