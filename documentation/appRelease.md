@@ -217,6 +217,10 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Beta Channel Releases
 
+## 4.6.31192 (FW >= 1.2.1) 
+
+ - [Bug] Fixed application crash when overlapping reader Read events happen while requesting user record from server (#22647)
+
 ## 4.6.30851 (FW >= 1.2.1) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.6.30851.zip)
 
  - [Feature] The reader tamper input on Hardware.Reader and now be configured as normally open or closed (#21675) [link](Entities/HardwareReader.md#ReaderTamperNormallyOpen)
