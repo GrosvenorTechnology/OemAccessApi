@@ -11,6 +11,11 @@ Please see the [Operational Mode Overview](../ApplicationConfiguration/ModeOverv
 
 Time Tables can be defined in the Application Configuration and in Entity Change messages.
 
+> NOTE: If you require a continuous period that runs over midnight, you must use an end time of 1.00:00:00 (midnight), this will ensure that the period from the 
+> first day is seamlessly linked to the next. e.g. Monday 9:00:00 to Tuesday 17:00:00, if you build the periods as 09:00:00-23:59:00 then 00:00:00-17:00:00, 
+> there will be a minute discontinuity at 23:59:00 to midnight on Monday where the timeTable will be inactive.  
+> Instead use 09:00:00-1.00:00:00 and 00:00:00-17:00:00.
+
 There are also two methods of defining a Time Table:
 
 ## Method 1
