@@ -1,5 +1,10 @@
 # Firmware Changelog
 
+## v1.2.3 (Minimum supported application version v4.4, recommended v4.5)
+ - Increase single controller battery temperature resolution.
+ - Change die temperature threshold for starting battery charging from 70C to 80C.
+ - Fix missing PCB revision labels.
+
 ## v1.2.1 (Minimum supported application version v4.4, recommended v4.5)
 
  - USB Network interface now sends OS descriptors when connected
