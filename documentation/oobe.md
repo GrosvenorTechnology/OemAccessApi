@@ -35,7 +35,17 @@ If an error occurs that can not be retried or suggests that something is wrong w
 
 The controller also has a HTTP API that can be used to configure the controller when it's in it's default state
 
-### SystemIno
+### Connection Test
+
+Used to test that the controller can contact the server.
+
+> POST /configuration/connectiontest
+
+Body should contain absolute URL to test as text/plain, i.e. https://myTestServer/janusc4/ping
+
+This will get the controller to do a GET using the URL. The server should return **success** (200) text/plain response with the word `OemAccess`. If this is the case, the POST returns **success** (200), if not, it returns **badrequest** (400).
+
+### System Info
 
 > GET /configuration/systeminfo
 
