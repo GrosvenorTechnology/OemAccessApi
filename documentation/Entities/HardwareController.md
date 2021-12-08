@@ -371,6 +371,11 @@ This command will forcefully stop logging service.
 
 Set a persons current state in all areas hosted by the controller.
 
+Parameters:
+
+- **PersonId [identifier]** – The unique identifier for the Person
+- **State [enum] (optional)** - The default is `Unknown`. Options: `Out`, `In` , `Unknown`
+
 | **Result**           | **Reason**            | **Event Content** |
 |----------------------|-----------------------|-------------------|
 | Success              |                       | PersonId          |

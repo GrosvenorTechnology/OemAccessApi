@@ -491,6 +491,8 @@ request is allowed, they are:
 - Whether the person has permission.
 - Whether the person passes all area APB checks associated with the portal.
 
+Parameters:
+
 - **PersonId [identifier]** – The unique identifier for the Person requesting to
     use the portal
 

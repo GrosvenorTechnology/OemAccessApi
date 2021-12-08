@@ -150,6 +150,11 @@ Move everyone out of an area
 
 Set a persons current state in an area
 
+Parameters:
+
+- **PersonId [identifier]** – The unique identifier for the Person
+- **State [enum] (optional)** - The default is `Unknown`. Options: `Out`, `In` , `Unknown`
+
 | **Result**           | **Reason**            | **Event Content** |
 |----------------------|-----------------------|-------------------|
 | Success              |                       | PersonId          |
