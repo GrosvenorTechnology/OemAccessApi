@@ -11,6 +11,17 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
+## 5.0.46478 (FW >= 2.0.0) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-5.0.46478.zip)
+
+ - [Feature] Support for v2 Door & OSDP blades (OEM-ADV-BL2-2D & OEM-ADV-OSDP2-2D)
+ - [Feature] Support for GtConnect services
+ - [Feature] Push configuration via GtConnect rather tha boot.config file
+ - [Feature] Configuration upload support via GtConnect
+ - [Feature] Device metrics now sent via GtConnect (CPU/Memory/Power/etc.)
+ - [Enhancement] All frameworks and third party libaries updated to latest versions
+ - [Bug] Logger changed from using LOG_DAEMON to LOG_USER
+ 
+
 ## 4.6.31192 (FW >= 1.2.1) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-4.6.30851.zip)
 
  - [Feature] The reader tamper input on Hardware.Reader and now be configured as normally open or closed (#21675) [link](Entities/HardwareReader.md#ReaderTamperNormallyOpen)

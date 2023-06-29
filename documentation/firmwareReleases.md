@@ -1,5 +1,43 @@
 # Firmware Changelog
 
+## v2.0.0 (Minimum supported application version v4.6, recommended v5.0)
+ - Add GtConnect services (monitoring of logs, configuration, app restarts etc.)
+ - Update OpenSSL to v1.1.1q.
+ - Update Mono to 6.12.0.182.
+ - Update OemOobe-app to version 5.0.46334.
+   - Logging level reduced so not to log Errors or Warnings for USB check
+   - Support added for SIGHUP based restarts
+   - Update all framework components to latest versions.
+ - Update firmware CAs:
+ - Removed CA:
+     - AC Camerfirma S.A. - Chambers of Commerce Root - 2008
+     - GeoTrust Inc. - GeoTrust Primary Certification Authority - G2
+     - AC Camerfirma S.A. - Global Chambersign Root - 2008
+     - QuoVadis Limited - QuoVadis Root Certification Authority
+     - Sonera - Sonera Class2 CA
+     - Staat der Nederlanden - Staat der Nederlanden Root CA - G3
+     - Trustis Limited - Trustis FPS Root CA
+     - VeriSign, Inc. - VeriSign Universal Root Certification Authority
+ - New CAs:
+     - FNMT-RCM - AC RAIZ FNMT-RCM SERVIDORES SEGUROS
+     - ANF Autoridad de Certificacion - ANF Secure Server Root CA
+     - Asseco Data Systems S.A. - Certum EC-384 CA
+     - Asseco Data Systems S.A. - Certum Trusted Root CA
+     - e-commerce monitoring GmbH - GLOBALTRUST 2020
+     - GlobalSign nv-sa - GlobalSign Root E46
+     - GlobalSign nv-sa - GlobalSign Root R46
+  - Log application output to stdout and stderr as error.
+  - Remove Syslog-Forwarder, Cyrus/SASL library, QPID-proton library and related settings:
+     - it_service_logging,
+     - it_service_logging_url,
+     - it_service_logging_debug,
+     - it_service_syslog_server.
+  - Remove over-current check resulting in a 12V cut-off in power driver.
+
+## v1.3.0 (Minimum supported application version v4.4, recommended v4.6)
+ - Updated setup application to make intitial setup more reliable.
+ - Updated root CA store.
+
 ## v1.2.3 (Minimum supported application version v4.4, recommended v4.5)
  - Increase single controller battery temperature resolution.
  - Change die temperature threshold for starting battery charging from 70C to 80C.
