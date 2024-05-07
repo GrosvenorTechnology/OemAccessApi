@@ -28,6 +28,8 @@ The SmartIntego System object is used to define common properties across all com
 
 **[string (100)]** The name of tokenFormat to use, there is no default. Use the
 `controller.tokenFormats` section in the application config to define the required format. Only one format can be supported across all SmartIntego readers.
+This token format must also be capable for fully round tripping card numbers back to the reader as bit patterns to use the whitelist feature.  
+The bit battern produced must be a perfect match for what the reader sends
 
 ## whitelistUpdatePeriod
 

@@ -1,0 +1,23 @@
+<readerTokenDefinition name="Mifare SimonsVoss" version="1" readBothWays="false" readerType="wiegand" invertData="false">
+  <format name="SimonsVoss Demo" formatType="wiegand" numberOfBits="48" diags="false">
+    <constantChecks>
+      <constantCheck firstBitIndex="5" constantBits="1100" />
+      <constantCheck firstBitIndex="13" constantBits="1100" />
+      <constantCheck firstBitIndex="21" constantBits="1100" />
+      <constantCheck firstBitIndex="29" constantBits="1100" />
+      <constantCheck firstBitIndex="37" constantBits="1100" />
+      <constantCheck firstBitIndex="41" constantBits="00000000" />
+    </constantChecks>
+    <interpretations>
+      <interpretation dataName="tokenNumber">
+        <bitSequences>
+          <bitSequence sequenceName="serialNumber" lsbIndex="1" numberOfBits="4" reversed="true" bcd="false" multiplier="10000" scope="10"/>
+          <bitSequence sequenceName="serialNumber" lsbIndex="9" numberOfBits="4" reversed="true" bcd="false" multiplier="1000" scope="10"/>
+          <bitSequence sequenceName="serialNumber" lsbIndex="17" numberOfBits="4" reversed="true" bcd="false" multiplier="100" scope="10"/>
+          <bitSequence sequenceName="serialNumber" lsbIndex="25" numberOfBits="4" reversed="true" bcd="false" multiplier="10" scope="10"/>
+          <bitSequence sequenceName="serialNumber" lsbIndex="33" numberOfBits="4" reversed="true" bcd="false" multiplier="1" scope="10"/>
+        </bitSequences>
+      </interpretation>
+    </interpretations>
+  </format>
+</readerTokenDefinition>
