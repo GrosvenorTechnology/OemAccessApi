@@ -165,7 +165,7 @@ To set the controller to use static network settings, the eth0 setting must be s
 
 ### DHCP Network Address
 
-To set the controller to use static network settings, the `eth0` setting must be set as in the example below.
+To set the controller to use DHCP network settings, the `eth0` setting must be set as in the example below.
 
 ```json
 {
@@ -178,7 +178,7 @@ To set the controller to use static network settings, the `eth0` setting must be
 
 ```
 
-Or just admit the `eth0` setting will also switch the controller to DHCP
+Or just ommiting the `eth0` setting will also switch the controller to DHCP
 
 ```json
 {
