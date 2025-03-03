@@ -58,8 +58,13 @@ The configuration of the controller is split into two sections, platform and app
                 "useNonDestructiveRead": true
             },
             "permissionRequest": {
-                "uri": "device/{deviceSerial}/permissionrequest"
+                "uri": "device/{deviceSerial}/permissionrequest",
+                "Timeout": 30
             },
+	       "userEntityRequest": {
+                "Uri": "device/{deviceSerial}/userEntityRequest",
+                "Timeout": 30
+             }
             "eventSubmission": [
                 {
                     "uri": "{mgmt}/device/{deviceSerial}/events",
@@ -154,6 +159,8 @@ If the URI is marked with [multi-uri] then it is possible to specify zero or mor
 If the URI is of type [polled] then you can set the *uri*, *frequency* of polling (in seconds).  If you set the *uri* of a [polled] setting to "disabled" then the system will not attempt to connect to that endpoint.
 
 If the URI is of type [queue] then you can set the *uri*, *frequency* of polling (in seconds), *batchSize* and *useNonDestructiveRead* (defaults to false).
+
+If the URI is of type [permissionRequest] or [userEntityRequest] then you can set the *uri*, and *timeout* (>= v5.2.0).
 
 ### Heartbeat
 

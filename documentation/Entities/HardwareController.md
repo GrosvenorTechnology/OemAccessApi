@@ -59,6 +59,10 @@ The controller has the following operational modes
 
 **[timespan] (1 day)** How long to cache the unknown token result.  If the server returns a result that the token is unknown, the controller will not ask the server for the token again for the period defined in this setting.
 
+### unknownTokenWaitTimeout (>= V5.2.0)
+
+**[timespan] (5 seconds)** How long to wait for a token request to complete.  Note this is the interactive time the user waits before a fallback is executed.  The request will continue in the background and if successful the token will be updated ready for the next attempt.
+
 ## States
 
 ### OperationalMode

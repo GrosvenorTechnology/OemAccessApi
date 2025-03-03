@@ -11,6 +11,11 @@ The Stable channel will contain all firmware versions as well as every applicati
 
 ## Stable Channel Releases
 
+## 5.1.0.55874 (FW >= 2.0.0) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-5.1.0.55874.zip)
+ 
+ - [Feature] When builing bit  patterns for SmartIntego Whitelist, will now use multiple sequences and scope/multipliers.
+
+
 ## 5.0.46478 (FW >= 2.0.0) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-5.0.46478.zip)
 
  - [Feature] Support for v2 Door & OSDP blades (OEM-ADV-BL2-2D & OEM-ADV-OSDP2-2D)
