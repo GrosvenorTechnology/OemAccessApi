@@ -1,5 +1,69 @@
 # Firmware Changelog
 
+## v2.2.0 (Minimum supported application version v5.0, recommended v5.1)
+ - Change GTConnect DPS protocol from `ampqs` to `https`, `amqps` used as fallback.
+ - Add setting `it_gtconnect_iot_protocol` for GtConnect protocol selection. Possible protocols are `amqps` and `amqps-ws`.
+ - Add settings for HTTP proxy (`proxy_host`, `proxy_port`, `proxy_username`, `proxy_password`)
+ - Add setting `it_system_reset` for triggering factory reset.
+ - Reboot terminal earlier on low memory condition via watchdog (10% of total memory).
+ - Re-charge single controller battery only when below 80% (3.75V) when fully charged.
+ - Enforce the date to be at least the year of the build date during boot-up.
+ - Collect and send crash reports to GTConnect.
+ - Collect and send terminal telemetry data to GTConnect.
+ - Minor GTConnect enhancements:
+   - Re-enrol after continuous failures to connect to IoT hub.
+   - Handle minimum firmware requirement during enrollment.
+   - Reply to `ping` direct command.
+   - Supporting new log bundling setting `maxTimeToWait` in seconds to replace `maxTimeToWaitForEntry` (ms).
+   - Report boot time in GtConnect properties.
+   - Send events about USB and battery property changes.
+   - Check for existence of `tblSettings` before accessing application configuration
+   - Use correct HTTP `Accept` and `Content-Type` header for JSON files.
+ - Fix issue where GTConnect device status updates could arrive out of order.
+ - Fix issue in GTConnect timeout handling when waiting for log entries.
+ - Fix HTTP header in `updateit` and remove cache control properties.
+ - Update Openssl to v3.1.5
+ - Update Curl to v8.6.0.
+ - Update Connman to v1.42.
+ - Update Dropbear to 2022.83.
+ - UPdate Azure IoT SDK to `LTS_03_2024`.
+ - Update firmware CAs:
+   - Removed CAs:
+     - Cybertrust, Inc - Cybertrust Global Root
+     - Agencia Catalana de Certificacio (NIF Q-0801176-I) - EC-ACC
+     - GlobalSign - GlobalSign
+     - Hellenic Academic and Research Institutions Cert. Authority - Hellenic Academic and Research Institutions RootCA 2011
+     - Network Solutions L.L.C. - Network Solutions Certificate Authority
+     - Staat der Nederlanden - Staat der Nederlanden EV Root CA
+     - TrustCor Systems S. de R.L. - TrustCor ECA-1
+     - TrustCor Systems S. de R.L. - TrustCor RootCert CA-1
+     - TrustCor Systems S. de R.L. - TrustCor RootCert CA-2
+   - New CAs:
+     - Autoridad de Certificacion Firmaprofesional CIF A62634068
+     - Certainly - Certainly Root E1
+     - Certainly - Certainly Root R1
+     - D-Trust GmbH - D-TRUST BR Root CA 1 2020
+     - D-Trust GmbH - D-TRUST EV Root CA 1 2020
+     - DigiCert, Inc. - DigiCert TLS ECC P384 Root G5
+     - DigiCert, Inc. - DigiCert TLS RSA4096 Root G5
+     - E-Tugra EBG A.S. - E-Tugra Global Root CA ECC v3
+     - E-Tugra EBG A.S. - E-Tugra Global Root CA RSA v3
+     - Hellenic Academic and Research Institutions CA - HARICA TLS ECC Root CA 2021
+     - Hellenic Academic and Research Institutions CA - HARICA TLS RSA Root CA 2021
+     - Chunghwa Telecom Co., Ltd. - HiPKI Root CA - G1
+     - Internet Security Research Group - ISRG Root X2
+     - SECOM Trust Systems CO.,LTD. - Security Communication ECC RootCA1
+     - SECOM Trust Systems CO.,LTD. - Security Communication RootCA3
+     - Telia Finland Oyj - Telia Root CA v2
+     - Agence Nationale de Certification Electronique - TunTrust Root CA
+     - iTrusChina Co.,Ltd. - vTrus ECC Root CA
+     - iTrusChina Co.,Ltd. - vTrus Root CA
+
+## v2.1.0 (Minimum supported application version v5.0, recommended v5.1)
+ - Update OemOobe-app to version 5.1.52832.
+ - Log GTConnect log-parsing errors as debug instead of error.
+ - Ignore log entries without content for GTConnect.
+
 ## v2.0.0 (Minimum supported application version v4.6, recommended v5.0)
  - Add GtConnect services (monitoring of logs, configuration, app restarts etc.)
  - Update OpenSSL to v1.1.1q.
