@@ -16,7 +16,7 @@ The Stable channel will contain all firmware versions as well as every applicati
  - [Enhancement] Support custom unknown token request timeout (max 60 seconds).
  - [Enhancement] Support custom unknown token user wait timeout (the time before the user access request invokes the fallback action).
  - [Enhancement] Support custom timeout for server permission request (max 60 seconds).
- - [Bug] Fix Inavid Value (value to big for unsigned int) logged when application starting.
+ - [Bug] Fix Inavid Value (value too big for unsigned int) logged when application starting.
 
 ## 5.1.0.55874 (FW >= 2.0.0) [SDK Download](https://firmware.customexchange.net/oemsdk/OemAccess-SDK-5.1.0.55874.zip)
  
